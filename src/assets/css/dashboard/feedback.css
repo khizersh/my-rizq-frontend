@@ -1,0 +1,16 @@
+.active-rate{
+    background-color: #57C25C !important;
+    color: white;
+}
+
+.bg-green{
+    background-color: #57C25C !important;
+}
+
+.justify-center{
+    justify-content: space-around;
+  }
+
+  .cursor-pointer{
+    cursor: pointer;
+  }

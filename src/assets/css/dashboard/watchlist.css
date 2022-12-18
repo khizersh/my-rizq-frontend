@@ -1,0 +1,26 @@
+.custom-table thead tr th {
+  color: #57c25c;
+  font-weight: 400;
+}
+
+
+.custom-table thead tr th:hover {
+    background-color: rgba(92, 181, 38, 0.2)
+  }
+
+.status-padding{
+    padding: 5px 15px;
+}
+  
+
+.width-pill{
+  width: 208px;
+}
+
+.watchlist-bg{
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.border-radius-8{
+  border-radius: 8px;
+}
