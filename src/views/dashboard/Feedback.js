@@ -2,16 +2,56 @@ import React, { useState, useEffect } from "react";
 import "assets/css/dashboard/stock.css";
 import "assets/css/dashboard/feedback.css";
 import "assets/css/home/home.css";
+import swal from 'sweetalert';
+
 
 const Feedback = () => {
-  const [rated, setRate] = useState(0);
-  const [review, setReview] = useState(0);
+  const [rated, setRate] = useState(10);
+  const [review, setReview] = useState(10);
+  const [reviewBody, setReviewBody] = useState({
+    thoughts : "",
+    review: ""
+  });
 
   const ratings = () => {
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   };
 
- 
+
+  const onChangeReviewBody = (key , value ) => {
+    let review = {...reviewBody , [key] : value };
+    setReviewBody(review)
+  }
+
+  const onClickSave = () => {
+
+    let body =  [{...reviewBody , likeCount : rated , reviewCount : review }]
+
+    fetch("http://localhost:3001/review/", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data && data.status == "0000"){
+          swal("Success!", "Thanks for your feedback!", "success");
+        }else{
+
+        }
+        console.log(" data response : ",data);
+        // setLoaded(true)
+        // if(data && data.response.financialData && data.response.summaryDetail){
+    
+        // }
+      });
+    // console.log("body : ",body);
+    // setReviewBody(review)
+  }
+
+
 
   useEffect(() => {}, [rated , review]);
 
@@ -33,6 +73,7 @@ const Feedback = () => {
               <text className="weight-500">Your Thoughts?</text>
               <div className="form-group bg-white shadow-sm">
                 <textarea
+                  onChange={(e) => onChangeReviewBody("thoughts" , e.target.value)}
                   className="form-control"
                   id="exampleFormControlTextarea1"
                   rows="3"
@@ -96,6 +137,7 @@ const Feedback = () => {
             <div className="mx-3">
               <textarea
                 className="form-control bg-white shadow-sm"
+                onChange={(e) => onChangeReviewBody("review" , e.target.value)}
                 id="exampleFormControlTextarea1"
                 rows="3"
                 placeholder="Thoughts?"
@@ -106,7 +148,7 @@ const Feedback = () => {
       </div>
       <div className="row">
         <div className="col-12  my-3 text-center">
-            <button className="btn bg-green text-white">SEND   <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+            <button className="btn bg-green text-white" onClick={onClickSave}>SEND   <i class="fa fa-angle-right" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>

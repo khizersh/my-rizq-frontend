@@ -1,10 +1,40 @@
-import React from 'react'
+import React,{useState} from 'react'
 import "assets/css/dashboard/stock.css";
 import "assets/css/dashboard/feedback.css";
 import "assets/css/dashboard/budgeting-tool.css";
 import "assets/css/home/home.css";
+import swal from 'sweetalert';
 
 const BudgetingTool = () => {
+
+  const [email , setEmail] = useState("")
+
+  const onClick = () => {
+    let body =  [{email}]
+
+    fetch("http://localhost:3001/newsletter/", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data && data.status == "0000"){
+          swal("Success!", "We will notify you!", "success");
+        }else{
+
+        }
+        console.log(" data response : ",data);
+        // setLoaded(true)
+        // if(data && data.response.financialData && data.response.summaryDetail){
+    
+        // }
+      });
+
+  }
+
   return (
     <div className="container-fluid">
     <div className="row">
@@ -26,12 +56,12 @@ const BudgetingTool = () => {
                   <div className='padding-newsletter text-center'>
                   <text className='text-black weight-600 font-17 font-mon '>Join Our Newsletter</text>
                   <div className=" input-group  text-center bg-white shadow-sm">
-                      <input type="text" className="form-control" placeholder="Your email Address" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                      <input type="text" className="form-control" onChange={(e) => setEmail(e.target.value)} placeholder="Your email Address" aria-label="Recipient's username" aria-describedby="basic-addon2" />
                       <div className="input-group-append ">
-                          <button className="btn bg-green text-white" type="button"><text className='font-mon font-10'>Join</text></button>
+                          <button className="btn bg-green text-white" type="button" onClick={onClick}><text className='font-mon font-10'>Join</text></button>
                       </div>
                   </div>
-                      <text className='text-muted font-12'>* Will send you weekly updates for your better finance management</text>
+                      <text className='text-muted font-12' >* Will send you weekly updates for your better finance management</text>
               </div>
               </div>
           </div>

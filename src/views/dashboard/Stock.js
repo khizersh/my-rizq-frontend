@@ -55,9 +55,6 @@ export const Stock = () => {
     });
     fetchData(params.symbol);
 
-    console.log("deptRatio : ",deptRatio);
-
-
   },[deptRatio ])
 
   return (
