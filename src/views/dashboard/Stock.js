@@ -135,19 +135,19 @@ export const Stock = () => {
                 </text>{" "}
               </div>
               <div className="card-body">
-                <div className="bg-green-opacity border-radius-5 d-inline p-2">
+                <div className={`${isShariah ? "bg-green-opacity" : "bg-danger-op-2"} border-radius-5 d-inline p-2`}>
                   <text className="font-mon">
                     <img
                       className="pr-1"
                       style={{ marginTop: "-1px" }}
-                      src={require("assets/img/dashboard/warning.png")}
+                      src={require(`assets/img/dashboard/${isShariah ? "warning.png" : "red-warning.png"}`)}
                     />
                     Revenue
                   </text>
                 </div>
                 <div className="progress mt-3">
                   <div
-                    className="progress-bar bg-success w-100"
+                    className={`progress-bar ${isShariah ? "bg-success": "bg-danger"}  w-100`}
                     role="progressbar"
                     aria-valuenow="100"
                     aria-valuemin="0"
