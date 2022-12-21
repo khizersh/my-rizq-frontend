@@ -81,6 +81,10 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
   .clear {
     clear: both; }
 
+    .pointer-cursor{
+      cursor: pointer !important;
+    }
+
     .w-65{
       width: 65%;
     }

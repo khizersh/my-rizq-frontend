@@ -42,13 +42,9 @@ const Feedback = () => {
 
         }
         console.log(" data response : ",data);
-        // setLoaded(true)
-        // if(data && data.response.financialData && data.response.summaryDetail){
-    
-        // }
+       
       });
-    // console.log("body : ",body);
-    // setReviewBody(review)
+   
   }
 
 

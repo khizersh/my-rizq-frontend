@@ -1,26 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // reactstrap components
 
 // core components
-import DemoNavbar from "components/Navbars/DemoNavbar.js";
-import SimpleFooter from "components/Footers/SimpleFooter.js";
+import swal from 'sweetalert';
 import "../../assets/css/login/login.css";
 import "../../assets/css/home/home.css";
+import { useHistory } from "react-router-dom";
 
-class Register extends React.Component {
-  componentDidMount() {
+
+const Register = () => {
+
+  const router = useHistory();
+
+  const[user , setUser] = useState({
+    name : "",
+    email : "",
+    password : "",
+  })
+
+  const onChange = (e) => {
+    setUser({...user , [e.target.name] : e.target.value})
+  }
+  const onClickRegister = () => {
+    console.log("user : ",user);
+    fetch("http://localhost:3001/user/signup", {
+      method: "POST",
+      body: JSON.stringify([user]),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data && data.status == "0000"){
+          swal("Success!", "User register successfully!", "success").then(m => {
+            router.push("/signin")
+          })
+        }else if(data && data.status == "9999"){
+          swal("Error!", data.message, "error");
+        }else{
+          swal("Error!", "Something went wrong!", "error");
+        }
+       
+      });
+  }
+
+
+
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-    this.refs.main.scrollTop = 0;
-  }
-  render() {
-    return (
-      <>
-        <main ref="main">
-          <section class="mt-100">
-            <div class="container mb-5">
-              <div class="card-box bg-green shadow-lg width-70">
+    // this.refs.main.scrollTop = 0;
+  }, []);
+
+  return (
+    <>
+      <main>
+        <section class="mt-100">
+          <div class="container mb-5">
+            <div class="card-box bg-green shadow-lg width-70">
               <div className="row">
                 <div className="col-12 col-lg-4">
                   <div className="">
@@ -36,46 +75,50 @@ class Register extends React.Component {
                         Sign up for MyRizq and begin your Financial Journey
                       </h4>
                     </div>
-                   
                   </div>
                 </div>
                 <div className="col-12 col-lg-8">
                   <div class="card-box-inner">
                     <div className="w-100 text-center logo-img">
-                      <img src={require('assets/img/brand/logo.png')} />
+                      <img src={require("assets/img/brand/logo.png")} />
                     </div>
-                  
+
                     <h3 class="form-title weight-600">Create Account</h3>
-                    <div className="d-flex justify-center" >
+                    <div className="d-flex justify-center">
                       <button type="button" class="btn btn-outline-primary">
-                      <img
+                        <img
                           style={{ width: "20px" }}
                           src={require("assets/img/signup/google.png")}
                         />
-                        <text className="text-black text-btn">Sign Up with Google</text> 
+                        <text className="text-black text-btn">
+                          Sign Up with Google
+                        </text>
                       </button>
                       <button type="button" class="btn btn-outline-primary">
                         <img
                           style={{ width: "20px" }}
                           src={require("assets/img/signup/facebook.png")}
                         />
-                        <text className="text-btn text-black">Sign Up with Facebook</text>{" "}
+                        <text className="text-btn text-black">
+                          Sign Up with Facebook
+                        </text>{" "}
                       </button>
                     </div>
                     <br />
                     <br />
                     <p className="text-muted text-center">- OR -</p>
                     <br />
-                    <div  class="register-form px-5 " >
+                    <div class="register-form px-5 ">
                       <div class="form-group">
                         <label for="your_name">
                           <i class="zmdi zmdi-account material-icons-name"></i>
                         </label>
                         <input
                           type="text"
-                          name="your_name"
+                          name="name"
                           className="p-0"
                           id="your_name"
+                          onChange={(e) => onChange(e)}
                           placeholder="Full Name"
                         />
                       </div>
@@ -84,10 +127,11 @@ class Register extends React.Component {
                           <i class="zmdi zmdi-account material-icons-name"></i>
                         </label>
                         <input
-                          type="text"
-                          name="your_name"
+                          type="email"
+                          name="email"
                           id="your_name"
                           className="p-0"
+                          onChange={(e) => onChange(e)}
                           placeholder="Email Address"
                         />
                       </div>
@@ -97,9 +141,10 @@ class Register extends React.Component {
                         </label>
                         <input
                           type="password"
-                          name="your_pass"
+                          name="password"
                           className="p-0"
                           id="your_pass"
+                          onChange={(e) => onChange(e)}
                           placeholder="Password"
                         />
                       </div>
@@ -110,24 +155,28 @@ class Register extends React.Component {
                           id="remember-me"
                           class="agree-term"
                         />
-                        
-                        <button type="button" class="btn bg-green text-white w-100 mb-2">Create Account</button>
-                        <text className="text-muted mt-2">Already have an account? <a>Login</a> </text>
+
+                        <button
+                          type="button"
+                          class="btn bg-green text-white w-100 mb-2"
+                          onClick={onClickRegister}
+                        >
+                          Create Account
+                        </button>
+                        <text className="text-muted mt-2">
+                          Already have an account? <a  className="pointer-cursor" onClick={() => router.push("/signin")}>Login</a>{" "}
+                        </text>
                       </div>
-                  
                     </div>
-                   
                   </div>
                 </div>
               </div>
-         
-              </div>
             </div>
-          </section>
-        </main>
-      </>
-    );
-  }
-}
+          </div>
+        </section>
+      </main>
+    </>
+  );
+};
 
 export default Register;

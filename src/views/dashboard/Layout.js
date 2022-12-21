@@ -3,8 +3,12 @@ import "assets/css/dashboard/layout.css";
 import "assets/css/home/home.css";
 import { FormGroup, Input } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const Layout = (props) => {
+
+  const router = useHistory();
+
   const [selected, setSelected] = useState("halal-stock-search");
   const [page, setPage] = useState("");
 
@@ -91,6 +95,18 @@ export const Layout = (props) => {
   }
 
   useEffect(() => {
+
+   let user = localStorage.getItem("user");
+   if(user){
+    let userData = JSON.parse(user);
+    if(userData.email){
+
+    }else{
+      router.push("/signin")
+    }
+   }else{
+    router.push("/signin")
+   }
     setPage(getPageNameByKey(selected));
   }, [selected])
 
