@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import "assets/css/dashboard/stock.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import swal from 'sweetalert';
 
 export const Stock = () => {
   const percentage = 66;
   const greenStroke = "#1EC372";
+
 
   const [loaded, setLoaded] = useState(false);
   const [deptRatio, setDepthRatio] = useState(0);
@@ -13,6 +15,11 @@ export const Stock = () => {
   const [liquidityRatio, setLiquidityRatio] = useState(0);
   const [shortName, setShortName] = useState("");
   const [isShariah, setIsShariah] = useState(false);
+
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+
 
   const fetchData = (symbol) => {
     if (symbol) {
@@ -59,10 +66,38 @@ export const Stock = () => {
     }
   };
 
+
+  const onClickFollow = () => {
+
+    let user = JSON.parse(localStorage.getItem("user")); 
+    let obj = [{
+      email : user.email,
+      symbol : params.symbol
+    }]
+
+    fetch("http://localhost:3001/follow/save", {
+      method: "POST",
+      body: JSON.stringify(obj),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data && data.status == "0000"){
+          swal("Success!", "Followed successfully!", "success").then(m => {
+          })
+        }else if(data && data.status == "9999"){
+          swal("Error!", data.message, "error");
+        }else{
+          swal("Error!", "Something went wrong!", "error");
+        }
+       
+      });
+
+  }
+
   useEffect(() => {
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-      get: (searchParams, prop) => searchParams.get(prop),
-    });
     fetchData(params.symbol);
   }, [deptRatio]);
 
@@ -122,7 +157,7 @@ export const Stock = () => {
                 <h5 className="font-mon weight-600 d-inline text-black">
                   Qualitative Screeing
                 </h5>{" "}
-                <text className="border-radius-10 pills ml-3 px-2">
+                <text className="cursor-pointer border-radius-10 pills ml-3 px-2" onClick={onClickFollow}>
                   <img
                     width={"13px"}
                     style={{ marginTop: "-1px" }}
@@ -246,7 +281,7 @@ export const Stock = () => {
                 <h5 className="font-mon weight-600 d-inline text-black">
                   Quantitative Screeing
                 </h5>{" "}
-                <text className="border-radius-10 pills ml-3 px-2">
+                <text className="cursor-pointer border-radius-10 pills ml-3 px-2" onClick={onClickFollow}>
                   <img
                     width={"13px"}
                     style={{ marginTop: "-1px" }}

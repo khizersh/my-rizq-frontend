@@ -1,26 +1,22 @@
-import React,{useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "assets/css/comon.css";
 import "assets/css/dashboard/watchlist.css";
 
 const Watchlist = () => {
+  const [array, setArray] = useState([]);
+  const [sort, setSort] = useState({ key: "symbol", order: "asc" });
 
-    const [array , setArray] = useState([])
-    const [sort , setSort] = useState({key : 'symbol' , order : 'asc'})
-
-  
   function onClickSort(data) {
-    if(sort && sort.key == data){
-        if(sort.order == 'asc'){
-            setSort({key : data , order : 'desc'})
-        }else{
-            setSort({key : data , order : 'asc'})   
-        }
-    }else{
-        setSort({key : data , order : 'asc'})  
-    }
-
-    getFilterList(sort)
-
+    // if(sort && sort.key == data){
+    //     if(sort.order == 'asc'){
+    //         setSort({key : data , order : 'desc'})
+    //     }else{
+    //         setSort({key : data , order : 'asc'})
+    //     }
+    // }else{
+    //     setSort({key : data , order : 'asc'})
+    // }
+    // getFilterList(sort)
   }
 
   function getList() {
@@ -76,22 +72,82 @@ const Watchlist = () => {
     ];
   }
 
-  function getFilterList(sort){
-    let array = getList();
-    let sorted = []
-    // array
-    if(sort.order == 'asc'){
-        sorted =  array.sort(function(a, b){return a[sort.key] - b[sort.key]});
-    }else{
-        sorted = array.sort(function(a, b){return  b[sort.key] - a[sort.key]});
+  const getSymbols = async () => {
+    let list = [];
+    let user = JSON.parse(localStorage.getItem("user"));
+    const data = await fetch("http://localhost:3001/follow/get-symbols", {
+      method: "POST",
+      body: JSON.stringify({ email: user.email }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    const json = await data.json();
+    if (json.status == "0000") {
+      list = json.data;
     }
-    setArray(sorted)
+    return list;
+  };
 
+  const fetchData = async (user) => {
+    try {
+      const data = await fetch("http://localhost:3001/follow/get-data", {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      const json = await data.json();
+      return json;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const fetchDataByList = async (emailList) => {
+    let finalArray = [];
+    for (let user of emailList) {
+      const data = await fetchData(user);
+      if ((data.status = "0000")) {
+        finalArray.push(data.data);
+      }
+    }
+    console.log("All emails were sent");
+    return finalArray;
+  };
+
+  function getFilterList(sort) {
+    let array = getList();
+    let sorted = [];
+    // array
+    if (sort.order == "asc") {
+      sorted = array.sort(function (a, b) {
+        return a[sort.key] - b[sort.key];
+      });
+    } else {
+      sorted = array.sort(function (a, b) {
+        return b[sort.key] - a[sort.key];
+      });
+    }
+    setArray(sorted);
   }
 
+  const combineData = async () => {
+    let final = [];
+    const listData = await getSymbols();
+    const finalData = await fetchDataByList(listData);
+    setArray(finalData);
+  };
+
   useEffect(() => {
-        setArray(getList())
-    },[sort])
+    combineData();
+    console.log("finalData  ");
+    // setArray(finalData)
+
+    // setArray(getList());
+  }, [array]);
 
   return (
     <div className="container-fluid mb-5">
@@ -157,14 +213,38 @@ const Watchlist = () => {
                 </tr>
               </thead>
               <tbody>
-                {array.length > 0 ? array.map((data , ind) => <tr>
-                  <th className="text-black weight-600 font-mon font-14">{data.symbol}</th>
-                  <th className="text-black weight-600 font-mon font-14">{data.name}</th>
-                  <th className="text-black weight-600 font-mon font-14">{data.price}</th>
-                  <th className="text-black text-center weight-400 font-mon font-14"><p className={`border-radius-5 width-pill weight-400 font-15 text-white status-padding ${data.status?.includes('Non') ? "bg-danger" : " bg-green"}`}>{data.status}</p></th>
-                  <th className="text-black weight-600 font-mon font-14">{data.marketCap}</th>
-                  <th className="text-black weight-600 font-mon font-14">{data.debtLevel}</th>
-                </tr>) : <></>}
+                {array.length > 0 ? (
+                  array.map((data, ind) => (
+                    <tr>
+                      <th className="text-black weight-600 font-mon font-14">
+                        {data.symbol}
+                      </th>
+                      <th className="text-black weight-600 font-mon font-14">
+                        {data.name}
+                      </th>
+                      <th className="text-black weight-600 font-mon font-14">
+                        {data.price}
+                      </th>
+                      <th className="text-black text-center weight-400 font-mon font-14">
+                        <p
+                          className={`border-radius-5 width-pill weight-400 font-15 text-white status-padding ${
+                            data.status ? "bg-green" : " bg-danger"
+                          }`}
+                        >
+                          {data.status ? "Shariah Compliant" : "Shariah Non-Compliant"}
+                        </p>
+                      </th>
+                      <th className="text-black weight-600 font-mon font-14">
+                        {data.marketCap}
+                      </th>
+                      <th className="text-black weight-600 font-mon font-14">
+                        {data.debtLevel}
+                      </th>
+                    </tr>
+                  ))
+                ) : (
+                  <div className="w-100 text-center text-black">Loading...</div>
+                )}
               </tbody>
             </table>
           </div>
