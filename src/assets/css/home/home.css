@@ -37,17 +37,17 @@
 .line-05 {
   line-height: 1;
   color: black;
-  margin:16px auto;
+  margin: 16px auto;
 }
 
 .width-60 {
-  width: 60% !important;
+  width: 60%;
 }
 .padding-left-100 {
   padding-left: 200px;
 }
 
-.pos-started{
+.pos-started {
   position: relative;
   left: 244px;
   bottom: 100px;
@@ -61,7 +61,7 @@
   width: 65%;
 }
 
-.width-62{
+.width-62 {
   width: 62%;
 }
 
@@ -115,6 +115,9 @@
 .footer-icon {
   width: 33px !important;
 }
+.font-26{
+  font-size : 26px
+}
 
 .newsletter {
   font-family: "Poppins", sans-serif;
@@ -167,4 +170,98 @@
   padding: 3px;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
+}
+
+.dt-width-100 {
+  width: 100%;
+}
+
+/* media query */
+
+@media only screen and (max-width: 600px) {
+  .container-width {
+    padding: 10px 5px;
+  }
+  .padding-31vh {
+    padding-top: 0px !important;
+  }
+  .padding-25vh {
+    padding-top: 0px !important;
+  }
+  .mbl-size-37 {
+    font-size: 37px;
+  }
+
+  .mt-mbl-0 {
+    margin-top: 0px !important;
+  }
+  .mb-mbl-0 {
+    margin-top: 0px !important;
+  }
+  .mb-mbl-5{
+    margin-bottom: 3rem;
+  }
+  .mb-mbl-3{
+    margin-bottom: 1.5rem;
+  }
+
+  .p-mbl-text {
+    padding: 20px 0px !important;
+  }
+
+  .slick-arrow{
+    display: none !important;
+  }
+
+  .dt-width-100 {
+    width: auto;
+  }
+
+  .width-62 {
+    width: 100%;
+  }
+  .width-60 {
+    width: 100% !important;
+  }
+
+  .mbl-line-0{
+    line-height: 0;
+  }
+
+  .pos-started{
+    position: relative;
+    left: auto;
+    bottom: auto;
+  }
+
+  .mt-mbl-5{
+    margin-top: 5rem;
+  }
+
+  .main-section{
+    position: relative;
+    top: 18rem;
+  }
+
+  .main-section-signup{
+    position: relative;
+    top: 1rem;
+  }
+
+  .padding-message {
+    padding: 1px 1px;
+  }
+
+  .message {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600 !important;
+    color: black;
+    font-size: 12px;
+    padding-top: 10px;
+  }
+
+  .font-26{
+    font-size: 20px;
+  }
+
 }

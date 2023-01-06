@@ -24,19 +24,19 @@ export default function Hero(){
         <div className="position-relative bg-img">
           <section >
             <div className="container-width d-flex align-items-center py-lg container-fluid">
-              <div className="row w-100 align-items-center justify-content-center">
-                <div className="col-6 padding-31vh">
-                    <h1 className="weight-800 text-black line-05 font-poppins">Muslim Personal</h1>
-                    <h1  className="text-green weight-800 font-poppins" >Finance App.</h1>
-                    <div className="mt-5 width-62 weight-500">
-                      <text style={{color : '#676767'}} className="font-mon">"Your Rizq in one place! Muslim led fin-tech startup, aiming to transform the financial lives of Muslims"</text>
-                      <div className="pr-3  pt-5">
+              <div className="row dt-width-100 align-items-center justify-content-center">
+                <div className="col-12 col-lg-6 padding-31vh">
+                    <h1 className="weight-800 text-black line-05 font-poppins mbl-size-37 mbl-line-0">Muslim Personal</h1>
+                    <h1  className="text-green weight-800 font-poppins mbl-size-37" >Finance App.</h1>
+                    <div className="mt-5 mt-mbl-0 width-62 weight-500">
+                      <text style={{color : '#676767'}} className="font-mon p-mbl-text">"Your Rizq in one place! Muslim led fin-tech startup, aiming to transform the financial lives of Muslims"</text>
+                      <div className="pr-3  pt-5 p-mbl-text">
                         <Button className=" float-left text-white d-inline w-50 bg-green btn btn-success"  >Get Started</Button>
                         <Button className="btn text-default d-inline btn btn-link" color="link"  >Learn more</Button>
                       </div>
                     </div>
                 </div>
-                <div className="col-6 padding-25vh pos-started">
+                <div className="col-12 col-lg-6 padding-25vh pos-started mt-mbl-5">
                   <h6 className="text-left text-green "><strong>Get Started for Free</strong> </h6>
                   <FormGroup>
                     <Input placeholder="Email Address" type="text" className="width-60 mb-2 bg-transparent"/>
@@ -49,8 +49,8 @@ export default function Hero(){
           </section>
           <section>
           <div className="container-width d-flex align-items-center  container-fluid mb-4">
-              <div className="row w-100 align-items-center justify-content-center">
-                <div className="col-7 text-center">
+              <div className="row dt-width-100 align-items-center justify-content-center">
+                <div className="col-12 col-lg-7 text-center">
                   <h2 className="weight-700 text-green ">All in one Personal Finance App</h2>
                   <text className="weight-500">Find Halal Stocks, Keep track of your spending habits, Determine your Net worth, and Automate your Zakat. Your Rizq all in one place!</text>
                 </div>
@@ -59,21 +59,21 @@ export default function Hero(){
 
             <section>
           <div className="container-width d-flex align-items-center  container-fluid">
-              <div className="row w-100 align-items-center justify-content-center">
-                <div className="col-10 text-center">
+              <div className="row dt-width-100 align-items-center justify-content-center">
                   <h2 className="weight-700 text-green mb-5">Featured Tools</h2>
+                <div className="col-12 col-lg-10 text-center">
                   <div className="row">
-                    <div className="col-12 col-lg-4 text-center">
+                    <div className="col-12 col-lg-4 text-center mb-mbl-3">
                       <img   src={require("assets/img/home/halal.png")} className="mb-3"  alt="halal"/>
                       <p className="feature-title weight-700 line-05 font-poppins">Halal Stock Screener</p>
                       <p className="feature-desc weight-400 font-mon">Easily determine which stocks <br/> are shariah compliant</p>
                     </div>
-                    <div className="col-12 col-lg-4 text-center">
+                    <div className="col-12 col-lg-4 text-center mb-mbl-3">
                       <img   src={require("assets/img/home/location.png")} className="mb-3"  alt="halal"/>
                       <p className="feature-title weight-700 line-05 font-poppins">Budget Tool</p>
                       <p className="feature-desc weight-400 font-mon">Get an understanding of where your<br/> money is going with our budget tracker </p>
                     </div>
-                    <div className="col-12 col-lg-4 text-center">
+                    <div className="col-12 col-lg-4 text-center mb-mbl-3">
                       <img   src={require("assets/img/home/calculator.png")} className="mb-3"  alt="halal"/>
                       <p className="feature-title weight-700 line-05 font-poppins">Net Worth & Zakat Calculation</p>
                       <p className="feature-desc weight-400 font-mon">Track your overall Net Worth and see <br/> how much Zakat you will need to pay </p>
@@ -86,12 +86,14 @@ export default function Hero(){
           </section>
         
         </div>
-
+        <br/>
+<br/>
+<br/>
 {/* slider section */}
-        <section>
-         <div className="container-width d-flex align-items-center  container-fluid mt-5">
-              <div className="row w-100 align-items-center justify-content-center">
-                <div className="col-12"><h1 className="font-poppins weight-800 text-center text-black my-5" style={{fontSize : '26.42px'}}>What users are saying</h1> </div>
+        <section className="main-section">
+         <div className="container-width  mt-5">
+              <div className="">
+                <div className="col-12 mt-5"><h1 className="font-poppins weight-800 text-center text-black my-5 mb-mbl-0 font-26" >What users are saying</h1> </div>
                 <div className="col-12 mt-5">
                 <Slider {...settings}>
                   <div className="padding-message text-left">
@@ -104,9 +106,7 @@ export default function Hero(){
                     <img src={require("assets/img/home/star.png")}/>
                     </div>
                       <h3 className="message">Very good product Masha Allah, will refer to my freinds and family</h3>
-                      <br />
-                      <br />
-                      <br />
+                      
                       <text>Naiam</text>
                   </div>
                   <div className="padding-message text-left">
@@ -119,8 +119,7 @@ export default function Hero(){
                     <img src={require("assets/img/home/star.png")}/>
                     </div>
                        <h3 className="message">This is the very good way to help the Ummah, may Allah rewards you guys for your efforts</h3>
-                      <br />
-                      <br />
+                    
                       <text>Raheem</text>
                   </div>
                   <div className="padding-message text-left">
@@ -133,8 +132,7 @@ export default function Hero(){
                     <img src={require("assets/img/home/star.png")}/>
                     </div>
                        <h3 className="message">This is the very good way to help the Ummah, may Allah rewards you guys for your efforts</h3>
-                       <br />
-                      <br />
+                    
                       <text>Raheem</text>
                   </div>
               </Slider>
@@ -147,10 +145,10 @@ export default function Hero(){
 <br/>
 <br/>
 {/* signup section */}
-         <section>
+         <section className="main-section-signup d-sm-none d-md-block">
          <div className="container-width d-flex align-items-center  container-fluid mt-5">
-              <div className="row w-100 align-items-center justify-content-center">
-                <div className="col-7 text-center">
+              <div className="row dt-width-100 align-items-center justify-content-center">
+                <div className="col-12 col-lg-7 text-center">
                 <p className="font-poppins weight-400 ">Start using MyRizq today and get a better of your understanding of your finances Built Muslims by Muslims</p>
                <button className="btn bg-green text-white mt-3">Sign Up </button>
                 </div>

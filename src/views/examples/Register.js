@@ -3,50 +3,28 @@ import React, { useEffect, useState } from "react";
 // reactstrap components
 
 // core components
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import "../../assets/css/login/login.css";
 import "../../assets/css/home/home.css";
 import { useHistory } from "react-router-dom";
-
+import StripeContainer from "../../components/Stripe/StripeContainer";
 
 const Register = () => {
-
   const router = useHistory();
 
-  const[user , setUser] = useState({
-    name : "",
-    email : "",
-    password : "",
-  })
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
   const onChange = (e) => {
-    setUser({...user , [e.target.name] : e.target.value})
-  }
-  const onClickRegister = () => {
-    console.log("user : ",user);
-    fetch("http://localhost:3001/user/signup", {
-      method: "POST",
-      body: JSON.stringify([user]),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if(data && data.status == "0000"){
-          swal("Success!", "User register successfully!", "success").then(m => {
-            router.push("/signin")
-          })
-        }else if(data && data.status == "9999"){
-          swal("Error!", data.message, "error");
-        }else{
-          swal("Error!", "Something went wrong!", "error");
-        }
-       
-      });
-  }
-
-
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+  const onClickRegister = async () => {
+    return user;
+ 
+  };
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -156,15 +134,24 @@ const Register = () => {
                           class="agree-term"
                         />
 
-                        <button
+                        {/* stripe */}
+                        <StripeContainer onClick={onClickRegister} />
+
+                        {/* <button
                           type="button"
                           class="btn bg-green text-white w-100 mb-2"
                           onClick={onClickRegister}
                         >
                           Create Account
-                        </button>
+                        </button> */}
                         <text className="text-muted mt-2">
-                          Already have an account? <a  className="pointer-cursor" onClick={() => router.push("/signin")}>Login</a>{" "}
+                          Already have an account?{" "}
+                          <a
+                            className="pointer-cursor"
+                            onClick={() => router.push("/signin")}
+                          >
+                            Login
+                          </a>{" "}
                         </text>
                       </div>
                     </div>
