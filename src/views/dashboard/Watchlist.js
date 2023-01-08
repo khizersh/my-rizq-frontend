@@ -147,7 +147,7 @@ const Watchlist = () => {
     // setArray(finalData)
 
     // setArray(getList());
-  }, [array]);
+  }, []);
 
   return (
     <div className="container-fluid mb-5">

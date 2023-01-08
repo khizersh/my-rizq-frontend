@@ -11,26 +11,62 @@ import StripeContainer from "../../components/Stripe/StripeContainer";
 
 const Register = () => {
   const router = useHistory();
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
 
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
+    freeUser : true
   });
+  const [isFreeUser, setIsFreeUser] = useState(true);
 
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const onClickRegister = async () => {
+    setUser({...user , freeUser : false})
     return user;
- 
+  };
+
+  const onClickRegisterFree = async () => {
+    if (user.email && user.password) {
+      setUser({...user , freeUser : true})
+      const response = await fetch("http://localhost:3001/user/signup", {
+        method: "POST",
+        body: JSON.stringify([user]),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+
+      const data = await response.json();
+
+      if (data && data.status == "0000") {
+        swal("Success!", "User register successfully!", "success").then((m) => {
+          router.push("/signin");
+        });
+      } else if (data && data.status == "9999") {
+        swal("Error!", data.message, "error");
+      } else {
+        swal("Error!", "Something went wrong!", "error");
+      }
+    }
   };
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-    // this.refs.main.scrollTop = 0;
-  }, []);
+    if (params.premium === "false") {
+      setIsFreeUser(true);
+    } else if(params.premium === "true") {
+      setIsFreeUser(false);
+    }else{
+      setIsFreeUser(true);
+    }
+  }, [isFreeUser]);
 
   return (
     <>
@@ -135,15 +171,18 @@ const Register = () => {
                         />
 
                         {/* stripe */}
-                        <StripeContainer onClick={onClickRegister} />
+                        {isFreeUser ? (
+                          <button
+                            type="button"
+                            class="btn bg-green text-white w-100 mb-2"
+                            onClick={onClickRegisterFree}
+                          >
+                            Create Account
+                          </button>
+                        ) : (
+                          <StripeContainer onClick={onClickRegister} />
+                        )}
 
-                        {/* <button
-                          type="button"
-                          class="btn bg-green text-white w-100 mb-2"
-                          onClick={onClickRegister}
-                        >
-                          Create Account
-                        </button> */}
                         <text className="text-muted mt-2">
                           Already have an account?{" "}
                           <a

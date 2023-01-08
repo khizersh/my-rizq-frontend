@@ -27,7 +27,7 @@ const Register = () => {
       .then((response) => response.json())
       .then((data) => {
         if(data && data.status == "0000"){
-          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('user', JSON.stringify(data.data));
           swal("Success!", "User login successfully!", "success").then(m => {
             router.push("/dashboard/stock-finder")
           })

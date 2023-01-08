@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import "assets/css/dashboard/stock.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 export const Stock = () => {
   const percentage = 66;
   const greenStroke = "#1EC372";
 
-
   const [loaded, setLoaded] = useState(false);
+  const [freeUser, setFreeUser] = useState(true);
   const [deptRatio, setDepthRatio] = useState(0);
   const [securityRatio, setSecurityRatio] = useState(0);
   const [liquidityRatio, setLiquidityRatio] = useState(0);
@@ -19,7 +19,6 @@ export const Stock = () => {
   const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   });
-
 
   const fetchData = (symbol) => {
     if (symbol) {
@@ -66,14 +65,14 @@ export const Stock = () => {
     }
   };
 
-
   const onClickFollow = () => {
-
-    let user = JSON.parse(localStorage.getItem("user")); 
-    let obj = [{
-      email : user.email,
-      symbol : params.symbol
-    }]
+    let user = JSON.parse(localStorage.getItem("user"));
+    let obj = [
+      {
+        email: user.email,
+        symbol: params.symbol,
+      },
+    ];
 
     fetch("http://localhost:3001/follow/save", {
       method: "POST",
@@ -84,21 +83,32 @@ export const Stock = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if(data && data.status == "0000"){
-          swal("Success!", "Followed successfully!", "success").then(m => {
-          })
-        }else if(data && data.status == "9999"){
+        if (data && data.status == "0000") {
+          swal("Success!", "Followed successfully!", "success").then((m) => {});
+        } else if (data && data.status == "9999") {
           swal("Error!", data.message, "error");
-        }else{
+        } else {
           swal("Error!", "Something went wrong!", "error");
         }
-       
       });
-
-  }
+  };
 
   useEffect(() => {
     fetchData(params.symbol);
+    let user = localStorage.getItem("user");
+    if (user) {
+      let userData = JSON.parse(user);
+      console.log("userData : ", userData);
+      if (userData.email) {
+        if (userData.freeUser) {
+          setFreeUser(true);
+        } else {
+          setFreeUser(false);
+        }
+      } else {
+      }
+    } else {
+    }
   }, [deptRatio]);
 
   return (
@@ -152,143 +162,26 @@ export const Stock = () => {
               source of informtion May Allah make it easy for us!
             </p>
             {/* FIRST CARD */}
-            <div className="row card shadow pb-2">
-              <div className="card-header bg-white shadow-lg">
-                <h5 className="font-mon weight-600 d-inline text-black">
-                  Qualitative Screeing
-                </h5>{" "}
-                <text className="cursor-pointer border-radius-10 pills ml-3 px-2" onClick={onClickFollow}>
-                  <img
-                    width={"13px"}
-                    style={{ marginTop: "-1px" }}
-                    src={require("assets/img/dashboard/plus.png")}
-                  />{" "}
-                  Follow
-                </text>{" "}
-                <text className="border-radius-10  bg-green font-10 float-right mt-2 text-white px-3">
-                  Pass
-                </text>{" "}
-              </div>
-              <div className="card-body">
-                <div className={`${isShariah ? "bg-green-opacity" : "bg-danger-op-2"} border-radius-5 d-inline p-2`}>
-                  <text className="font-mon">
-                    <img
-                      className="pr-1"
-                      style={{ marginTop: "-1px" }}
-                      src={require(`assets/img/dashboard/${isShariah ? "warning.png" : "red-warning.png"}`)}
-                    />
-                    Revenue
-                  </text>
-                </div>
-                <div className="progress mt-3">
-                  <div
-                    className={`progress-bar ${isShariah ? "bg-success": "bg-danger"}  w-100`}
-                    role="progressbar"
-                    aria-valuenow="100"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-              <div className="col-12">
-                <div className="row mb-4">
-                  <div className="col-12 col-lg-4 text-center ">
-                    <div className="comp-1st-card padding-circle  border-radius-5">
-                      <CircularProgressbar
-                        value={100}
-                        text={100 + "%"}
-                        strokeWidth={5}
-                        styles={buildStyles({
-                          rotation: 0.5,
-                          textSize: "16px",
-                          pathTransitionDuration: 0.5,
-
-                          background: true,
-                          backgroundPadding: 40,
-                          pathColor: "#1EC372",
-                          textColor: "#000000",
-                          trailColor: "#fff",
-                          backgroundColor: "#3e98c7",
-                        })}
-                      />
-                      <text>COMPLIANT</text>
-                    </div>
-                  </div>
-                  <div className="col-12 col-lg-4 text-center ">
-                    <div className="comp-2nd-card padding-circle  border-radius-5">
-                      <CircularProgressbar
-                        value={4}
-                        text={4 + "%"}
-                        strokeWidth={5}
-                        styles={buildStyles({
-                          rotation: 0.5,
-                          textSize: "16px",
-                          pathTransitionDuration: 0.5,
-                          pathColor: `#F0A439`,
-                          textColor: "#000000",
-                          trailColor: "#fff",
-                          backgroundColor: "#3e98c7",
-                        })}
-                      />
-                      <text>QUESTIONABLE</text>
-                    </div>
-                  </div>
-                  <div className="col-12 col-lg-4 text-center ">
-                    <div className="comp-3rd-card padding-circle  border-radius-5">
-                      <CircularProgressbar
-                        value={10}
-                        text={10 + "%"}
-                        strokeWidth={5}
-                        styles={buildStyles({
-                          rotation: 0.5,
-                          textSize: "16px",
-                          pathTransitionDuration: 0.5,
-                          pathColor: `#FF0000`,
-                          textColor: "#000000",
-                          trailColor: "#fff",
-                          backgroundColor: "#3e98c7",
-                        })}
-                      />
-                      <text>NON-COMPLIANT</text>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12">
-                <div className="row">
-                  <div className="col-7">
-                    <text className="font-12  mt-2 mb-3 font-mon lint-height text-stock-grey">
-                      Organizations are only to be considered compliant for the
-                      <b> Qualitative Screening</b> if the cumulative revenue
-                      from non-compliant activities and non-operating interest
-                      income does not exceed 5% of their total income. Look into
-                      the detaild results to detrmine wht non-compliant
-                      activities are
-                    </text>
-                  </div>
-                  <div className="col-5 text-center">
-                    <button className="btn btn-secondary w-60 ml-5">
-                      View detailed results{" "}
-                      <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* SECOND CARD */}
-            <div className="row card mt-5 shadow pb-2">
+            <div className="row card mt-5 shadow pb-2 mb-5">
               <div className="card-header bg-white shadow-lg">
                 <h5 className="font-mon weight-600 d-inline text-black">
                   Quantitative Screeing
                 </h5>{" "}
-                <text className="cursor-pointer border-radius-10 pills ml-3 px-2" onClick={onClickFollow}>
-                  <img
-                    width={"13px"}
-                    style={{ marginTop: "-1px" }}
-                    src={require("assets/img/dashboard/plus.png")}
-                  />{" "}
-                  Follow
-                </text>{" "}
+                {freeUser ? (
+                  ""
+                ) : (
+                  <text
+                    className="cursor-pointer border-radius-10 pills ml-3 px-2"
+                    onClick={onClickFollow}
+                  >
+                    <img
+                      width={"13px"}
+                      style={{ marginTop: "-1px" }}
+                      src={require("assets/img/dashboard/plus.png")}
+                    />{" "}
+                    Follow
+                  </text>
+                )}{" "}
                 <text className="border-radius-10  bg-green font-10 float-right mt-2 text-white px-3">
                   Pass
                 </text>{" "}
@@ -385,6 +278,145 @@ export const Stock = () => {
                       (Cash + Cash Equivalents + Accounts Receivable) / Total
                       Assets Must be less than 30%
                     </text>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* SECOND CARD */}
+            <div className="row card shadow pb-2">
+              <div className="card-header bg-white shadow-lg">
+                <h5 className="font-mon weight-600 d-inline text-black">
+                  Qualitative Screeing
+                </h5>{" "}
+                {freeUser ? (
+                  ""
+                ) : (
+                  <text
+                    className="cursor-pointer border-radius-10 pills ml-3 px-2"
+                    onClick={onClickFollow}
+                  >
+                    <img
+                      width={"13px"}
+                      style={{ marginTop: "-1px" }}
+                      src={require("assets/img/dashboard/plus.png")}
+                    />{" "}
+                    Follow
+                  </text>
+                )}{" "}
+                <text className="border-radius-10  bg-green font-10 float-right mt-2 text-white px-3">
+                  Pass
+                </text>{" "}
+              </div>
+              <div className="card-body">
+                <div
+                  className={`${
+                    isShariah ? "bg-green-opacity" : "bg-danger-op-2"
+                  } border-radius-5 d-inline p-2`}
+                >
+                  <text className="font-mon">
+                    <img
+                      className="pr-1"
+                      style={{ marginTop: "-1px" }}
+                      src={require(`assets/img/dashboard/${
+                        isShariah ? "warning.png" : "red-warning.png"
+                      }`)}
+                    />
+                    Revenue
+                  </text>
+                </div>
+                <div className="progress mt-3">
+                  <div
+                    className={`progress-bar ${
+                      isShariah ? "bg-success" : "bg-danger"
+                    }  w-100`}
+                    role="progressbar"
+                    aria-valuenow="100"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div className="col-12">
+                <div className="row mb-4">
+                  <div className="col-12 col-lg-4 text-center ">
+                    <div className="comp-1st-card padding-circle  border-radius-5">
+                      <CircularProgressbar
+                        value={100}
+                        text={100 + "%"}
+                        strokeWidth={5}
+                        styles={buildStyles({
+                          rotation: 0.5,
+                          textSize: "16px",
+                          pathTransitionDuration: 0.5,
+
+                          background: true,
+                          backgroundPadding: 40,
+                          pathColor: "#1EC372",
+                          textColor: "#000000",
+                          trailColor: "#fff",
+                          backgroundColor: "#3e98c7",
+                        })}
+                      />
+                      <text>COMPLIANT</text>
+                    </div>
+                  </div>
+                  <div className="col-12 col-lg-4 text-center ">
+                    <div className="comp-2nd-card padding-circle  border-radius-5">
+                      <CircularProgressbar
+                        value={4}
+                        text={4 + "%"}
+                        strokeWidth={5}
+                        styles={buildStyles({
+                          rotation: 0.5,
+                          textSize: "16px",
+                          pathTransitionDuration: 0.5,
+                          pathColor: `#F0A439`,
+                          textColor: "#000000",
+                          trailColor: "#fff",
+                          backgroundColor: "#3e98c7",
+                        })}
+                      />
+                      <text>QUESTIONABLE</text>
+                    </div>
+                  </div>
+                  <div className="col-12 col-lg-4 text-center ">
+                    <div className="comp-3rd-card padding-circle  border-radius-5">
+                      <CircularProgressbar
+                        value={10}
+                        text={10 + "%"}
+                        strokeWidth={5}
+                        styles={buildStyles({
+                          rotation: 0.5,
+                          textSize: "16px",
+                          pathTransitionDuration: 0.5,
+                          pathColor: `#FF0000`,
+                          textColor: "#000000",
+                          trailColor: "#fff",
+                          backgroundColor: "#3e98c7",
+                        })}
+                      />
+                      <text>NON-COMPLIANT</text>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-12">
+                <div className="row">
+                  <div className="col-7">
+                    <text className="font-12  mt-2 mb-3 font-mon lint-height text-stock-grey">
+                      Organizations are only to be considered compliant for the
+                      <b> Qualitative Screening</b> if the cumulative revenue
+                      from non-compliant activities and non-operating interest
+                      income does not exceed 5% of their total income. Look into
+                      the detaild results to detrmine wht non-compliant
+                      activities are
+                    </text>
+                  </div>
+                  <div className="col-5 text-center">
+                    <button className="btn btn-secondary w-60 ml-5">
+                      View detailed results{" "}
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
                   </div>
                 </div>
               </div>

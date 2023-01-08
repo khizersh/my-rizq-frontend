@@ -4,6 +4,7 @@ import "assets/css/home/home.css";
 import { FormGroup, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import swal from "sweetalert";
 
 export const Layout = (props) => {
 
@@ -11,6 +12,7 @@ export const Layout = (props) => {
 
   const [selected, setSelected] = useState("halal-stock-search");
   const [page, setPage] = useState("");
+  const [sidebar, setSidebar] = useState([]);
 
   function getList() {
     return [
@@ -77,12 +79,16 @@ export const Layout = (props) => {
         icon: "fa fa-sign-out",
         active: false,
         hr: false,
+        onClick: logout
       },
     ];
   }
 
   function onClick(sidebar) {
     setSelected(sidebar.key);
+    if(sidebar.onClick){
+      sidebar.onClick()
+    }
   }
 
   function getPageNameByKey(key){
@@ -94,12 +100,28 @@ export const Layout = (props) => {
     }
   }
 
+  function logout(){
+    let user = localStorage.getItem("user");
+    if(user){
+      localStorage.removeItem("user");
+      swal("Success!", "Logout successfully!", "success").then((m) => {
+        router.push("/");
+      });
+    }
+  }
+
   useEffect(() => {
 
+   
    let user = localStorage.getItem("user");
    if(user){
     let userData = JSON.parse(user);
     if(userData.email){
+      if(userData.freeUser){
+        setSidebar(getList().filter(side => side.key != "watchlist"))
+      }else{
+        setSidebar(getList())
+      }
 
     }else{
       router.push("/signin")
@@ -109,6 +131,14 @@ export const Layout = (props) => {
    }
     setPage(getPageNameByKey(selected));
   }, [selected])
+
+  useEffect(() => {
+     let url = window.location.href;
+     let matchSidebar = getList().find(side => url.includes(side.key));
+     if(matchSidebar && matchSidebar.key){
+       setSelected(matchSidebar.key);
+     }
+  } ,[window.location.href])
 
   return (
     <>
@@ -155,8 +185,8 @@ export const Layout = (props) => {
                 src={require("assets/img/brand/logo.png")}
                 width="150px"
               />
-              {getList().length > 0 ? (
-                getList().map((side, ind) => {
+              {sidebar.length > 0 ? (
+                sidebar.map((side, ind) => {
                   return (
                     <>
                       <Link className="text-black" to={side.url}>

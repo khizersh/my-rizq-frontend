@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import "../../assets/css/login/login.css";
 import "../../assets/css/home/home.css";
 import "../../assets/css/pricing/pricing.css";
+import { useHistory } from "react-router-dom";
 
 export function Pricing(props) {
+  const router = useHistory();
+
   const [btnSelected, setButtonSelected] = useState(0);
   useEffect(() => {
     console.log("hello world");
@@ -86,7 +89,7 @@ export function Pricing(props) {
                       </ul>
                     </div>
                     <div className="text-center ">
-                      <button className="btn text-muted w-50 mb-3">
+                      <button className="btn text-muted w-50 mb-3" onClick={() => router.push("/signup?premium=false")}>
                         <text style={{ fontSize: "10px" }}>Create account</text>{" "}
                       </button>
                     </div>
@@ -112,7 +115,7 @@ export function Pricing(props) {
                       </ul>
                     </div>
                     <div className="text-center ">
-                      <button className="btn bg-green text-white w-50 mb-3">
+                      <button className="btn bg-green text-white w-50 mb-3" onClick={() => router.push("/signup?premium=true")}>
                         <text style={{ fontSize: "10px" }}>Create account</text>{" "}
                       </button>
                     </div>
@@ -139,7 +142,7 @@ export function Pricing(props) {
                       </ul>
                     </div>
                     <div className="text-center ">
-                      <button className="btn text-muted w-50 mb-3">
+                      <button className="btn text-muted w-50 mb-3" onClick={() => router.push("/signup?premium=true")}>
                         <text style={{ fontSize: "10px" }}>Create account</text>{" "}
                       </button>
                     </div>
