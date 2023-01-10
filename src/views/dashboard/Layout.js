@@ -12,6 +12,7 @@ export const Layout = (props) => {
 
   const [selected, setSelected] = useState("halal-stock-search");
   const [page, setPage] = useState("");
+  const [userName, setUserName] = useState("");
   const [sidebar, setSidebar] = useState([]);
 
   function getList() {
@@ -116,7 +117,9 @@ export const Layout = (props) => {
    let user = localStorage.getItem("user");
    if(user){
     let userData = JSON.parse(user);
+    console.log("userData : ",userData);
     if(userData.email){
+      setUserName(userData.name)
       if(userData.freeUser){
         setSidebar(getList().filter(side => side.key != "watchlist"))
       }else{
@@ -165,7 +168,7 @@ export const Layout = (props) => {
                   </span>
                   <span className="border-left pl-4">
                     <text className="font-poppins weight-600">
-                      Mohammad Faris
+                      {userName}
                     </text>
                   </span>
                 </div>

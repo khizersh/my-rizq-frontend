@@ -27,11 +27,13 @@ const Register = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const onClickRegister = async () => {
+    console.log("paid user click");
     setUser({...user , freeUser : false})
     return user;
   };
 
   const onClickRegisterFree = async () => {
+    console.log("free user click");
     if (user.email && user.password) {
       setUser({...user , freeUser : true})
       const response = await fetch("http://localhost:3001/user/signup", {
@@ -59,11 +61,14 @@ const Register = () => {
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-    if (params.premium === "false") {
-      setIsFreeUser(true);
-    } else if(params.premium === "true") {
+    if (params.premium === "true") {
+      console.log("premium true: ");
       setIsFreeUser(false);
+    } else if(params.premium === "false") {
+      console.log("premium false: ");
+      setIsFreeUser(true);
     }else{
+      console.log("premium false: ");
       setIsFreeUser(true);
     }
   }, [isFreeUser]);
@@ -80,12 +85,13 @@ const Register = () => {
                     <div class="left">
                       <figure>
                         <img
+                        className="m-width-img"
                           src={require("assets/img/signup/signup.png")}
                           alt="sing up image"
                           width="90%"
                         />
                       </figure>
-                      <h4 class="weight-400 px-3 text-white font-poppins">
+                      <h4 class="weight-400 px-3 text-white font-poppins m-font-20">
                         Sign up for MyRizq and begin your Financial Journey
                       </h4>
                     </div>
@@ -99,21 +105,21 @@ const Register = () => {
 
                     <h3 class="form-title weight-600">Create Account</h3>
                     <div className="d-flex justify-center">
-                      <button type="button" class="btn btn-outline-primary">
+                      <button type="button" class="btn btn-outline-primary m-width-50">
                         <img
                           style={{ width: "20px" }}
                           src={require("assets/img/signup/google.png")}
                         />
-                        <text className="text-black text-btn">
+                        <text className="text-black text-btn m-d-none">
                           Sign Up with Google
                         </text>
                       </button>
-                      <button type="button" class="btn btn-outline-primary">
+                      <button type="button" class="btn btn-outline-primary m-width-50">
                         <img
                           style={{ width: "20px" }}
                           src={require("assets/img/signup/facebook.png")}
                         />
-                        <text className="text-btn text-black">
+                        <text className="text-btn text-black m-d-none">
                           Sign Up with Facebook
                         </text>{" "}
                       </button>
@@ -122,7 +128,7 @@ const Register = () => {
                     <br />
                     <p className="text-muted text-center">- OR -</p>
                     <br />
-                    <div class="register-form px-5 ">
+                    <div class="register-form  m-px-5 ">
                       <div class="form-group">
                         <label for="your_name">
                           <i class="zmdi zmdi-account material-icons-name"></i>

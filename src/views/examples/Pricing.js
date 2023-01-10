@@ -27,7 +27,7 @@ export function Pricing(props) {
         <div className="row ">
           <div className="col-12 text-center  w-100">
             <h2 className="text-black mb-3 weight-600">
-              <u>Choose your plan</u>
+              <u className="choose-plan">Choose your plan</u>
             </h2>
             <p className="text-black">Cancel anytime. No questions asked.</p>
             <p className="text-black">
@@ -75,7 +75,7 @@ export function Pricing(props) {
                   </button>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-12 col-lg-4 m-mb-5">
                 <div className="height-415">
                   <div className="card pricing-card shadow-lg pt-3 h-100">
                     <div className=" text-center">
@@ -96,7 +96,7 @@ export function Pricing(props) {
                   </div>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-12 col-lg-4 m-mb-5">
                 <div className="height-415">
                   <div className="card pricing-card shadow-lg pt-3 h-100">
                     <div className=" text-center">
@@ -122,7 +122,7 @@ export function Pricing(props) {
                   </div>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-12 col-lg-4 m-mb-5">
                 <div className="height-415">
                   <div className="card pricing-card shadow-lg pt-3 h-100">
                     <div className=" text-center">

@@ -197,6 +197,9 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
   .signup-image {
     margin-top: 45px; }
   
+    .m-width-img{
+      width: 90%;
+    }
   figure {
     margin-bottom: 50px;
     text-align: center; }
@@ -457,6 +460,41 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
   
   .sign-in{
     margin-top: 100px;
+  }
+
+  .m-px-5{
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  @media screen and (max-width: 992px) {
+    .width-70{
+      width: 100% !important;
+    }
+
+    .m-d-none{
+      display: none;
+    }
+
+    .m-width-50{
+      width: 50%;
+    }
+
+    .m-px-5{
+      padding-left: 0rem;
+      padding-right: 0rem;
+    }
+
+    .m-font-20{
+      font-size: 20px;
+    }
+
+    .mt-100{
+      margin-top: 10px !important;
+    }
+
+    .m-width-img{
+      width: 50% !important;
+    }
   }
 
   @media screen and (max-width: 1200px) {

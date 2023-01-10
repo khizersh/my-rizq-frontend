@@ -41,3 +41,13 @@ ul {
     bottom: -179px;
     z-index: -999;
 }
+
+
+@media only screen and (max-width: 600px) {
+  .m-mb-5{
+    margin-bottom: 3rem;
+  }
+  .choose-plan{
+    font-size: 30px;
+  }
+}
