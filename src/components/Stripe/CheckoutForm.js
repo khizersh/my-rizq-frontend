@@ -1,6 +1,5 @@
 import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import axios from "axios";
 import swal from "sweetalert";
 import { useHistory } from "react-router-dom";
 
@@ -45,13 +44,19 @@ export const CheckoutForm = ({ onClick }) => {
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post(
-          "http://localhost:3001/stripe/charge",
-          {
+
+        const response = await fetch("http://localhost:3001/stripe/charge", {
+          method: "POST",
+          body: JSON.stringify( {
             amount: 999,
             id: id,
-          }
-        );
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        });
+
+      
 
         if (response.data.success) {
           swal("Success!", "User register successfully!", "success").then(
@@ -74,8 +79,15 @@ export const CheckoutForm = ({ onClick }) => {
     }
   };
 
-  function deleteUser(user) {
-    axios.post("http://localhost:3001/user/delete", [user]);
+ async function deleteUser(user) {
+
+    const response = await fetch("http://localhost:3001/user/delete", {
+          method: "POST",
+          body: JSON.stringify([user]),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        });
   }
 
   return (
