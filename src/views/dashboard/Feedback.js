@@ -27,7 +27,7 @@ const Feedback = () => {
 
     let body =  [{...reviewBody , likeCount : rated , reviewCount : review }]
 
-    fetch("http://localhost:3001/review/", {
+    fetch("https://myrizq-backend.onrender.com/review/", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {

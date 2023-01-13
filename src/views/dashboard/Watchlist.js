@@ -75,7 +75,7 @@ const Watchlist = () => {
   const getSymbols = async () => {
     let list = [];
     let user = JSON.parse(localStorage.getItem("user"));
-    const data = await fetch("http://localhost:3001/follow/get-symbols", {
+    const data = await fetch("https://myrizq-backend.onrender.com/follow/get-symbols", {
       method: "POST",
       body: JSON.stringify({ email: user.email }),
       headers: {
@@ -91,7 +91,7 @@ const Watchlist = () => {
 
   const fetchData = async (user) => {
     try {
-      const data = await fetch("http://localhost:3001/follow/get-data", {
+      const data = await fetch("https://myrizq-backend.onrender.com/follow/get-data", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {

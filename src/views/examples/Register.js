@@ -36,7 +36,7 @@ const Register = () => {
     console.log("free user click");
     if (user.email && user.password) {
       setUser({...user , freeUser : true})
-      const response = await fetch("http://localhost:3001/user/signup", {
+      const response = await fetch("https://myrizq-backend.onrender.com/user/signup", {
         method: "POST",
         body: JSON.stringify([user]),
         headers: {

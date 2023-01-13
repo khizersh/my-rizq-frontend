@@ -17,7 +17,7 @@ const Register = () => {
     setUser({...user , [e.target.name] : e.target.value})
   }
   const onClickLogin = () => {
-    fetch("http://localhost:3001/user/signin", {
+    fetch("https://myrizq-backend.onrender.com/user/signin", {
       method: "POST",
       body: JSON.stringify(user),
       headers: {

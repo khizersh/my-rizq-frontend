@@ -22,7 +22,7 @@ export const Stock = () => {
 
   const fetchData = (symbol) => {
     if (symbol) {
-      fetch("http://localhost:3001/stock", {
+      fetch("https://myrizq-backend.onrender.com/stock", {
         method: "POST",
         body: JSON.stringify({
           symbol: symbol,
@@ -74,7 +74,7 @@ export const Stock = () => {
       },
     ];
 
-    fetch("http://localhost:3001/follow/save", {
+    fetch("https://myrizq-backend.onrender.com/follow/save", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {

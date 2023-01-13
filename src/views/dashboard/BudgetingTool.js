@@ -12,7 +12,7 @@ const BudgetingTool = () => {
   const onClick = () => {
     let body =  [{email}]
 
-    fetch("http://localhost:3001/newsletter/", {
+    fetch("https://myrizq-backend.onrender.com/newsletter/", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {

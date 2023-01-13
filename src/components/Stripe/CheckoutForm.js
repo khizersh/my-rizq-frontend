@@ -14,7 +14,7 @@ export const CheckoutForm = ({ onClick }) => {
     const user = await onClick();
     if (user) {
       if (user.email && user.password) {
-        const response = await fetch("http://localhost:3001/user/signup", {
+        const response = await fetch("https://myrizq-backend.onrender.com/user/signup", {
           method: "POST",
           body: JSON.stringify([user]),
           headers: {
@@ -45,7 +45,7 @@ export const CheckoutForm = ({ onClick }) => {
       try {
         const { id } = paymentMethod;
 
-        const response = await fetch("http://localhost:3001/stripe/charge", {
+        const response = await fetch("https://myrizq-backend.onrender.com/stripe/charge", {
           method: "POST",
           body: JSON.stringify( {
             amount: 999,
@@ -81,7 +81,7 @@ export const CheckoutForm = ({ onClick }) => {
 
  async function deleteUser(user) {
 
-    const response = await fetch("http://localhost:3001/user/delete", {
+    const response = await fetch("https://myrizq-backend.onrender.com/user/delete", {
           method: "POST",
           body: JSON.stringify([user]),
           headers: {
