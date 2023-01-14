@@ -71,3 +71,19 @@
     border: 2px solid #e8bdbd;
     padding: 0px 0px 0px 0px;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .m-p-0{
+        padding: 0 !important;
+    }
+
+    .btn-mbl{
+        max-height: 43px;
+        font-size: 10px;
+    }
+
+    .padding-search{
+        padding: 0px 0px;
+    }
+}

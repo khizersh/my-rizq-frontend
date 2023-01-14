@@ -2,6 +2,7 @@
 import React,{useState , useEffect} from "react";
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
+import { BASE_URL } from "utility";
 
 // reactstrap components
 
@@ -17,7 +18,7 @@ const Register = () => {
     setUser({...user , [e.target.name] : e.target.value})
   }
   const onClickLogin = () => {
-    fetch("https://myrizq-backend.onrender.com/user/signin", {
+    fetch(BASE_URL + "/user/signin", {
       method: "POST",
       body: JSON.stringify(user),
       headers: {

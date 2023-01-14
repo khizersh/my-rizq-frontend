@@ -3,6 +3,7 @@ import "assets/css/dashboard/stock.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import swal from "sweetalert";
+import { BASE_URL } from "utility";
 
 export const Stock = () => {
   const percentage = 66;
@@ -22,7 +23,7 @@ export const Stock = () => {
 
   const fetchData = (symbol) => {
     if (symbol) {
-      fetch("https://myrizq-backend.onrender.com/stock", {
+      fetch(BASE_URL + "/stock", {
         method: "POST",
         body: JSON.stringify({
           symbol: symbol,
@@ -74,7 +75,7 @@ export const Stock = () => {
       },
     ];
 
-    fetch("https://myrizq-backend.onrender.com/follow/save", {
+    fetch(BASE_URL + "  /follow/save", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {

@@ -3,6 +3,7 @@ import "assets/css/dashboard/stock.css";
 import "assets/css/dashboard/feedback.css";
 import "assets/css/home/home.css";
 import swal from 'sweetalert';
+import { BASE_URL } from "utility";
 
 
 const Feedback = () => {
@@ -27,7 +28,7 @@ const Feedback = () => {
 
     let body =  [{...reviewBody , likeCount : rated , reviewCount : review }]
 
-    fetch("https://myrizq-backend.onrender.com/review/", {
+    fetch(BASE_URL + "/review/", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {

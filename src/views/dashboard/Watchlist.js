@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "assets/css/comon.css";
 import "assets/css/dashboard/watchlist.css";
+import { BASE_URL } from "utility";
 
 const Watchlist = () => {
   const [array, setArray] = useState([]);
@@ -75,7 +76,7 @@ const Watchlist = () => {
   const getSymbols = async () => {
     let list = [];
     let user = JSON.parse(localStorage.getItem("user"));
-    const data = await fetch("https://myrizq-backend.onrender.com/follow/get-symbols", {
+    const data = await fetch(BASE_URL + "/follow/get-symbols", {
       method: "POST",
       body: JSON.stringify({ email: user.email }),
       headers: {
@@ -91,7 +92,7 @@ const Watchlist = () => {
 
   const fetchData = async (user) => {
     try {
-      const data = await fetch("https://myrizq-backend.onrender.com/follow/get-data", {
+      const data = await fetch(BASE_URL + "  /follow/get-data", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {

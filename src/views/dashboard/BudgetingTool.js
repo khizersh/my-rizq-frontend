@@ -4,6 +4,7 @@ import "assets/css/dashboard/feedback.css";
 import "assets/css/dashboard/budgeting-tool.css";
 import "assets/css/home/home.css";
 import swal from 'sweetalert';
+import { BASE_URL } from 'utility';
 
 const BudgetingTool = () => {
 
@@ -12,7 +13,7 @@ const BudgetingTool = () => {
   const onClick = () => {
     let body =  [{email}]
 
-    fetch("https://myrizq-backend.onrender.com/newsletter/", {
+    fetch(BASE_URL + "/newsletter/", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {

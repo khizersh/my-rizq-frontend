@@ -2,6 +2,7 @@ import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import swal from "sweetalert";
 import { useHistory } from "react-router-dom";
+import { BASE_URL } from "utility";
 
 export const CheckoutForm = ({ onClick }) => {
   const stripe = useStripe();
@@ -14,7 +15,7 @@ export const CheckoutForm = ({ onClick }) => {
     const user = await onClick();
     if (user) {
       if (user.email && user.password) {
-        const response = await fetch("https://myrizq-backend.onrender.com/user/signup", {
+        const response = await fetch(BASE_URL +  "/user/signup", {
           method: "POST",
           body: JSON.stringify([user]),
           headers: {
@@ -45,7 +46,7 @@ export const CheckoutForm = ({ onClick }) => {
       try {
         const { id } = paymentMethod;
 
-        const response = await fetch("https://myrizq-backend.onrender.com/stripe/charge", {
+        const response = await fetch(BASE_URL + "  /stripe/charge", {
           method: "POST",
           body: JSON.stringify( {
             amount: 999,
@@ -81,7 +82,7 @@ export const CheckoutForm = ({ onClick }) => {
 
  async function deleteUser(user) {
 
-    const response = await fetch("https://myrizq-backend.onrender.com/user/delete", {
+    const response = await fetch(BASE_URL + "  /user/delete", {
           method: "POST",
           body: JSON.stringify([user]),
           headers: {

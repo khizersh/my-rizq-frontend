@@ -18,13 +18,13 @@ const StockFinder = () => {
   }
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid m-p-0">
       <div className="row">
         <div className="col-12">
           <div className="card mb-3">
             <div className="card-header bg-white shadow d-flex justify-center">
-                <button className="btn bg-green text-white w-50">Search Companies</button>
-                <button className="btn btn-secondary w-50">Advance Search</button>
+                <button className="btn bg-green text-white w-50 btn-mbl">Search Companies</button>
+                <button className="btn btn-secondary w-50 btn-mbl">Advance Search</button>
             </div>
             <div className="text-center w-100 mt-4">
                 <div className="padding-search">

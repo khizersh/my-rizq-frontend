@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "assets/css/dashboard/layout.css";
 import "assets/css/home/home.css";
 import { FormGroup, Input } from "reactstrap";
@@ -7,7 +7,6 @@ import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
 
 export const Layout = (props) => {
-
   const router = useHistory();
 
   const [selected, setSelected] = useState("halal-stock-search");
@@ -80,30 +79,30 @@ export const Layout = (props) => {
         icon: "fa fa-sign-out",
         active: false,
         hr: false,
-        onClick: logout
+        onClick: logout,
       },
     ];
   }
 
   function onClick(sidebar) {
     setSelected(sidebar.key);
-    if(sidebar.onClick){
-      sidebar.onClick()
+    if (sidebar.onClick) {
+      sidebar.onClick();
     }
   }
 
-  function getPageNameByKey(key){
-    let name = getList().find(m => m.key == key);
-    if(name){
+  function getPageNameByKey(key) {
+    let name = getList().find((m) => m.key == key);
+    if (name) {
       return name.name;
-    }else{
+    } else {
       return "";
     }
   }
 
-  function logout(){
+  function logout() {
     let user = localStorage.getItem("user");
-    if(user){
+    if (user) {
       localStorage.removeItem("user");
       swal("Success!", "Logout successfully!", "success").then((m) => {
         router.push("/");
@@ -112,36 +111,33 @@ export const Layout = (props) => {
   }
 
   useEffect(() => {
-
-   
-   let user = localStorage.getItem("user");
-   if(user){
-    let userData = JSON.parse(user);
-    console.log("userData : ",userData);
-    if(userData.email){
-      setUserName(userData.name)
-      if(userData.freeUser){
-        setSidebar(getList().filter(side => side.key != "watchlist"))
-      }else{
-        setSidebar(getList())
+    let user = localStorage.getItem("user");
+    if (user) {
+      let userData = JSON.parse(user);
+      console.log("userData : ", userData);
+      if (userData.email) {
+        setUserName(userData.name);
+        if (userData.freeUser) {
+          setSidebar(getList().filter((side) => side.key != "watchlist"));
+        } else {
+          setSidebar(getList());
+        }
+      } else {
+        router.push("/signin");
       }
-
-    }else{
-      router.push("/signin")
+    } else {
+      router.push("/signin");
     }
-   }else{
-    router.push("/signin")
-   }
     setPage(getPageNameByKey(selected));
-  }, [selected])
+  }, [selected]);
 
   useEffect(() => {
-     let url = window.location.href;
-     let matchSidebar = getList().find(side => url.includes(side.key));
-     if(matchSidebar && matchSidebar.key){
-       setSelected(matchSidebar.key);
-     }
-  } ,[window.location.href])
+    let url = window.location.href;
+    let matchSidebar = getList().find((side) => url.includes(side.key));
+    if (matchSidebar && matchSidebar.key) {
+      setSelected(matchSidebar.key);
+    }
+  }, [window.location.href]);
 
   return (
     <>
@@ -149,13 +145,18 @@ export const Layout = (props) => {
         {/* navbar */}
         <div className="container-fluid w-100 position-sticky bg-white shadow-sm">
           <div className="row">
-            <div className="col-2"></div>
-            <div className="col-10 h-50px pt-2">
+            <div className="col-2 d-sm-none"></div>
+            <div className="col-12 col-lg-12 h-50px pt-2">
               <div className="row">
-                <div className="col-4">
-                  <p className="weight-700 text-black ml-2">{page}</p>
+                <div className="col-5 col-lg-4">
+                  <p className="weight-700 mbl-font-13 text-black m-left-05">
+                    <span>
+                      <i class="fa fa-bars pr-2 d-lg-none"></i>
+                    </span>
+                    {page}
+                  </p>
                 </div>
-                <div className="col-8 text-right">
+                <div className="col-7 col-lg-8 text-right">
                   <span className="pr-4">
                     <Input
                       placeholder="Search"
@@ -167,9 +168,7 @@ export const Layout = (props) => {
                     <i className="fa fa-bell" aria-hidden="true"></i>
                   </span>
                   <span className="border-left pl-4">
-                    <text className="font-poppins weight-600">
-                      {userName}
-                    </text>
+                    <text className="font-poppins weight-600">{userName}</text>
                   </span>
                 </div>
               </div>
@@ -219,8 +218,8 @@ export const Layout = (props) => {
 
       <div style={{ marginTop: "58px" }} className="container-fluid">
         <div className="row">
-          <div className="col-2"></div>
-          <div className="col-10 w-100">{props.children}</div>
+          <div className="col-2 d-none-sm"></div>
+          <div className="col-12 col-lg-10 w-100">{props.children}</div>
         </div>
       </div>
     </>

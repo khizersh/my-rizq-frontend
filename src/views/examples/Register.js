@@ -8,6 +8,7 @@ import "../../assets/css/login/login.css";
 import "../../assets/css/home/home.css";
 import { useHistory } from "react-router-dom";
 import StripeContainer from "../../components/Stripe/StripeContainer";
+import { BASE_URL } from "utility";
 
 const Register = () => {
   const router = useHistory();
@@ -27,16 +28,14 @@ const Register = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const onClickRegister = async () => {
-    console.log("paid user click");
     setUser({...user , freeUser : false})
     return user;
   };
 
   const onClickRegisterFree = async () => {
-    console.log("free user click");
     if (user.email && user.password) {
       setUser({...user , freeUser : true})
-      const response = await fetch("https://myrizq-backend.onrender.com/user/signup", {
+      const response = await fetch(BASE_URL + "/user/signup", {
         method: "POST",
         body: JSON.stringify([user]),
         headers: {
