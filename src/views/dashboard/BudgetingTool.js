@@ -40,7 +40,7 @@ const BudgetingTool = () => {
     <div className="container-fluid">
     <div className="row">
       <div className="col-12">
-        <div className="card mb-3">
+        <div className="card mb-3 shadow">
           <div className="card-header bg-white shadow text-center">
             <img src={require('assets/img/dashboard/salam.png')} className="salam-img" alt="Salam img" />
             <text className='font-mon weight-600 text-black d-inline font-20'>As-salamu alaykum</text>

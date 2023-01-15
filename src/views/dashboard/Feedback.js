@@ -80,7 +80,7 @@ const Feedback = () => {
             </div>
           </div>
         </div>
-        <div className="col-12">
+        <div className="col-12 mb-3">
           <div className="card">
             <div className="card-header bg-white shadow text-center">
               <h5 className="font-poppins text-black weight-500">
@@ -92,7 +92,7 @@ const Feedback = () => {
                 ratings().map((rate, index) => (
                   <span
                     onClick={() => setRate(rate)}
-                    className={`border-radius-10 shadow px-4 cursor-pointer ${
+                    className={`border-radius-10 shadow d-px-4 cursor-pointer ${
                       rated == rate ? "active-rate" : "bg-white"
                     }  weight-600`}
                   >
@@ -119,7 +119,7 @@ const Feedback = () => {
                 ratings().map((rate, index) => (
                   <span
                     onClick={() => setReview(rate)}
-                    className={`border-radius-10 shadow px-4 cursor-pointer ${
+                    className={`border-radius-10 shadow d-px-4 cursor-pointer ${
                       review == rate ? "active-rate" : "bg-white"
                     }  weight-600`}
                   >
@@ -143,7 +143,7 @@ const Feedback = () => {
           </div>
         </div>
       </div>
-      <div className="row">
+      <div className="row m-height">
         <div className="col-12  my-3 text-center">
             <button className="btn bg-green text-white" onClick={onClickSave}>SEND   <i class="fa fa-angle-right" aria-hidden="true"></i></button>
         </div>
