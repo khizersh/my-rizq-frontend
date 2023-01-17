@@ -92,7 +92,7 @@ const Watchlist = () => {
 
   const fetchData = async (user) => {
     try {
-      const data = await fetch(BASE_URL + "  /follow/get-data", {
+      const data = await fetch(BASE_URL + "/follow/get-data", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -151,7 +151,7 @@ const Watchlist = () => {
   }, []);
 
   return (
-    <div className="container-fluid mb-5">
+    <div className="container-fluid mb-5 mp-0">
       <div className="row text-left mb-3">
         <div className="col-12 ">
           <button className="btn bg-green text-white btn  font-12">
@@ -177,40 +177,40 @@ const Watchlist = () => {
       </div>
       <div className="row mt-5">
         <div className="col-12">
-          <div className="card watchlist-bg border-radius-8 shadow">
-            <table class="table custom-table">
+          <div className="card watchlist-bg border-radius-8 shadow watchlist-table" style={{overflowX : "auto" }}>
+            <table class="table custom-table w-table">
               <thead>
                 <tr>
                   <th
                     scope="col"
-                    className="cursor-pointer"
+                    className="cursor-pointer th-min-width"
                     onClick={() => onClickSort("symbol")}
                   >
                     Symbol <i class="fa fa-sort" aria-hidden="true"></i>
                   </th>
                   <th
                     scope="col"
-                    className="cursor-pointer"
+                    className="cursor-pointer th-min-width"
                     onClick={() => onClickSort("name")}
                   >
                     Name <i class="fa fa-sort" aria-hidden="true"></i>
                   </th>
                   <th
                     scope="col"
-                    className="cursor-pointer"
+                    className="cursor-pointer th-min-width"
                     onClick={() => onClickSort("price")}
                   >
                     Price <i class="fa fa-sort" aria-hidden="true"></i>
                   </th>
                   <th
                     scope="col"
-                    className="cursor-pointer"
+                    className="cursor-pointer th-min-width"
                     onClick={() => onClickSort("status")}
                   >
                     Status <i class="fa fa-sort" aria-hidden="true"></i>
                   </th>
-                  <th scope="col">Market Cap</th>
-                  <th scope="col">Dept Level</th>
+                  <th scope="col th-min-width">Market Cap</th>
+                  <th scope="col th-min-width">Dept Level</th>
                 </tr>
               </thead>
               <tbody>

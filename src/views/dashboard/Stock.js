@@ -75,7 +75,7 @@ export const Stock = () => {
       },
     ];
 
-    fetch(BASE_URL + "  /follow/save", {
+    fetch(BASE_URL + "/follow/save", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {
@@ -99,7 +99,6 @@ export const Stock = () => {
     let user = localStorage.getItem("user");
     if (user) {
       let userData = JSON.parse(user);
-      console.log("userData : ", userData);
       if (userData.email) {
         if (userData.freeUser) {
           setFreeUser(true);
@@ -124,7 +123,7 @@ export const Stock = () => {
                 } border-radius-10`}
               >
                 <div className="row p-2">
-                  <div className="col-12 col-lg-4">
+                  <div className="col-12 col-lg-4 m-text-center">
                     <img
                       src={require(`assets/img/dashboard/${
                         isShariah ? "accept.png" : "reject.png"
@@ -146,7 +145,7 @@ export const Stock = () => {
                       {shortName}
                     </text>{" "}
                   </div>
-                  <div className="col-12 col-lg-4 text-right">
+                  <div className="col-12 col-lg-4 text-right m-text-center">
                     <text className="d-block font-10  text-stock-grey line-height-1">
                       Updated as of January 1 2022
                     </text>
@@ -165,25 +164,25 @@ export const Stock = () => {
             {/* FIRST CARD */}
             <div className="row card mt-5 shadow pb-2 mb-5">
               <div className="card-header bg-white shadow-lg">
-                <h5 className="font-mon weight-600 d-inline text-black">
+                <h5 className="font-mon weight-600 d-inline text-black m-font-14">
                   Quantitative Screeing
                 </h5>{" "}
                 {freeUser ? (
                   ""
                 ) : (
                   <text
-                    className="cursor-pointer border-radius-10 pills ml-3 px-2"
+                    className="cursor-pointer border-radius-10 pills ml-3 px-2 m-font-10"
                     onClick={onClickFollow}
                   >
                     <img
-                      width={"13px"}
                       style={{ marginTop: "-1px" }}
+                      className="width-accept"
                       src={require("assets/img/dashboard/plus.png")}
                     />{" "}
                     Follow
                   </text>
                 )}{" "}
-                <text className="border-radius-10  bg-green font-10 float-right mt-2 text-white px-3">
+                <text className="border-radius-10  bg-green font-10 float-right m-mt-2 text-white px-3">
                   Pass
                 </text>{" "}
               </div>
@@ -212,6 +211,9 @@ export const Stock = () => {
                       />
                       <text> Interest-bearing Debt Ratio</text>
                     </div>
+                    <text className="font-12 text-stock-grey mt-2 mb-3 m-d-block">
+                      Total Debt / Market Cap Must be less than 30%
+                    </text>
                   </div>
                   <div className="col-12 col-lg-4 text-center ">
                     <div className="comp-1st-card padding-circle  border-radius-5">
@@ -235,6 +237,10 @@ export const Stock = () => {
                       />
                       <text> Interest-bearing Securities Ratio</text>
                     </div>
+                    <text className="font-12 text-stock-grey mt-2 mb-3 m-d-block">
+                      (Cash + Cash Equivalents + Deposits) / Market Cap Must be
+                      less than 30%
+                    </text>
                   </div>
                   <div className="col-12 col-lg-4 text-center ">
                     <div className="comp-1st-card padding-circle  border-radius-5">
@@ -258,10 +264,14 @@ export const Stock = () => {
                       />
                       <text> Liquidity Ratio</text>
                     </div>
+                    <text className="font-12 text-stock-grey mt-2 mb-3 m-d-block">
+                      (Cash + Cash Equivalents + Accounts Receivable) / Total
+                      Assets Must be less than 30%
+                    </text>
                   </div>
                 </div>
               </div>
-              <div className="col-12">
+              <div className="col-12 d--d-block">
                 <div className="row">
                   <div className="col-4">
                     <text className="font-12 text-stock-grey mt-2 mb-3">
@@ -284,27 +294,27 @@ export const Stock = () => {
               </div>
             </div>
             {/* SECOND CARD */}
-            <div className="row card shadow pb-2">
-              <div className="card-header bg-white shadow-lg">
-                <h5 className="font-mon weight-600 d-inline text-black">
+            <div className="row card shadow pb-2 margin-bottom">
+            <div className="card-header bg-white shadow-lg">
+                <h5 className="font-mon weight-600 d-inline text-black m-font-14">
                   Qualitative Screeing
                 </h5>{" "}
                 {freeUser ? (
                   ""
                 ) : (
                   <text
-                    className="cursor-pointer border-radius-10 pills ml-3 px-2"
+                    className="cursor-pointer border-radius-10 pills ml-3 px-2 m-font-10"
                     onClick={onClickFollow}
                   >
                     <img
-                      width={"13px"}
                       style={{ marginTop: "-1px" }}
+                      className="width-accept"
                       src={require("assets/img/dashboard/plus.png")}
                     />{" "}
                     Follow
                   </text>
                 )}{" "}
-                <text className="border-radius-10  bg-green font-10 float-right mt-2 text-white px-3">
+                <text className="border-radius-10  bg-green font-10 float-right m-mt-2 text-white px-3">
                   Pass
                 </text>{" "}
               </div>
@@ -339,7 +349,7 @@ export const Stock = () => {
               </div>
               <div className="col-12">
                 <div className="row mb-4">
-                  <div className="col-12 col-lg-4 text-center ">
+                  <div className="col-12 col-lg-4 text-center m-mb-2">
                     <div className="comp-1st-card padding-circle  border-radius-5">
                       <CircularProgressbar
                         value={100}
@@ -361,7 +371,7 @@ export const Stock = () => {
                       <text>COMPLIANT</text>
                     </div>
                   </div>
-                  <div className="col-12 col-lg-4 text-center ">
+                  <div className="col-12 col-lg-4 text-center m-mb-2">
                     <div className="comp-2nd-card padding-circle  border-radius-5">
                       <CircularProgressbar
                         value={4}
@@ -380,7 +390,7 @@ export const Stock = () => {
                       <text>QUESTIONABLE</text>
                     </div>
                   </div>
-                  <div className="col-12 col-lg-4 text-center ">
+                  <div className="col-12 col-lg-4 text-center m-mb-2">
                     <div className="comp-3rd-card padding-circle  border-radius-5">
                       <CircularProgressbar
                         value={10}
@@ -403,7 +413,7 @@ export const Stock = () => {
               </div>
               <div className="col-12">
                 <div className="row">
-                  <div className="col-7">
+                  <div className="col-12 col-lg-7">
                     <text className="font-12  mt-2 mb-3 font-mon lint-height text-stock-grey">
                       Organizations are only to be considered compliant for the
                       <b> Qualitative Screening</b> if the cumulative revenue
@@ -413,8 +423,8 @@ export const Stock = () => {
                       activities are
                     </text>
                   </div>
-                  <div className="col-5 text-center">
-                    <button className="btn btn-secondary w-60 ml-5">
+                  <div className="col-12 col-lg-5 text-center">
+                    <button className="btn btn-secondary w-60 m-ml-5 m-font-10 m-mt-2">
                       View detailed results{" "}
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </button>

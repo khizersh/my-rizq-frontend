@@ -37,7 +37,7 @@ const BudgetingTool = () => {
   }
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid m-p-0">
     <div className="row">
       <div className="col-12">
         <div className="card mb-3 shadow">

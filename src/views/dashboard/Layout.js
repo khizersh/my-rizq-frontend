@@ -13,6 +13,7 @@ export const Layout = (props) => {
   const [page, setPage] = useState("");
   const [userName, setUserName] = useState("");
   const [sidebar, setSidebar] = useState([]);
+  const [isClose, setIsClose] = useState(true);
 
   function getList() {
     return [
@@ -89,6 +90,7 @@ export const Layout = (props) => {
     if (sidebar.onClick) {
       sidebar.onClick();
     }
+    setIsClose(true)
   }
 
   function getPageNameByKey(key) {
@@ -131,6 +133,10 @@ export const Layout = (props) => {
     setPage(getPageNameByKey(selected));
   }, [selected]);
 
+  const onClickClose = () => {
+    setIsClose(!isClose)
+  }
+
   useEffect(() => {
     let url = window.location.href;
     let matchSidebar = getList().find((side) => url.includes(side.key));
@@ -151,9 +157,9 @@ export const Layout = (props) => {
                 <div className="col-5 col-lg-4">
                   <p className="weight-700 mbl-font-13 text-black m-left-05">
                     <span>
-                      <i class="fa fa-bars pr-2 d-lg-none"></i>
+                      <i class="fa fa-bars pr-2 d-lg-none" onClick={onClickClose} ></i>
                     </span>
-                    {page}
+                    {page.length > 15 ? page.slice(0, 13) + ".." : page}
                   </p>
                 </div>
                 <div className="col-7 col-lg-8 text-right">
@@ -178,15 +184,24 @@ export const Layout = (props) => {
         {/* sidebar */}
         <nav
           id="sidebarMenu"
-          className="collapse d-lg-block sidebar collapse bg-white"
+          className={`collapse ${
+            isClose ? "d-none" : "d-block"
+          } d-lg-block sidebar collapse bg-white`}
         >
           <div className="position-sticky">
             <div className="list-group list-group-flush  mt-2">
-              <img
-                className="pl-3 mb-4"
-                src={require("assets/img/brand/logo.png")}
-                width="150px"
-              />
+              <div className="d-flex justify-content-between">
+                <span>
+                  <img
+                    className="pl-3 mb-4"
+                    src={require("assets/img/brand/logo.png")}
+                    width="150px"
+                  />
+                </span>
+                <span className="cross" onClick={onClickClose}>
+                  <i class="fa fa-close"></i>
+                </span>
+              </div>
               {sidebar.length > 0 ? (
                 sidebar.map((side, ind) => {
                   return (

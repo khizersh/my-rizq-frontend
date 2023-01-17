@@ -90,7 +90,7 @@ export default function Hero(){
 <br/>
 <br/>
 {/* slider section */}
-        <section className="main-section">
+        <section className="main-section min-height-section">
          <div className="container-width  mt-5">
               <div className="">
                 <div className="col-12 mt-5"><h1 className="font-poppins weight-800 text-center text-black my-5 mb-mbl-0 font-26" >What users are saying</h1> </div>
@@ -145,7 +145,7 @@ export default function Hero(){
 <br/>
 <br/>
 {/* signup section */}
-         <section className="main-section-signup d-sm-none d-md-block">
+         <section className="main-section-signup  ">
          <div className="container-width d-flex align-items-center  container-fluid mt-5">
               <div className="row dt-width-100 align-items-center justify-content-center">
                 <div className="col-12 col-lg-7 text-center">
