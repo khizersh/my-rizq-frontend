@@ -1,2 +1,2 @@
-// export var BASE_URL = BASE_URL + "  ";
-export var BASE_URL = "http://localhost:3001";
+export var BASE_URL = BASE_URL + "https://myrizq-backend.onrender.com";
+// export var BASE_URL = "http://localhost:3001";
