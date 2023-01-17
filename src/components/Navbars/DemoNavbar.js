@@ -111,13 +111,7 @@ class DemoNavbar extends React.Component {
                       </span>
                     </DropdownToggle>
                     <DropdownMenu>
-                      <DropdownItem to="/landing-page" tag={Link}>
-                        Landing
-                      </DropdownItem>
-                      <DropdownItem to="/profile-page" tag={Link}>
-                        Profile
-                      </DropdownItem>
-                      <DropdownItem to="/login-page" tag={Link}>
+                      <DropdownItem to="/signin" tag={Link}>
                         Login
                       </DropdownItem>
                       <DropdownItem to="/signup" tag={Link}>
@@ -133,7 +127,7 @@ class DemoNavbar extends React.Component {
                       </Link>
                     </DropdownToggle>
                   </UncontrolledDropdown>
-                  <UncontrolledDropdown nav>
+                  {/* <UncontrolledDropdown nav>
                     <DropdownToggle nav>
                       <Link to="/signin" className="text-black">
                         <i className="ni ni-collection d-lg-none mr-1" />
@@ -149,19 +143,19 @@ class DemoNavbar extends React.Component {
                         <span className="nav-link-inner--text">Sign Up</span>
                       </Link>
                     </DropdownToggle>
-                  </UncontrolledDropdown>
+                  </UncontrolledDropdown> */}
                 </Nav>
                 {/* right navbar element */}
-                {/* <Nav className="" navbar>
-                  <UncontrolledDropdown nav>
+                <Nav className="" navbar>
+                <UncontrolledDropdown nav>
                     <DropdownToggle nav>
-                    <Link to="/signin" className="text-black">
-                      <span className="nav-link-inner--text">Log In</span>
-                    </Link>
-                      <i className="ni ni-collection d-lg-none mr-1" />
+                      <Link to="/signin" className="text-black">
+                        <i className="ni ni-collection d-lg-none mr-1" />
+                        <span className="nav-link-inner--text">Sign In</span>
+                      </Link>
                     </DropdownToggle>
-                  </UncontrolledDropdown>
-
+                  </UncontrolledDropdown> 
+                  
                   <NavItem className="d-none d-lg-block ml-lg-4">
                     <Link to="/signup" className="text-black">
                       <Button className="btn btn-outline-success btn-icon bg-transparent">
@@ -169,7 +163,7 @@ class DemoNavbar extends React.Component {
                       </Button>
                     </Link>
                   </NavItem>
-                </Nav> */}
+                </Nav>
               </UncontrolledCollapse>
             </div>
           </Navbar>
