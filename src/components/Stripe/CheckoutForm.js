@@ -46,7 +46,7 @@ export const CheckoutForm = ({ onClick }) => {
       try {
         const { id } = paymentMethod;
 
-        const response = await fetch(BASE_URL + "  /stripe/charge", {
+        const response = await fetch(BASE_URL + "/stripe/charge", {
           method: "POST",
           body: JSON.stringify( {
             amount: 999,
