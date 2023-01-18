@@ -86,6 +86,10 @@ body {
   margin-left: 0.6rem;
 }
 
+.cross{
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   .d-sm-none {
     display: none;
@@ -102,7 +106,13 @@ body {
   }
 
   .cross{
+    display: block;
     font-size: 25px;
     padding: 6px 15px;
+  }
+
+  .m-padding-name{
+    padding: 0px;
+    padding-right: 3px;
   }
 }

@@ -22,11 +22,15 @@
 
 @media only screen and (max-width: 600px) {
   .d-px-4 {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 11px;
+    padding-right: 11px;
   }
 
   .m-height {
     min-height: 290px;
+  }
+
+  .m-p-0{
+    padding: 0px;
   }
 }

@@ -146,5 +146,10 @@
     .m-ml-5{
         margin-left: 0rem;
     }
+
+    .m-px-1{
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
     
 }

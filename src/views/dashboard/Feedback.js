@@ -53,7 +53,7 @@ const Feedback = () => {
   useEffect(() => {}, [rated , review]);
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid m-p-0">
       <div className="row">
         <div className="col-12 mb-3">
           <div className="card">

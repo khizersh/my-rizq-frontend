@@ -90,7 +90,7 @@ export const Layout = (props) => {
     if (sidebar.onClick) {
       sidebar.onClick();
     }
-    setIsClose(true)
+    setIsClose(true);
   }
 
   function getPageNameByKey(key) {
@@ -134,8 +134,8 @@ export const Layout = (props) => {
   }, [selected]);
 
   const onClickClose = () => {
-    setIsClose(!isClose)
-  }
+    setIsClose(!isClose);
+  };
 
   useEffect(() => {
     let url = window.location.href;
@@ -157,12 +157,15 @@ export const Layout = (props) => {
                 <div className="col-5 col-lg-4">
                   <p className="weight-700 mbl-font-13 text-black m-left-05">
                     <span>
-                      <i class="fa fa-bars pr-2 d-lg-none" onClick={onClickClose} ></i>
+                      <i
+                        class="fa fa-bars pr-2 d-lg-none"
+                        onClick={onClickClose}
+                      ></i>
                     </span>
-                    {page.length > 15 ? page.slice(0, 13) + ".." : page}
+                    {page.length > 10 ? page.slice(0, 11) + ".." : page}
                   </p>
                 </div>
-                <div className="col-7 col-lg-8 text-right">
+                <div className="col-7 col-lg-8 text-right m-padding-name">
                   <span className="pr-4">
                     <Input
                       placeholder="Search"
@@ -174,7 +177,11 @@ export const Layout = (props) => {
                     <i className="fa fa-bell" aria-hidden="true"></i>
                   </span>
                   <span className="border-left pl-4">
-                    <text className="font-poppins weight-600">{userName}</text>
+                    <text className="font-poppins weight-600">
+                      {userName.length > 4
+                        ? userName.slice(0, 2) + ".."
+                        : userName}
+                    </text>
                   </span>
                 </div>
               </div>
@@ -192,11 +199,13 @@ export const Layout = (props) => {
             <div className="list-group list-group-flush  mt-2">
               <div className="d-flex justify-content-between">
                 <span>
-                  <img
-                    className="pl-3 mb-4"
-                    src={require("assets/img/brand/logo.png")}
-                    width="150px"
-                  />
+                  <Link to="/" className="text-black">
+                    <img
+                      className="pl-3 mb-4"
+                      src={require("assets/img/brand/logo.png")}
+                      width="150px"
+                    />
+                  </Link>
                 </span>
                 <span className="cross" onClick={onClickClose}>
                   <i class="fa fa-close"></i>

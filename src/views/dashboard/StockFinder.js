@@ -22,7 +22,7 @@ const StockFinder = () => {
       <div className="row">
         <div className="col-12">
           <div className="card mb-3">
-            <div className="card-header bg-white shadow d-flex justify-center">
+            <div className="card-header bg-white shadow d-flex justify-center m-px-1">
                 <button className="btn bg-green text-white w-50 btn-mbl">Search Companies</button>
                 <button className="btn btn-secondary w-50 btn-mbl">Advance Search</button>
             </div>
@@ -30,9 +30,9 @@ const StockFinder = () => {
                 <div className="padding-search">
                     <h4 className="weight-700 font-mon text-black my-3">Halal Stock Finder</h4>
                     <div className=" input-group mb-3 text-center bg-white shadow">
-                        <input type="text" className="form-control" placeholder="Serach Stocks & Determine Shariah Compliance" onChange={(e) => setText(e.target.value)} aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                        <input type="text" className="form-control px-0 px-1 font-10" placeholder="Serach Stocks & Determine Shariah Compliance" onChange={(e) => setText(e.target.value)} aria-label="Recipient's username" aria-describedby="basic-addon2" />
                         <div className="input-group-append ">
-                            <button className="btn bg-green text-white" type="button" onClick={onClick}>Search</button>
+                            <button className="btn bg-green text-white font-10" type="button" onClick={onClick}>Search</button>
                         </div>
                 </div>
                 </div>
