@@ -77,7 +77,7 @@ useEffect(() => {
               </div>
             
               <h3 class="form-title weight-600">Welcome Back</h3>
-              <div className="d-flex justify-center" >
+              {/* <div className="d-flex justify-center" >
                 <button type="button" class="btn btn-outline-primary">
                 <img
                     style={{ width: "20px" }}
@@ -92,11 +92,11 @@ useEffect(() => {
                   />
                   <text className="text-btn text-black">Sign In with Facebook</text>{" "}
                 </button>
-              </div>
-              <br />
+              </div> */}
+              {/* <br />
               <br />
               <p className="text-muted text-center">- OR -</p>
-              <br />
+              <br /> */}
               <div  class="register-form px-5 " >
                 <div class="form-group">
                   <label for="your_name">

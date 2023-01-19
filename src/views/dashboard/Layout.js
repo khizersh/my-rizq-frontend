@@ -57,14 +57,14 @@ export const Layout = (props) => {
         active: false,
         hr: false,
       },
-      {
-        key: "settings",
-        url: "/dashboard/settings",
-        name: "Settings",
-        icon: "fa fa-cog",
-        active: false,
-        hr: true,
-      },
+      // {
+      //   key: "settings",
+      //   url: "/dashboard/settings",
+      //   name: "Settings",
+      //   icon: "fa fa-cog",
+      //   active: false,
+      //   hr: true,
+      // },
       {
         key: "subscription",
         url: "/dashboard/subscription",
@@ -177,7 +177,10 @@ export const Layout = (props) => {
                     <i className="fa fa-bell" aria-hidden="true"></i>
                   </span>
                   <span className="border-left pl-4">
-                    <text className="font-poppins weight-600">
+                    <text className="font-poppins weight-600 d-none-sm">
+                      {userName}
+                    </text>
+                    <text className="font-poppins weight-600 d-lg-none">
                       {userName.length > 4
                         ? userName.slice(0, 2) + ".."
                         : userName}

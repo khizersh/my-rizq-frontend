@@ -4,6 +4,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import swal from "sweetalert";
 import { BASE_URL } from "utility";
+import StockFinder from "./StockFinder";
 
 export const Stock = () => {
   const percentage = 66;
@@ -109,11 +110,11 @@ export const Stock = () => {
       }
     } else {
     }
-  }, [deptRatio]);
+  }, [deptRatio , params.symbol]);
 
   return (
     <>
-      {loaded ? (
+    {params.symbol ? loaded ? (
         deptRatio ? (
           <div className="container-fluid mb-5">
             <div className="row card shadow-sm bg-white p-3">
@@ -438,7 +439,8 @@ export const Stock = () => {
         )
       ) : (
         <div className="text-center text-black">Loading...</div>
-      )}
+      ) : <StockFinder />}
+      
     </>
   );
 };

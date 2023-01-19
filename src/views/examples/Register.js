@@ -103,7 +103,7 @@ const Register = () => {
                     </div>
 
                     <h3 class="form-title weight-600">Create Account</h3>
-                    <div className="d-flex justify-center">
+                    {/* <div className="d-flex justify-center">
                       <button type="button" class="btn btn-outline-primary m-width-50">
                         <img
                           style={{ width: "20px" }}
@@ -126,7 +126,7 @@ const Register = () => {
                     <br />
                     <br />
                     <p className="text-muted text-center">- OR -</p>
-                    <br />
+                    <br /> */}
                     <div class="register-form  m-px-5 ">
                       <div class="form-group">
                         <label for="your_name">
