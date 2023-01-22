@@ -29,7 +29,7 @@ import Landing from "views/examples/Landing.js";
 import Login from "views/examples/Login.js";
 import Profile from "views/examples/Profile.js";
 import Register from "views/examples/Register.js";
-import CardsFooter from "components/Footers/CardsFooter";
+import CardsFooter from "components/Footers/WebLayout";
 import DemoNavbar from "components/Navbars/DemoNavbar";
 import { Pricing } from "views/examples/Pricing";
 import { Layout } from "views/dashboard/Layout";
@@ -38,6 +38,7 @@ import Feedback from "views/dashboard/Feedback";
 import StockFinder from "views/dashboard/StockFinder";
 import BudgetingTool from "views/dashboard/BudgetingTool";
 import Watchlist from "views/dashboard/Watchlist";
+import WebLayout from "components/Footers/WebLayout";
 
 
 
@@ -47,7 +48,7 @@ root.render(
   <BrowserRouter>
 
     <Switch>
-      <Route path="/" exact render={(props) => <><Index {...props} /><CardsFooter /></>} />
+      <Route path="/" exact render={(props) => <WebLayout><Index {...props} /></WebLayout>} />
       {/* <Route
         path="/landing-page"
         exact
@@ -56,22 +57,22 @@ root.render(
       <Route
         path="/signup"
         exact
-        render={(props) => <><Register {...props} /><CardsFooter /></>}
+        render={(props) => <WebLayout><Register {...props} /></WebLayout>}
       />
       <Route
         path="/profile-page"
         exact
-        render={(props) => <><Profile {...props} /><CardsFooter /></>}
+        render={(props) => <WebLayout><Profile {...props} /></WebLayout>}
       />
       <Route
         path="/signin"
         exact
-        render={(props) => <><Login {...props} /><CardsFooter /></>}
+        render={(props) => <WebLayout><Login {...props} /></WebLayout>}
       />
       <Route
         path="/pricing"
         exact
-        render={(props) => <><Pricing {...props} /><CardsFooter /></>}
+        render={(props) => <WebLayout><Pricing {...props} /></WebLayout>}
       />
       <Route
         path="/dashboard/halal-stock-search"

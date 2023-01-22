@@ -14,6 +14,7 @@ export const Layout = (props) => {
   const [userName, setUserName] = useState("");
   const [sidebar, setSidebar] = useState([]);
   const [isClose, setIsClose] = useState(true);
+  const [search, setSearch] = useState("");
 
   function getList() {
     return [
@@ -116,7 +117,6 @@ export const Layout = (props) => {
     let user = localStorage.getItem("user");
     if (user) {
       let userData = JSON.parse(user);
-      console.log("userData : ", userData);
       if (userData.email) {
         setUserName(userData.name);
         if (userData.freeUser) {
@@ -135,6 +135,16 @@ export const Layout = (props) => {
 
   const onClickClose = () => {
     setIsClose(!isClose);
+  };
+
+  const onChangeSearch = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const onClickSearch = () => {
+    if (search) {
+      router.push("/dashboard/halal-stock-search?symbol=" + search);
+    }
   };
 
   useEffect(() => {
@@ -169,11 +179,12 @@ export const Layout = (props) => {
                   <span className="pr-4">
                     <Input
                       placeholder="Search"
+                      onChange={(e) => onChangeSearch(e)}
                       type="text"
                       className="bg-transparent d-inline w-30"
                       style={{ maxHeight: "30px" }}
                     />
-                    <i className="fa fa-search px-3"></i>
+                    <i className="fa fa-search px-3" onClick={onClickSearch}></i>
                     <i className="fa fa-bell" aria-hidden="true"></i>
                   </span>
                   <span className="border-left pl-4">

@@ -8,9 +8,13 @@ export function Pricing(props) {
   const router = useHistory();
 
   const [btnSelected, setButtonSelected] = useState(0);
-  useEffect(() => {
-    console.log("hello world");
-  }, [btnSelected]);
+
+  const [price, setPrice] = useState({
+    monthly: { free: "$0", standard: "$2.99", premium: "$4.99" },
+    annually: { free: "$0", standard: "$35.88", premium: "$59.88" },
+  });
+
+  useEffect(() => {}, [btnSelected]);
 
   const onClickPackage = (pkg) => {
     if (pkg == 0) {
@@ -80,7 +84,7 @@ export function Pricing(props) {
                   <div className="card pricing-card shadow-lg pt-3 h-100">
                     <div className=" text-center">
                       <h5>Free</h5>
-                      <h3 className="weight-700 text-black font-poppins">$0</h3>
+                      <h3 className="weight-700 text-black font-poppins">{btnSelected == 0 ? price.monthly.free : price.monthly.free}</h3>
                     </div>
                     <div className="card-body">
                       <ul className="points">
@@ -89,7 +93,10 @@ export function Pricing(props) {
                       </ul>
                     </div>
                     <div className="text-center ">
-                      <button className="btn text-muted w-50 mb-3" onClick={() => router.push("/signup?premium=false")}>
+                      <button
+                        className="btn text-muted w-50 mb-3"
+                        onClick={() => router.push("/signup?premium=false")}
+                      >
                         <text style={{ fontSize: "10px" }}>Create account</text>{" "}
                       </button>
                     </div>
@@ -102,7 +109,7 @@ export function Pricing(props) {
                     <div className=" text-center">
                       <h5>Standard</h5>
                       <h3 className="weight-700 text-black font-poppins">
-                        $2.99
+                      {btnSelected == 0 ? price.monthly.standard : price.annually.standard}
                       </h3>
                     </div>
                     <div className="card-body">
@@ -115,7 +122,10 @@ export function Pricing(props) {
                       </ul>
                     </div>
                     <div className="text-center ">
-                      <button className="btn bg-green text-white w-50 mb-3" onClick={() => router.push("/signup?premium=true")}>
+                      <button
+                        className="btn bg-green text-white w-50 mb-3"
+                        onClick={() => router.push("/signup?premium=true")}
+                      >
                         <text style={{ fontSize: "10px" }}>Create account</text>{" "}
                       </button>
                     </div>
@@ -128,7 +138,7 @@ export function Pricing(props) {
                     <div className=" text-center">
                       <h5>Premium</h5>
                       <h3 className="weight-700 text-black font-poppins">
-                        $4.99
+                      {btnSelected == 0 ? price.monthly.premium : price.annually.premium}
                       </h3>
                     </div>
                     <div className="card-body">
@@ -142,7 +152,10 @@ export function Pricing(props) {
                       </ul>
                     </div>
                     <div className="text-center ">
-                      <button className="btn text-muted w-50 mb-3" onClick={() => router.push("/signup?premium=true")}>
+                      <button
+                        className="btn text-muted w-50 mb-3"
+                        onClick={() => router.push("/signup?premium=true")}
+                      >
                         <text style={{ fontSize: "10px" }}>Create account</text>{" "}
                       </button>
                     </div>
@@ -155,7 +168,10 @@ export function Pricing(props) {
       </div>
 
       <div>
-        <img className="bg-pricing" src={require("assets/img/pricing/waves.png")} />
+        <img
+          className="bg-pricing"
+          src={require("assets/img/pricing/waves.png")}
+        />
       </div>
     </>
   );

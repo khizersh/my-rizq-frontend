@@ -5,7 +5,7 @@ import { Container, Row } from "reactstrap";
 
 // core components
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
-import CardsFooter from "components/Footers/CardsFooter.js";
+import CardsFooter from "components/Footers/WebLayout.js";
 
 // index page sections
 import Hero from "./IndexSections/Hero.js";
@@ -43,15 +43,13 @@ export default function Index() {
       console.log("True");
       setDashboard(true)
     }else{
-      console.log("False");
       
     }
-  },[dashboard])
+  },[window.location.href])
 
     return (
       <>
 
-      {dashboard == true ? <></> : <DemoNavbar />}
         
         
         <main >
