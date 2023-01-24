@@ -11,7 +11,7 @@ export function Pricing(props) {
 
   const [price, setPrice] = useState({
     monthly: { free: "$0", standard: "$2.99", premium: "$4.99" },
-    annually: { free: "$0", standard: "$35.88", premium: "$59.88" },
+    annually: { free: "$0", standard: "$30", premium: "$40" },
   });
 
   useEffect(() => {}, [btnSelected]);
