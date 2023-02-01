@@ -8,8 +8,6 @@ import StockFinder from "./StockFinder";
 import { numberWithCommas } from "utility";
 
 export const Stock = () => {
-
-
   const [loaded, setLoaded] = useState(false);
   const [freeUser, setFreeUser] = useState(true);
   const [deptRatio, setDepthRatio] = useState(0);
@@ -17,16 +15,89 @@ export const Stock = () => {
   const [liquidityRatio, setLiquidityRatio] = useState(0);
   const [shortName, setShortName] = useState("");
   const [isShariah, setIsShariah] = useState(false);
-  const [totalDebt , setTotalDepth] = useState("--")
-  const [marketCap , setMarketCap] = useState("--")
-  const [cash , setCash] = useState("--")
-  const [longBusinessSummary , setLongBusinessSummary] = useState("--")
+  const [totalDebt, setTotalDepth] = useState("--");
+  const [totalAssets, setTotalAssets] = useState("--");
+  const [netReceivables, setNetReceivables] = useState("--");
+  const [marketCap, setMarketCap] = useState("--");
+  const [cash, setCash] = useState("--");
+  const [longBusinessSummary, setLongBusinessSummary] = useState("--");
 
   const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   });
 
   const fetchData = (symbol) => {
+    if (symbol) {
+      fetch(BASE_URL + "/stock/yahoo", {
+        method: "POST",
+        body: JSON.stringify({
+          symbol: symbol,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setLoaded(true);
+          if (data && data.response.price) {
+            setShortName(data.response.price.shortName);
+          }
+          if (data && data.response.financialData && data.response.price) {
+            let dep =
+              parseFloat(
+                data.response.financialData.totalDebt /
+                  data.response.price.marketCap
+              ).toFixed(2) * 100;
+            let sec =
+              parseFloat(
+                data.response.financialData.totalCash /
+                  data.response.price.marketCap
+              ).toFixed(2) * 100;
+            let liq =
+              parseFloat(
+                (data.response.financialData.totalCash +
+                  data.response.balanceSheetHistoryQuarterly
+                    .balanceSheetStatements[0].netReceivables) /
+                  data.response.balanceSheetHistoryQuarterly
+                    .balanceSheetStatements[0].totalAssets
+              ).toFixed(2) * 100;
+
+            setTotalAssets(
+              numberWithCommas(
+                data.response.balanceSheetHistoryQuarterly
+                  .balanceSheetStatements[0].totalAssets
+              )
+            );
+            setNetReceivables(
+              numberWithCommas(
+                data.response.balanceSheetHistoryQuarterly
+                  .balanceSheetStatements[0].netReceivables
+              )
+            );
+            setTotalDepth(
+              numberWithCommas(data.response.financialData.totalDebt)
+            );
+            setMarketCap(numberWithCommas(data.response.price.marketCap));
+            setCash(numberWithCommas(data.response.financialData.totalCash));
+            setLongBusinessSummary(
+              data.response.assetProfile.longBusinessSummary
+            );
+
+            setDepthRatio(dep);
+            setSecurityRatio(sec);
+            setLiquidityRatio(liq);
+            if (dep < 30 && sec < 30 && liq < 30) {
+              setIsShariah(true);
+            } else {
+              setIsShariah(false);
+            }
+          }
+        });
+    }
+  };
+
+  const fetchData2 = (symbol) => {
     if (symbol) {
       fetch(BASE_URL + "/stock", {
         method: "POST",
@@ -54,17 +125,23 @@ export const Stock = () => {
             ).toFixed(2);
             let sec = parseFloat(
               data.response.financialData.totalCash /
-              data.response.summaryDetail.marketCap
-              ).toFixed(2);
-              let liq = parseFloat(
-                data.response.financialData.totalCash /
                 data.response.summaryDetail.marketCap
-                ).toFixed(2);
-            setTotalDepth(numberWithCommas(data.response.financialData.totalDebt))
-            setMarketCap(numberWithCommas(data.response.summaryDetail.marketCap))
-            setCash(numberWithCommas(data.response.financialData.totalCash))
-            setLongBusinessSummary(data.response.summaryProfile.longBusinessSummary)
-            
+            ).toFixed(2);
+            let liq = parseFloat(
+              data.response.financialData.totalCash /
+                data.response.summaryDetail.marketCap
+            ).toFixed(2);
+            setTotalDepth(
+              numberWithCommas(data.response.financialData.totalDebt)
+            );
+            setMarketCap(
+              numberWithCommas(data.response.summaryDetail.marketCap)
+            );
+            setCash(numberWithCommas(data.response.financialData.totalCash));
+            setLongBusinessSummary(
+              data.response.summaryProfile.longBusinessSummary
+            );
+
             setDepthRatio(dep);
             setSecurityRatio(sec);
             setLiquidityRatio(liq);
@@ -172,9 +249,7 @@ export const Stock = () => {
                 best of our ability, there may be errors. Please use this as a
                 source of informtion May Allah make it easy for us!
               </p>
-              <p className="font-12 text-black  mb-3">
-               {longBusinessSummary}
-              </p>
+              <p className="font-12 text-black  mb-3">{longBusinessSummary}</p>
               {/* FIRST CARD */}
               <div className="row card mt-5 shadow pb-2 mb-5">
                 <div className="card-header bg-white shadow-lg">
@@ -294,8 +369,14 @@ export const Stock = () => {
                         (Cash + Cash Equivalents + Accounts Receivable) / Total
                         Assets Must be less than 30%
                       </text>
-                      <text className="font-12 text-stock-grey mb-3  m-d-block text-left">
+                      <text className="font-12 text-stock-grey   m-d-block text-left">
                         Total Cash : {cash}
+                      </text>
+                      <text className="font-12 text-stock-grey   m-d-block text-left">
+                        Account Receivables : {netReceivables}
+                      </text>
+                      <text className="font-12 text-stock-grey mb-3  m-d-block text-left">
+                        Total Assets : {totalAssets}
                       </text>
                     </div>
                   </div>
@@ -307,10 +388,10 @@ export const Stock = () => {
                         Total Debt / Market Cap Must be less than 30%
                       </text>
                       <text className="d-block font-12 text-stock-grey mt-2 ">
-                      Total Dept : {totalDebt}
+                        Total Dept : {totalDebt}
                       </text>
                       <text className="d-block font-12 text-stock-grey  mb-3">
-                      Market Capital : {marketCap}
+                        Market Capital : {marketCap}
                       </text>
                     </div>
                     <div className="col-4">
@@ -319,10 +400,10 @@ export const Stock = () => {
                         be less than 30%
                       </text>
                       <text className="d-block font-12 text-stock-grey mt-2 ">
-                      Total Cash : {cash}
+                        Total Cash : {cash}
                       </text>
                       <text className="d-block font-12 text-stock-grey  mb-3">
-                      Market Capital : {marketCap}
+                        Market Capital : {marketCap}
                       </text>
                     </div>
                     <div className="col-4">
@@ -331,7 +412,13 @@ export const Stock = () => {
                         Assets Must be less than 30%
                       </text>
                       <text className="d-block font-12 text-stock-grey mt-2 ">
-                      Total Cash : {cash}
+                        Total Cash : {cash}
+                      </text>
+                      <text className="d-block font-12 text-stock-grey">
+                        Account Receivables : {netReceivables}
+                      </text>
+                      <text className="d-block font-12 text-stock-grey">
+                        Total Assets : {totalAssets}
                       </text>
                     </div>
                   </div>
