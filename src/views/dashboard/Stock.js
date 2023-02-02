@@ -46,21 +46,25 @@ export const Stock = () => {
           if (data && data.response.financialData && data.response.price) {
             let dep =
               parseFloat(
-                data.response.financialData.totalDebt /
-                  data.response.price.marketCap
+                Number(data.response.financialData.totalDebt) /
+                  Number(data.response.price.marketCap)
               ).toFixed(2) * 100;
             let sec =
               parseFloat(
-                data.response.financialData.totalCash /
-                  data.response.price.marketCap
+                Number(data.response.financialData.totalCash) /
+                  Number(data.response.price.marketCap)
               ).toFixed(2) * 100;
             let liq =
               parseFloat(
-                (data.response.financialData.totalCash +
-                  data.response.balanceSheetHistoryQuarterly
-                    .balanceSheetStatements[0].netReceivables) /
-                  data.response.balanceSheetHistoryQuarterly
-                    .balanceSheetStatements[0].totalAssets
+                (Number(data.response.financialData.totalCash) +
+                  Number(
+                    data.response.balanceSheetHistoryQuarterly
+                      .balanceSheetStatements[0].netReceivables
+                  )) /
+                  Number(
+                    data.response.balanceSheetHistoryQuarterly
+                      .balanceSheetStatements[0].totalAssets
+                  )
               ).toFixed(2) * 100;
 
             setTotalAssets(
@@ -271,9 +275,15 @@ export const Stock = () => {
                       Follow
                     </text>
                   )}{" "}
-                  <text className="border-radius-10  bg-green font-10 float-right m-mt-2 text-white px-3">
-                    Pass
-                  </text>{" "}
+                  {isShariah ? (
+                    <text className="border-radius-10  bg-green font-10 float-right m-mt-2 text-white px-3">
+                      Pass
+                    </text>
+                  ) : (
+                    <text className="border-radius-10  bg-red font-10 float-right m-mt-2 text-white px-3">
+                      Fail
+                    </text>
+                  )}{" "}
                 </div>
                 <div className="card-body"></div>
                 <div className="col-12">
@@ -288,7 +298,7 @@ export const Stock = () => {
                             rotation: 0.5,
                             textSize: "16px",
                             pathTransitionDuration: 0.5,
-                            pathColor: "#1EC372",
+                            pathColor: `${deptRatio > 29 ? "#FF0000" : "#1EC372"}`,
                             textColor: "#000000",
                             trailColor: "#fff",
                             backgroundColor: "#3e98c7",
@@ -320,7 +330,7 @@ export const Stock = () => {
                             rotation: 0.5,
                             textSize: "16px",
                             pathTransitionDuration: 0.5,
-                            pathColor: "#1EC372",
+                            pathColor: `${securityRatio > 29 ? "#FF0000" : "#1EC372"}`,
                             textColor: "#000000",
                             trailColor: "#fff",
                             backgroundColor: "#3e98c7",
@@ -353,7 +363,7 @@ export const Stock = () => {
                             rotation: 0.5,
                             textSize: "16px",
                             pathTransitionDuration: 0.5,
-                            pathColor: "#1EC372",
+                            pathColor: `${liquidityRatio > 29 ? "#FF0000" : "#1EC372"}`,
                             textColor: "#000000",
                             trailColor: "#fff",
                             backgroundColor: "#3e98c7",
@@ -445,9 +455,15 @@ export const Stock = () => {
                       Follow
                     </text>
                   )}{" "}
-                  <text className="border-radius-10  bg-green font-10 float-right m-mt-2 text-white px-3">
-                    Pass
-                  </text>{" "}
+                  {isShariah ? (
+                    <text className="border-radius-10  bg-green font-10 float-right m-mt-2 text-white px-3">
+                      Pass
+                    </text>
+                  ) : (
+                    <text className="border-radius-10  bg-red font-10 float-right m-mt-2 text-white px-3">
+                      Fail
+                    </text>
+                  )}{" "}
                 </div>
                 <div className="card-body">
                   <div
