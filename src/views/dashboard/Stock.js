@@ -243,7 +243,7 @@ export const Stock = () => {
                         Updated as of January 1 2022
                       </text>
                       <text className="d-block font-10 line-height-1 text-stock-grey">
-                        Followinf AAQIFI standard
+                      Following AAOIFI standard
                       </text>
                     </div>
                   </div>
