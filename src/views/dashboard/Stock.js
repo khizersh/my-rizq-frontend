@@ -44,18 +44,19 @@ export const Stock = () => {
             setShortName(data.response.price.shortName);
           }
           if (data && data.response.financialData && data.response.price) {
-            let dep =
-              parseFloat(
-                Number(data.response.financialData.totalDebt) /
-                  Number(data.response.price.marketCap)
-              ).toFixed(2) * 100;
-            let sec =
-              parseFloat(
-                Number(data.response.financialData.totalCash) /
-                  Number(data.response.price.marketCap)
-              ).toFixed(2) * 100;
+            let dep = (
+              (Number(data.response.financialData.totalDebt) /
+                Number(data.response.price.marketCap)) *
+              100
+            ).toFixed(0);
+
+            let sec = (
+              (Number(data.response.financialData.totalCash) /
+                Number(data.response.price.marketCap)) *
+              100
+            ).toFixed(0);
             let liq =
-              parseFloat(
+              ((
                 (Number(data.response.financialData.totalCash) +
                   Number(
                     data.response.balanceSheetHistoryQuarterly
@@ -65,7 +66,7 @@ export const Stock = () => {
                     data.response.balanceSheetHistoryQuarterly
                       .balanceSheetStatements[0].totalAssets
                   )
-              ).toFixed(2) * 100;
+              )* 100).toFixed(0);
 
             setTotalAssets(
               numberWithCommas(
@@ -298,7 +299,9 @@ export const Stock = () => {
                             rotation: 0.5,
                             textSize: "16px",
                             pathTransitionDuration: 0.5,
-                            pathColor: `${deptRatio > 29 ? "#FF0000" : "#1EC372"}`,
+                            pathColor: `${
+                              deptRatio > 29 ? "#FF0000" : "#1EC372"
+                            }`,
                             textColor: "#000000",
                             trailColor: "#fff",
                             backgroundColor: "#3e98c7",
@@ -330,7 +333,9 @@ export const Stock = () => {
                             rotation: 0.5,
                             textSize: "16px",
                             pathTransitionDuration: 0.5,
-                            pathColor: `${securityRatio > 29 ? "#FF0000" : "#1EC372"}`,
+                            pathColor: `${
+                              securityRatio > 29 ? "#FF0000" : "#1EC372"
+                            }`,
                             textColor: "#000000",
                             trailColor: "#fff",
                             backgroundColor: "#3e98c7",
@@ -363,7 +368,9 @@ export const Stock = () => {
                             rotation: 0.5,
                             textSize: "16px",
                             pathTransitionDuration: 0.5,
-                            pathColor: `${liquidityRatio > 29 ? "#FF0000" : "#1EC372"}`,
+                            pathColor: `${
+                              liquidityRatio > 29 ? "#FF0000" : "#1EC372"
+                            }`,
                             textColor: "#000000",
                             trailColor: "#fff",
                             backgroundColor: "#3e98c7",
