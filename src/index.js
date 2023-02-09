@@ -39,6 +39,7 @@ import StockFinder from "views/dashboard/StockFinder";
 import BudgetingTool from "views/dashboard/BudgetingTool";
 import Watchlist from "views/dashboard/Watchlist";
 import WebLayout from "components/Footers/WebLayout";
+import About from "views/examples/About";
 
 
 
@@ -58,6 +59,11 @@ root.render(
         path="/signup"
         exact
         render={(props) => <WebLayout><Register {...props} /></WebLayout>}
+      />
+      <Route
+        path="/about-us"
+        exact
+        render={(props) => <WebLayout><About {...props} /></WebLayout>}
       />
       <Route
         path="/profile-page"
