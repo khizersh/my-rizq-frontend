@@ -55,18 +55,18 @@ export const Stock = () => {
                 Number(data.response.price.marketCap)) *
               100
             ).toFixed(0);
-            let liq =
-              ((
-                (Number(data.response.financialData.totalCash) +
-                  Number(
-                    data.response.balanceSheetHistoryQuarterly
-                      .balanceSheetStatements[0].netReceivables
-                  )) /
-                  Number(
-                    data.response.balanceSheetHistoryQuarterly
-                      .balanceSheetStatements[0].totalAssets
-                  )
-              )* 100).toFixed(0);
+            let liq = (
+              ((Number(data.response.financialData.totalCash) +
+                Number(
+                  data.response.balanceSheetHistoryQuarterly
+                    .balanceSheetStatements[0].netReceivables
+                )) /
+                Number(
+                  data.response.balanceSheetHistoryQuarterly
+                    .balanceSheetStatements[0].totalAssets
+                )) *
+              100
+            ).toFixed(0);
 
             setTotalAssets(
               numberWithCommas(
@@ -187,6 +187,7 @@ export const Stock = () => {
   };
 
   useEffect(() => {
+    setLoaded(false)
     fetchData(params.symbol);
     let user = localStorage.getItem("user");
     if (user) {
@@ -243,7 +244,7 @@ export const Stock = () => {
                         Updated as of January 1 2022
                       </text>
                       <text className="d-block font-10 line-height-1 text-stock-grey">
-                      Following AAOIFI standard
+                        Following AAOIFI standard
                       </text>
                     </div>
                   </div>
@@ -308,7 +309,9 @@ export const Stock = () => {
                           })}
                         />
                         <img
-                          src={require("assets/img/dashboard/accept.png")}
+                          src={require(`assets/img/dashboard/${
+                            deptRatio < 30 ? "accept.png" : "reject.png"
+                          }`)}
                           width="10px"
                         />
                         <text> Interest-bearing Debt Ratio</text>
@@ -342,7 +345,9 @@ export const Stock = () => {
                           })}
                         />
                         <img
-                          src={require("assets/img/dashboard/accept.png")}
+                          src={require(`assets/img/dashboard/${
+                            securityRatio < 30 ? "accept.png" : "reject.png"
+                          }`)}
                           width="10px"
                         />
                         <text> Interest-bearing Securities Ratio</text>
@@ -377,7 +382,9 @@ export const Stock = () => {
                           })}
                         />
                         <img
-                          src={require("assets/img/dashboard/accept.png")}
+                         src={require(`assets/img/dashboard/${
+                          liquidityRatio < 30 ? "accept.png" : "reject.png"
+                        }`)}
                           width="10px"
                         />
                         <text> Liquidity Ratio</text>

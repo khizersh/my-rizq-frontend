@@ -2,11 +2,15 @@ import React from "react";
 import "../../assets/css/home/home.css";
 import { FormGroup, Input } from "reactstrap";
 import Slider from "react-slick";
+import { useHistory } from "react-router-dom";
+
 
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
 export default function Hero() {
+  const router = useHistory();
+
   var settings = {
     dots: false,
     infinite: true,
@@ -65,7 +69,7 @@ export default function Hero() {
                     to transform the financial lives of Muslims"
                   </text>
                   <div className="pr-3  pt-5 p-mbl-text">
-                    <Button className=" float-left text-white d-inline w-50 bg-green btn btn-success">
+                    <Button className=" float-left text-white d-inline w-50 bg-green btn btn-success" onClick={() => router.push("/signup")}>
                       Get Started
                     </Button>
                     <Button
@@ -96,6 +100,7 @@ export default function Hero() {
                     className="float-left width-60 bg-green"
                     color="success"
                     type="button"
+                    onClick={() => router.push("/signup")}
                   >
                     {" "}
                     GET STARTED
@@ -223,7 +228,7 @@ export default function Hero() {
                 Start using MyRizq today and get a better of your understanding
                 of your finances Built Muslims by Muslims
               </p>
-              <button className="btn bg-green text-white mt-3">Sign Up </button>
+              <button className="btn bg-green text-white mt-3" onClick={() => router.push("/signup")}>Sign Up </button>
             </div>
           </div>
         </div>

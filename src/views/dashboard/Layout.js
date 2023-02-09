@@ -26,14 +26,14 @@ export const Layout = (props) => {
         active: true,
         hr: false,
       },
-      {
-        key: "stock-finder",
-        url: "/dashboard/stock-finder",
-        name: "Stock Finder",
-        icon: "fa fa-pie-chart",
-        active: false,
-        hr: false,
-      },
+      // {
+      //   key: "stock-finder",
+      //   url: "/dashboard/stock-finder",
+      //   name: "Stock Finder",
+      //   icon: "fa fa-pie-chart",
+      //   active: false,
+      //   hr: false,
+      // },
       {
         key: "budgeting-tool",
         url: "/dashboard/budgeting-tool",
@@ -213,7 +213,7 @@ export const Layout = (props) => {
             <div className="list-group list-group-flush  mt-2">
               <div className="d-flex justify-content-between">
                 <span>
-                  <Link to="/" className="text-black">
+                  <Link to="/dashboard/halal-stock-search" className="text-black">
                     <img
                       className="pl-3 mb-4"
                       src={require("assets/img/brand/logo.png")}
