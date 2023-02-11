@@ -8,6 +8,11 @@
 .font-24{
     font-size: 24px;
 }
+
+.font-17{
+    font-size: 17px;
+}
+
 .font-32{
     font-size: 32px;
 }
@@ -20,4 +25,12 @@
     color: #11142D;
     letter-spacing: 0.005em;
     line-height: 150%;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .m-mt-5{
+        margin-top: 4rem !important;
+    }
+
 }

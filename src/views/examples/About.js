@@ -22,7 +22,7 @@ const About = () => {
   ];
   return (
     <main>
-      <section class="mt-100 font-poppins weight-700">
+      <section class="mt-100 font-poppins weight-700 m-mt-5">
         <div className="container">
           <div className="row">
             <div className="col-12 text-center mb-3">
@@ -48,7 +48,7 @@ const About = () => {
                     <h3 className="font-poppins weight-700 font-32 heading-about mb-2">
                       {about.heading}
                     </h3>
-                    <text className="font-mon weight-400 font-24 text-about">
+                    <text className="font-mon weight-400 font-17 text-about">
                       {about.text}
                     </text>
                   </div>
