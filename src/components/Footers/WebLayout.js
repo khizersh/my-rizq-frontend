@@ -66,7 +66,11 @@ const WebLayout = (props) => {
               <br />
               <p className="text-black mb-0 weight-500 ">About Us</p>
               <p className="text-black mb-0 weight-500  ">Blog</p>
+              <p className="text-black mb-0 weight-500 ">FAQ</p>
+              <p className="text-black mb-0 weight-500 ">Shariah Screening</p>
               <p className="text-black mb-0 weight-500 ">Pricing</p>
+              <p className="text-black mb-0 weight-500 ">Support</p>
+              <p className="text-black mb-0 weight-500 ">Contact</p>
             </div>
             <div className="col-12 col-lg-5">
               <h6 className="weight-700 newsletter text-grey">

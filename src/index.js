@@ -40,6 +40,8 @@ import BudgetingTool from "views/dashboard/BudgetingTool";
 import Watchlist from "views/dashboard/Watchlist";
 import WebLayout from "components/Footers/WebLayout";
 import About from "views/examples/About";
+import Faq from "views/examples/faq";
+import Shariah from "views/examples/Shariah";
 
 
 
@@ -64,6 +66,16 @@ root.render(
         path="/about-us"
         exact
         render={(props) => <WebLayout><About {...props} /></WebLayout>}
+      />
+      <Route
+        path="/faq"
+        exact
+        render={(props) => <WebLayout><Faq {...props} /></WebLayout>}
+      />
+      <Route
+        path="/shariah-screen-methodology"
+        exact
+        render={(props) => <WebLayout><Shariah {...props} /></WebLayout>}
       />
       <Route
         path="/profile-page"

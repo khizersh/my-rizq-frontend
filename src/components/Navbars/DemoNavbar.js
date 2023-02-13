@@ -114,9 +114,12 @@ class DemoNavbar extends React.Component {
                       <DropdownItem to="/about-us" tag={Link}>
                         About us
                       </DropdownItem>
-                      {/* <DropdownItem to="/signup" tag={Link}>
-                        Register
-                      </DropdownItem> */}
+                      <DropdownItem to="/faq" tag={Link}>
+                        Faq
+                      </DropdownItem>
+                      <DropdownItem to="/shariah-screen-methodology" tag={Link}>
+                      Shariah Screen Methodology
+                      </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
                   <UncontrolledDropdown nav>

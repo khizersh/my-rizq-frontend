@@ -16,7 +16,10 @@
 }
 
 .container-width {
-  padding: 10px 100px;
+  padding-top: 150px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
 }
 
 .padding-31vh {
@@ -182,6 +185,11 @@
   margin: 0px 3rem;
 }
 
+.py-search{
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
 @media only screen and (max-width: 600px) {
 
   .m-mx-5 {
@@ -189,7 +197,10 @@
   }
 
   .container-width {
-    padding: 10px 5px;
+    padding-top: 150x;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
   }
   .padding-31vh {
     padding-top: 0px !important;
@@ -199,6 +210,11 @@
   }
   .mbl-size-37 {
     font-size: 37px;
+  }
+
+  .main-section {
+    position: relative !important;
+    top:11rem !important;
   }
 
   .mt-mbl-0 {
@@ -254,7 +270,7 @@
 
   .main-section-signup {
     position: relative;
-    top: 1rem;
+    top: 0rem;
   }
 
   .padding-message {

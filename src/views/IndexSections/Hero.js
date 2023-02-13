@@ -4,7 +4,6 @@ import { FormGroup, Input } from "reactstrap";
 import Slider from "react-slick";
 import { useHistory } from "react-router-dom";
 
-
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
@@ -47,11 +46,14 @@ export default function Hero() {
       name: "Nauman",
     },
   ];
+
+  const setEmail = (data) => {};
+  const onClick = (data) => {};
   return (
     <>
       <div className="position-relative bg-img">
         <section>
-          <div className="container-width d-flex align-items-center py-lg container-fluid">
+          {/* <div className="container-width d-flex align-items-center py-lg container-fluid">
             <div className="row dt-width-100 align-items-center justify-content-center">
               <div className="col-12 col-lg-6 padding-31vh">
                 <h1 className="weight-800 text-black line-05 font-poppins mbl-size-37 mbl-line-0">
@@ -108,10 +110,58 @@ export default function Hero() {
                 </FormGroup>
               </div>
             </div>
+          </div> */}
+          <div className="container-width  container-fluid">
+            <div className="row dt-width-100 align-items-center justify-content-center">
+              <div className="col-12  text-center ">
+                <h1 className="weight-800 text-black line-05 font-poppins mbl-size-37 mbl-line-0">
+                  Muslim Personal
+                </h1>
+                <h1 className="text-green weight-800 font-poppins mbl-size-37">
+                  Finance App.
+                </h1>
+                <div className="mt-2 mt-mbl-0  weight-500">
+                  <p className="font-13">
+                    <text
+                      style={{ color: "#676767" }}
+                      className="font-mon p-mbl-text py-5  w-50"
+                    >
+                      Your Rizq in one place! Muslim led fin-tech startup,
+                      <br />
+                      aiming to transform the financial lives of Muslims
+                    </text>
+                  </p>
+                  <div className="padding-newsletter text-center mt-5">
+                    <text className="text-black weight-700 font-16 font-mon ">
+                      Serach Stocks & Determine Shariah Compliance{" "}
+                    </text>
+                    <div className=" input-group  text-center bg-white shadow-sm mt-2">
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Search for ticket or company (TSLA, APPLE, NFLX)"
+                        aria-label="Recipient's username"
+                        aria-describedby="basic-addon2"
+                      />
+                      <div className="input-group-append ">
+                        <button
+                          className="btn bg-green text-white"
+                          type="button"
+                          onClick={onClick}
+                        >
+                          <text className="font-mon font-10">Search</text>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
         <section>
-          <div className="container-width d-flex align-items-center  container-fluid mb-4">
+          <div className=" d-flex align-items-center  container-fluid mb-4">
             <div className="row dt-width-100 align-items-center justify-content-center">
               <div className="col-12 col-lg-7 text-center">
                 <h2 className="weight-700 text-green ">
@@ -181,12 +231,10 @@ export default function Hero() {
           </section>
         </section>
       </div>
-      <br />
-      <br />
-      <br />
+     
       {/* slider section */}
       <section className="main-section min-height-section">
-        <div className="container-width  mt-5">
+        <div className="container-width ">
           <div className="">
             <div className="col-12 mt-5">
               <h1 className="font-poppins weight-800 text-center text-black my-5 mb-mbl-0 font-26">
@@ -216,9 +264,7 @@ export default function Hero() {
         </div>
       </section>
 
-      <br />
-      <br />
-      <br />
+  
       {/* signup section */}
       <section className="main-section-signup  ">
         <div className="container-width d-flex align-items-center  container-fluid mt-5">
@@ -228,7 +274,12 @@ export default function Hero() {
                 Start using MyRizq today and get a better of your understanding
                 of your finances Built Muslims by Muslims
               </p>
-              <button className="btn bg-green text-white mt-3" onClick={() => router.push("/signup")}>Sign Up </button>
+              <button
+                className="btn bg-green text-white mt-3"
+                onClick={() => router.push("/signup")}
+              >
+                Sign Up{" "}
+              </button>
             </div>
           </div>
         </div>
