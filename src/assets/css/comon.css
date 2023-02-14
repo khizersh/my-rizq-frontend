@@ -86,3 +86,8 @@
 .elem-end {
   justify-content: space-between;
 }
+
+
+.font-lato{
+  font-family: 'Lato', sans-serif;
+}

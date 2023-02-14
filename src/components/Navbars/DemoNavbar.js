@@ -133,18 +133,18 @@ class DemoNavbar extends React.Component {
                         ></i>
                       </span>
                     </DropdownToggle>
-                    {/* <DropdownMenu>
-                      <DropdownItem to="/signin" tag={Link}>
-                        Login
+                    <DropdownMenu>
+                      <DropdownItem to="/blog" tag={Link}>
+                        Blog
                       </DropdownItem>
-                      <DropdownItem to="/signup" tag={Link}>
+                      {/* <DropdownItem to="/signup" tag={Link}>
                         Register
-                      </DropdownItem>
-                    </DropdownMenu> */}
+                      </DropdownItem> */}
+                    </DropdownMenu>
                   </UncontrolledDropdown>
                   <UncontrolledDropdown nav>
                     <DropdownToggle nav>
-                      <Link to="/pricing" className="text-black">
+                      <Link to="/support" className="text-black">
                         <i className="ni ni-collection d-lg-none mr-1" />
                         <span className="nav-link-inner--text">Support</span>
                       </Link>

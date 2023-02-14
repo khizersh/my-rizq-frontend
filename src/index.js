@@ -42,6 +42,8 @@ import WebLayout from "components/Footers/WebLayout";
 import About from "views/examples/About";
 import Faq from "views/examples/faq";
 import Shariah from "views/examples/Shariah";
+import Support from "views/examples/Support";
+import Blog from "views/examples/Blog";
 
 
 
@@ -73,9 +75,19 @@ root.render(
         render={(props) => <WebLayout><Faq {...props} /></WebLayout>}
       />
       <Route
+        path="/blog"
+        exact
+        render={(props) => <WebLayout><Blog {...props} /></WebLayout>}
+      />
+      <Route
         path="/shariah-screen-methodology"
         exact
         render={(props) => <WebLayout><Shariah {...props} /></WebLayout>}
+      />
+      <Route
+        path="/support"
+        exact
+        render={(props) => <WebLayout><Support {...props} /></WebLayout>}
       />
       <Route
         path="/profile-page"
