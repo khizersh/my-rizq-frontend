@@ -44,6 +44,7 @@ import Faq from "views/examples/faq";
 import Shariah from "views/examples/Shariah";
 import Support from "views/examples/Support";
 import Blog from "views/examples/Blog";
+import Contact from "views/examples/Contact";
 
 
 
@@ -63,6 +64,11 @@ root.render(
         path="/signup"
         exact
         render={(props) => <WebLayout><Register {...props} /></WebLayout>}
+      />
+      <Route
+        path="/contact-us"
+        exact
+        render={(props) => <WebLayout><Contact {...props} /></WebLayout>}
       />
       <Route
         path="/about-us"
