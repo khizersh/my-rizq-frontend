@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { BASE_URL } from "utility";
+import swal from 'sweetalert';
 
 const Support = () => {
-  const setEmail = () => {};
-  const onClick = () => {};
+  const [email, setEmail] = useState("");
+  const onClick = () => {
+
+    let body =  [{email}]
+
+    fetch(BASE_URL + "/newsletter/", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data && data.status == "0000"){
+          swal("Success!", "We will notify you!", "success");
+        }else{
+
+        }
+        console.log(" data response : ",data);
+        // setLoaded(true)
+        // if(data && data.response.financialData && data.response.summaryDetail){
+    
+        // }
+      });
+  };
   return (
     <main>
       <section class="mt-100 font-poppins weight-700 m-mt-5">

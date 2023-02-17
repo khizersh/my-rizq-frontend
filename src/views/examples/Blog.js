@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { BASE_URL } from "utility";
+import swal from 'sweetalert';
 
 const Blog = () => {
-  const setEmail = () => {};
-  const onClick = () => {};
+  const [email, setEmail] = useState("");
+  const onClick = () => {
+
+    let body =  [{email}]
+
+    fetch(BASE_URL + "/newsletter/", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data && data.status == "0000"){
+          swal("Success!", "We will notify you!", "success");
+        }else{
+
+        }
+        console.log(" data response : ",data);
+        // setLoaded(true)
+        // if(data && data.response.financialData && data.response.summaryDetail){
+    
+        // }
+      });
+  };
   return (
     <main>
       <section class="mt-100 font-poppins weight-700 m-mt-5">
@@ -30,18 +56,17 @@ const Blog = () => {
               </h3>
             </div>
             <div className="col-12 text-center mt-5">
-            <img
-                  src={require("assets/img/blog/leaf.png")}
-                  className=""
-                  width={'70px'}
-                  alt="Salam img"
-                />
+              <img
+                src={require("assets/img/blog/leaf.png")}
+                className=""
+                width={"70px"}
+                alt="Salam img"
+              />
             </div>
             <div className="col-12" style={{ marginTop: "100px" }}>
               <h4 className=" text-center weight-700 weight-26">
                 <a href="#" className="text-black">
-                Click the link & show your Support
-
+                  Click the link & show your Support
                 </a>
               </h4>
             </div>

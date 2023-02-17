@@ -48,7 +48,9 @@ export default function Hero() {
   ];
 
   const setEmail = (data) => {};
-  const onClick = (data) => {};
+  const onClick = (data) => {
+    router.push("signup");
+  };
   return (
     <>
       <div className="position-relative bg-img">
@@ -133,7 +135,7 @@ export default function Hero() {
                   </p>
                   <div className="padding-newsletter text-center mt-5">
                     <text className="text-black weight-700 font-16 font-mon ">
-                      Serach Stocks & Determine Shariah Compliance{" "}
+                      Search Stocks & Determine Shariah Compliance{" "}
                     </text>
                     <div className=" input-group  text-center bg-white shadow-sm mt-2">
                       <input
@@ -231,7 +233,7 @@ export default function Hero() {
           </section>
         </section>
       </div>
-     
+
       {/* slider section */}
       <section className="main-section min-height-section">
         <div className="container-width ">
@@ -264,7 +266,6 @@ export default function Hero() {
         </div>
       </section>
 
-  
       {/* signup section */}
       <section className="main-section-signup  ">
         <div className="container-width d-flex align-items-center  container-fluid mt-5">

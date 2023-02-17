@@ -9,15 +9,19 @@ const ContactDesktop = () => {
     const router = useHistory();
 
     const [user, setUser] = useState({
+      firstName:"",
+      lastName:"",
       email: "",
-      password: "",
+      phoneNumber: "",
+      message: "",
     });
   
     const onChange = (e) => {
       setUser({ ...user, [e.target.name]: e.target.value });
     };
-    const onClickLogin = () => {
-      fetch(BASE_URL + "/user/signin", {
+    const onClickMessage = () => {
+      console.log("user : ",user);
+      fetch(BASE_URL + "/contact/add", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -27,10 +31,7 @@ const ContactDesktop = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data && data.status == "0000") {
-            localStorage.setItem("user", JSON.stringify(data.data));
-            swal("Success!", "User login successfully!", "success").then((m) => {
-              router.push("/dashboard/stock-finder");
-            });
+            swal("Success!", "We will notify you!", "success");
           } else if (data && data.status == "9999") {
             swal("Error!", data.message, "error");
           } else {
@@ -131,7 +132,7 @@ const ContactDesktop = () => {
                         <p for="your_name">First name</p>
                         <input
                           type="text"
-                          name="email"
+                          name="firstName"
                           id="your_name"
                           className="p-0"
                           onChange={(e) => onChange(e)}
@@ -142,7 +143,7 @@ const ContactDesktop = () => {
                         <p for="your_name">Last name</p>
                         <input
                           type="text"
-                          name="email"
+                          name="lastName"
                           id="your_name"
                           className="p-0"
                           onChange={(e) => onChange(e)}
@@ -164,7 +165,7 @@ const ContactDesktop = () => {
                         <p for="your_name">Phone</p>
                         <input
                           type="text"
-                          name="email"
+                          name="phoneNumber"
                           id="your_name"
                           className="p-0"
                           onChange={(e) => onChange(e)}
@@ -175,7 +176,7 @@ const ContactDesktop = () => {
                         <p for="your_name">Message</p>
                         <input
                           type="text"
-                          name="email"
+                          name="message"
                           id="your_name"
                           className="p-0"
                           onChange={(e) => onChange(e)}
@@ -195,7 +196,7 @@ const ContactDesktop = () => {
                       <button
                         type="button"
                         class="btn bg-green text-white w-50 mb-2"
-                        onClick={onClickLogin}
+                        onClick={onClickMessage}
                       >
                         Send Message
                       </button>
