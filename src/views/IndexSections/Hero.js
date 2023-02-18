@@ -137,7 +137,7 @@ export default function Hero() {
                     <text className="text-black weight-700 font-16 font-mon ">
                       Search Stocks & Determine Shariah Compliance{" "}
                     </text>
-                    <div className=" input-group  text-center bg-white shadow-sm mt-2">
+                    <div className=" input-group  text-center  shadow-sm mt-2">
                       <input
                         type="text"
                         className="form-control"
@@ -146,9 +146,9 @@ export default function Hero() {
                         aria-label="Recipient's username"
                         aria-describedby="basic-addon2"
                       />
-                      <div className="input-group-append ">
+                      <div className="">
                         <button
-                          className="btn bg-green text-white"
+                          className="btn bg-green text-white border-rad-10 padding-y-btn"
                           type="button"
                           onClick={onClick}
                         >
@@ -163,7 +163,7 @@ export default function Hero() {
           </div>
         </section>
         <section>
-          <div className=" d-flex align-items-center  container-fluid mb-4">
+          <div className=" d-flex align-items-center  container-fluid all-in-one ">
             <div className="row dt-width-100 align-items-center justify-content-center">
               <div className="col-12 col-lg-7 text-center">
                 <h2 className="weight-700 text-green ">

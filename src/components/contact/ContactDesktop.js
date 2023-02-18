@@ -153,7 +153,7 @@ const ContactDesktop = () => {
                       <div className="form-group col-12 col-lg-6">
                         <p for="your_name">Email address</p>
                         <input
-                          type="text"
+                          type="email"
                           name="email"
                           id="your_name"
                           className="p-0"

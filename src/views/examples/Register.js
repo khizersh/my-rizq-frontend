@@ -20,9 +20,11 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
+    country:"",
     freeUser : true
   });
   const [isFreeUser, setIsFreeUser] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -55,6 +57,11 @@ const Register = () => {
         swal("Error!", "Something went wrong!", "error");
       }
     }
+  };
+
+  
+  const onClickPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   useEffect(() => {
@@ -155,16 +162,38 @@ const Register = () => {
                         />
                       </div>
                       <div class="form-group">
+                        <label for="your_name">
+                          <i class="zmdi zmdi-account material-icons-name"></i>
+                        </label>
+                        <input
+                          type="text"
+                          name="country"
+                          id="your_name"
+                          className="p-0"
+                          onChange={(e) => onChange(e)}
+                          placeholder="Country"
+                        />
+                      </div>
+                      <div class="form-group">
                         <label for="your_pass">
                           <i class="zmdi zmdi-lock"></i>
                         </label>
                         <input
-                          type="password"
+                          type={`${showPassword ? "text" : "password"}`}
                           name="password"
-                          className="p-0"
-                          id="your_pass"
+                          className="p-0 d-inline"
                           onChange={(e) => onChange(e)}
+                          id="your_pass"
                           placeholder="Password"
+                        />
+                        <img
+                          onClick={onClickPassword}
+                          className="eye-icon cursor-pointer"
+                          src={require(`assets/img/login/${
+                            showPassword ? "hide" : "eye"
+                          }.png`)}
+                          width="16px"
+                          alt="sing up image"
                         />
                       </div>
                       <div class="form-group">

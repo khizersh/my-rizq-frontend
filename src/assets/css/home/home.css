@@ -26,6 +26,11 @@
   padding-top: 25vh;
 }
 
+.all-in-one{
+  margin-top: 100px;
+  
+}
+
 .padding-25vh {
   padding-top: 19vh;
 }
@@ -190,7 +195,20 @@
   padding-right: 5rem;
 }
 
+.border-rad-10{
+  border-radius: 10px;
+}
+
+.padding-y-btn{
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 @media only screen and (max-width: 600px) {
+  .all-in-one{
+    margin-top: 50px;
+    
+  }
 
   .m-mx-5 {
     margin: 0px -1rem;

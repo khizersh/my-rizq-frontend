@@ -22,7 +22,6 @@ const Blog = () => {
         }else{
 
         }
-        console.log(" data response : ",data);
         // setLoaded(true)
         // if(data && data.response.financialData && data.response.summaryDetail){
     

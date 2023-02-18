@@ -182,7 +182,7 @@ class DemoNavbar extends React.Component {
                     <DropdownToggle nav>
                       <Link to="/signin" className="text-black">
                         <i className="ni ni-collection d-lg-none mr-1" />
-                        <span className="nav-link-inner--text">Login In</span>
+                        <span className="nav-link-inner--text">Log in</span>
                       </Link>
                     </DropdownToggle>
                   </UncontrolledDropdown> 
