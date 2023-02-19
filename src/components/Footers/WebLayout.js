@@ -31,28 +31,28 @@ const WebLayout = (props) => {
               <p className="text-green mb-0 weight-500">Muslim Personal</p>
               <p className="text-green mb-0 weight-500">Finance App</p>
               <div className="text-green  mt-2">
-                <a href="https://www.reddit.com/r/Myrizq/">
+                <a href="https://www.reddit.com/r/Myrizq/" target="_blank">
                   <img
                     className="footer-icon"
                     src={require("assets/img/footer/alien.png")}
                     width="50px"
                   />
                 </a>
-                <a href="https://twitter.com/Myrizqapp">
+                <a href="https://twitter.com/Myrizqapp" target="_blank">
                   <img
                     className="px-3  "
                     src={require("assets/img/footer/twitter.png")}
                     width="60px"
                   />
                 </a>
-                <a href="https://www.linkedin.com/company/myrizq/">
+                <a href="https://www.linkedin.com/company/myrizq/" target="_blank">
                   <img
                     className="footer-icon"
                     src={require("assets/img/footer/linkedin.png")}
                     width="50px"
                   />
                 </a>
-                <a href="https://www.instagram.com/myrizqapp/">
+                <a href="https://www.instagram.com/myrizqapp/" target="_blank">
                   <img
                     className="px-3  "
                     src={require("assets/img/footer/insta.png")}
@@ -64,13 +64,13 @@ const WebLayout = (props) => {
             <div className="col-12 col-lg-4">
               <p className=" mb-0 weight-700 text-black">Resources</p>
               <br />
-              <p className="text-black mb-0 weight-500 ">About Us</p>
-              <p className="text-black mb-0 weight-500  ">Blog</p>
-              <p className="text-black mb-0 weight-500 ">FAQ</p>
-              <p className="text-black mb-0 weight-500 ">Shariah Screening</p>
-              <p className="text-black mb-0 weight-500 ">Pricing</p>
-              <p className="text-black mb-0 weight-500 ">Support</p>
-              <p className="text-black mb-0 weight-500 ">Contact</p>
+              <Link to={'/about-us'}><p className="text-black mb-0 weight-500 py-2">About Us</p></Link>
+              <Link to={'/blog'}><p className="text-black mb-0 weight-500 py-2">Blog</p></Link>
+              <Link to={'/faq'}><p className="text-black mb-0 weight-500 py-2 ">FAQ</p></Link>
+              <Link to={'/shariah-screen-methodology'}><p className="text-black mb-0 weight-500 py-2 ">Shariah Screening</p></Link>
+              <Link to={'/pricing'}><p className="text-black mb-0 weight-500 py-2 ">Pricing</p></Link>
+              <Link to={'/support'}><p className="text-black mb-0 weight-500 py-2 ">Support</p></Link>
+              <Link to={'/contact-us'}><p className="text-black mb-0 weight-500 py-2 ">Contact</p></Link>
             </div>
             <div className="col-12 col-lg-5">
               <h6 className="weight-700 newsletter text-grey">
@@ -85,8 +85,9 @@ const WebLayout = (props) => {
                 Will send you weekly updates for your better finance management.
               </li>
               <div className="d-flex text-black mt-5">
-                <a className="pr-5">Contact</a>
-                <a>Privacy Policy</a>
+              <Link to={'/contact-us'}><p className="pr-5 text-black">Contact</p></Link>
+              <Link to={''}><p className="text-black">Privacy Policy</p></Link>
+                
               </div>
             </div>
           </div>

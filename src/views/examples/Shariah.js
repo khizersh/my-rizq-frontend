@@ -8,12 +8,12 @@ const Shariah = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 text-center mb-3">
-              <h2 className="about-us-head text-green weight-700">
+              <h3 className="about-us-head text-green weight-700">
                 Shariah Screening Methodology
-              </h2>
+              </h3>
             </div>
-            <div className="col-12 text-left">
-              <h3 className="font-poppins weight-700 font-20 heading-about mb-2">
+            <div className="col-12 text-left mt-4">
+              <h3 className="font-poppins weight-700 font-20 heading-about my-2">
                 ***Limitations and Disclaimer
               </h3>
               <text className="font-15 weight-400">
@@ -29,14 +29,14 @@ const Shariah = () => {
               </text>
             </div>
             <div className="col-12 ">
-              <h3 className="font-poppins weight-700 font-20 heading-about mb-2 text-center">
+              <h3 className="font-poppins weight-700 font-20 heading-about my-2 text-center">
                 Summary
               </h3>
               <text className="font-15 weight-400">
-                <ul>
+                <ul className="ul-left p-0">
                   MyRizq is a bootstrapped tech start up that aims to provide
                   Shairah screening for stocks. Let us be clear that our
-                  screening methodology is not perfect however our screening of
+                screening methodology is not perfect however our screening of
                   stocks follows Shariah standards as established by leading
                   institutions and indices. As of now we only use the Accounting
                   and Auditing Organization for Islamic Financial Institutions
@@ -61,11 +61,11 @@ const Shariah = () => {
             </div>
 
             <div className="col-12 ">
-              <h3 className="font-poppins weight-700 font-20 heading-about mb-2 text-center">
+              <h3 className="font-poppins weight-700 font-20 heading-about my-2 text-center">
                 Qualitative Screening
               </h3>
               <text className="font-15 weight-400">
-                <ul>
+                <ul className="ul-left p-0">
                   The first criterion of all the Shariah screening methodologies
                   is to exclude companies whose main business activity is
                   impermissible by the Shariah teachings such as the following:
@@ -94,11 +94,11 @@ const Shariah = () => {
               </text>
             </div>
             <div className="col-12 ">
-              <h3 className="font-poppins weight-700 font-20 heading-about mb-2 text-center">
+              <h3 className="font-poppins weight-700 font-20 heading-about my-2 text-center">
                 Quantitative Screening
               </h3>
               <text className="font-15 weight-400">
-                <ul>
+                <ul className="ul-left p-0">
                   As of now MyRizq only uses the AAOIFI guidelines to do the
                   Quantitive screening of stocks. AAOIFI screens stocks based on
                   the following guidelines:

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { BASE_URL } from "utility";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 const Support = () => {
   const [email, setEmail] = useState("");
   const onClick = () => {
-
-    let body =  [{email}]
+    let body = [{ email }];
 
     fetch(BASE_URL + "/newsletter/", {
       method: "POST",
@@ -17,16 +16,11 @@ const Support = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if(data && data.status == "0000"){
+        if (data && data.status == "0000") {
           swal("Success!", "We will notify you!", "success");
-        }else{
-
+        } else {
+          swal("Error!", data.message, "error");
         }
-        console.log(" data response : ",data);
-        // setLoaded(true)
-        // if(data && data.response.financialData && data.response.summaryDetail){
-    
-        // }
       });
   };
   return (
@@ -75,8 +69,8 @@ const Support = () => {
               </p>
             </div>
             <div className="col-12" style={{ marginTop: "100px" }}>
-              <h4 className=" text-center weight-700 weight-26">
-                <a href="#" className="text-black">
+              <h4 className=" text-center weight-700 weight-26 ">
+                <a href="#" className="text-black onHoverBlack">
                   Click the link & show your Support
                 </a>
               </h4>

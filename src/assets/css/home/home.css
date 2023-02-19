@@ -1,10 +1,15 @@
 .bg-img {
-  background-image: url("/src/assets/img/home/bg.png");
+  background-image: url("/src/assets/img/home/green-bg.png");
   background-repeat: no-repeat;
   height: 1090px;
   width: 100%;
   background-position: right top;
   background-size: 64%;
+}
+
+.green-img{
+  position: absolute;
+  left: 50%;
 }
 
 .nav-link-inner--text {

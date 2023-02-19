@@ -27,6 +27,7 @@ class DemoNavbar extends React.Component {
     let headroom = new Headroom(document.getElementById("navbar-main"));
     // initialise
     headroom.init();
+    
   }
   state = {
     collapseClasses: "",
@@ -112,13 +113,16 @@ class DemoNavbar extends React.Component {
                     </DropdownToggle>
                     <DropdownMenu>
                       <DropdownItem to="/about-us" tag={Link}>
-                        About us
+                        About Us
                       </DropdownItem>
                       <DropdownItem to="/faq" tag={Link}>
-                        Faq
+                        FAQ
                       </DropdownItem>
                       <DropdownItem to="/shariah-screen-methodology" tag={Link}>
                       Shariah Screen Methodology
+                      </DropdownItem>
+                      <DropdownItem to="/contact-us" tag={Link}>
+                      Contact Us
                       </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>

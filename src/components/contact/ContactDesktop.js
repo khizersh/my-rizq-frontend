@@ -20,7 +20,6 @@ const ContactDesktop = () => {
       setUser({ ...user, [e.target.name]: e.target.value });
     };
     const onClickMessage = () => {
-      console.log("user : ",user);
       fetch(BASE_URL + "/contact/add", {
         method: "POST",
         body: JSON.stringify(user),

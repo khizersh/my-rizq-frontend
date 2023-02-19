@@ -9,7 +9,7 @@ const Faq = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 text-center mb-3">
-              <h2 className="about-us-head text-green weight-700">FAQ</h2>
+              <h2 className="about-us-head text-green weight-700">FAQ (Frequently Asked Questions)</h2>
             </div>
             <div className="col-12 text-left mt-2">
               <h3 className="font-poppins weight-700 font-20 heading-about mb-2">

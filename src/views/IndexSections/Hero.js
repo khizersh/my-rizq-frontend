@@ -53,7 +53,11 @@ export default function Hero() {
   };
   return (
     <>
-      <div className="position-relative bg-img">
+      <span className="green-img">
+        <img src={require("assets/img/home/green-bg.png")} />
+      </span>
+      {/* <div className="position-relative bg-img"> */}
+      <div className="position-relative ">
         <section>
           {/* <div className="container-width d-flex align-items-center py-lg container-fluid">
             <div className="row dt-width-100 align-items-center justify-content-center">

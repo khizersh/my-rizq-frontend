@@ -25,9 +25,8 @@ const BudgetingTool = () => {
         if(data && data.status == "0000"){
           swal("Success!", "We will notify you!", "success");
         }else{
-
+          swal("Error!", data.message, "error");
         }
-        console.log(" data response : ",data);
         // setLoaded(true)
         // if(data && data.response.financialData && data.response.summaryDetail){
     

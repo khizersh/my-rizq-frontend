@@ -52,12 +52,16 @@
   font-weight: 600;
 }
 
+.onHoverBlack:hover {
+  color: black;
+}
+
 .bg-grey {
   background-color: #a2a1a8;
 }
 
-.bg-green-opacity{
-    background-color: rgba(92, 181, 38, 0.2)
+.bg-green-opacity {
+  background-color: rgba(92, 181, 38, 0.2);
 }
 
 .w-30 {
@@ -79,15 +83,47 @@
   color: #57c25c;
 }
 
-.cursor-pointer{
-    cursor: pointer;
-  }
+.cursor-pointer {
+  cursor: pointer;
+}
 
 .elem-end {
   justify-content: space-between;
 }
 
+.font-lato {
+  font-family: "Lato", sans-serif;
+}
 
-.font-lato{
-  font-family: 'Lato', sans-serif;
+
+/* headroom */
+.headroom {
+  top: 0;
+  left: 0;
+  right: 0;
+  zIndex: 1;
+}
+.headroom--unfixed {
+  position: relative;
+  transform: translateY(0);
+}
+.headroom--scrolled {
+  transition: transform 200ms ease-in-out;
+}
+.headroom--unpinned {
+  position: fixed;
+  /* transform: translateY(-100%); */
+  transform: translateY(0%) !important;
+}
+.headroom--pinned {
+  position: fixed;
+  transform: translateY(0%) !important;
+}
+
+.headroom--not-top {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #fbfbfb !important;
+  box-shadow: 0 3px 10px rgb(130 130 134 / 50%);
+  z-index: 999999;
 }

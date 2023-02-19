@@ -26,7 +26,7 @@ const About = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 text-center mb-3">
-              <h2 className="about-us-head text-green weight-700">About</h2>
+              <h2 className="about-us-head text-green weight-700">About Us</h2>
               <text className="font-26">
                 MyRizq is a tech start up based in Canada{" "}
                 <img

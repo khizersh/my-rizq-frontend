@@ -20,7 +20,7 @@ const Blog = () => {
         if(data && data.status == "0000"){
           swal("Success!", "We will notify you!", "success");
         }else{
-
+          swal("Error!", data.message, "error");
         }
         // setLoaded(true)
         // if(data && data.response.financialData && data.response.summaryDetail){
@@ -64,7 +64,7 @@ const Blog = () => {
             </div>
             <div className="col-12" style={{ marginTop: "100px" }}>
               <h4 className=" text-center weight-700 weight-26">
-                <a href="#" className="text-black">
+                <a href="#" className="text-black onHoverBlack">
                   Click the link & show your Support
                 </a>
               </h4>
