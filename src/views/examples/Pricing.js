@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../../assets/css/login/login.css";
-import "../../assets/css/home/home.css";
 import "../../assets/css/pricing/pricing.css";
 import { useHistory } from "react-router-dom";
 
@@ -31,10 +30,10 @@ export function Pricing(props) {
         <div className="row ">
           <div className="col-12 text-center  w-100">
             <h2 className="text-black mb-3 weight-600">
-              <u className="choose-plan">Choose your plan</u>
+              <u className="choose-plan font-poppins weight-700">Choose your plan</u>
             </h2>
-            <p className="text-black">Cancel anytime. No questions asked.</p>
-            <p className="text-black">
+            <p className="text-black font-20 font-poppins weight-500">Cancel anytime. No questions asked.</p>
+            <p className="text-black font-20 font-poppins weight-500">
               Support and help keep MyRizq running by being a preimum or
               standard user
             </p>
@@ -43,14 +42,14 @@ export function Pricing(props) {
             <div className="row">
               <div className="col-12 text-center mt-5 mb-5">
                 <div
-                  class="btn-group text-center"
+                  class="btn-group text-center pricing-button border-radius"
                   role="group"
                   aria-label="Basic example"
                 >
                   <button
                     type="button"
-                    class={`border-radius-40 btn ${
-                      btnSelected == 0 ? " bg-green " : "btn-secondary"
+                    class={`border-radius-40 btn border-radius ${
+                      btnSelected == 0 ? " bg-green " : ""
                     }`}
                     onClick={() => onClickPackage(0)}
                   >
@@ -64,8 +63,8 @@ export function Pricing(props) {
                   </button>
                   <button
                     type="button"
-                    class={`btn border-radius-40 ${
-                      btnSelected == 1 ? " bg-green " : "btn-secondary"
+                    class={`btn border-radius-40 border-radius ${
+                      btnSelected == 1 ? " bg-green " : ""
                     }`}
                     onClick={() => onClickPackage(1)}
                   >
@@ -94,7 +93,7 @@ export function Pricing(props) {
                     </div>
                     <div className="text-center ">
                       <button
-                        className="btn text-muted w-50 mb-3"
+                        className="btn bg-green text-white w-50 mb-3 shadow"
                         onClick={() => router.push("/signup?premium=false")}
                       >
                         <text style={{ fontSize: "10px" }}>Create account</text>{" "}
@@ -153,7 +152,7 @@ export function Pricing(props) {
                     </div>
                     <div className="text-center ">
                       <button
-                        className="btn text-muted w-50 mb-3"
+                        className="btn bg-green text-white w-50 mb-3 shadow"
                         onClick={() => router.push("/signup?premium=true")}
                       >
                         <text style={{ fontSize: "10px" }}>Create account</text>{" "}

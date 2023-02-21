@@ -7,7 +7,7 @@
   background-size: 64%;
 }
 
-.green-img{
+.green-img {
   position: absolute;
   left: 50%;
 }
@@ -31,9 +31,8 @@
   padding-top: 25vh;
 }
 
-.all-in-one{
+.all-in-one {
   margin-top: 100px;
-  
 }
 
 .padding-25vh {
@@ -151,6 +150,20 @@
   padding-top: 10px;
 }
 
+.hover-green:hover {
+  color: #57c25c;
+}
+
+.slick-prev {
+  left: 30px !important;
+  z-index: 9999;
+}
+
+.slick-next {
+  right: 30px !important;
+  z-index: 9999;
+}
+
 .padding-message {
   padding: 10px 100px;
 }
@@ -195,24 +208,23 @@
   margin: 0px 3rem;
 }
 
-.py-search{
+.py-search {
   padding-left: 5rem;
   padding-right: 5rem;
 }
 
-.border-rad-10{
+.border-rad-10 {
   border-radius: 10px;
 }
 
-.padding-y-btn{
+.padding-y-btn {
   padding-left: 50px;
   padding-right: 50px;
 }
 
 @media only screen and (max-width: 600px) {
-  .all-in-one{
+  .all-in-one {
     margin-top: 50px;
-    
   }
 
   .m-mx-5 {
@@ -237,7 +249,7 @@
 
   .main-section {
     position: relative !important;
-    top:11rem !important;
+    top: 11rem !important;
   }
 
   .mt-mbl-0 {

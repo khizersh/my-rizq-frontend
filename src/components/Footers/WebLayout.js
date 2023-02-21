@@ -64,13 +64,13 @@ const WebLayout = (props) => {
             <div className="col-12 col-lg-4">
               <p className=" mb-0 weight-700 text-black">Resources</p>
               <br />
-              <Link to={'/about-us'}><p className="text-black mb-0 weight-500 py-2">About Us</p></Link>
-              <Link to={'/blog'}><p className="text-black mb-0 weight-500 py-2">Blog</p></Link>
-              <Link to={'/faq'}><p className="text-black mb-0 weight-500 py-2 ">FAQ</p></Link>
-              <Link to={'/shariah-screen-methodology'}><p className="text-black mb-0 weight-500 py-2 ">Shariah Screening</p></Link>
-              <Link to={'/pricing'}><p className="text-black mb-0 weight-500 py-2 ">Pricing</p></Link>
-              <Link to={'/support'}><p className="text-black mb-0 weight-500 py-2 ">Support</p></Link>
-              <Link to={'/contact-us'}><p className="text-black mb-0 weight-500 py-2 ">Contact</p></Link>
+              <Link to={'/about-us'}><p className="text-black mb-0 weight-500 py-2 hover-green">About Us</p></Link>
+              <Link to={'/blog'}><p className="text-black mb-0 weight-500 py-2 hover-green">Blog</p></Link>
+              <Link to={'/faq'}><p className="text-black mb-0 weight-500 py-2 hover-green">FAQ</p></Link>
+              <Link to={'/shariah-screen-methodology'}><p className="text-black mb-0 weight-500 py-2 hover-green">Shariah Screening</p></Link>
+              <Link to={'/pricing'}><p className="text-black mb-0 weight-500 py-2 hover-green">Pricing</p></Link>
+              <Link to={'/support'}><p className="text-black mb-0 weight-500 py-2 hover-green">Support</p></Link>
+              <Link to={'/contact-us'}><p className="text-black mb-0 weight-500 py-2 hover-green">Contact</p></Link>
             </div>
             <div className="col-12 col-lg-5">
               <h6 className="weight-700 newsletter text-grey">

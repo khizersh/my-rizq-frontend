@@ -77,18 +77,25 @@ const Support = () => {
             </div>
             <div className="col-12 d-flex justify-content-between mt-5">
               <div>
-                <img
-                  src={require("assets/img/support/paypal.png")}
-                  className="paypal-img"
-                  alt="Paypal img"
-                />
+                <a
+                  href="https://www.paypal.com/donate/?hosted_button_id=SAX64BC8ZTHMS"
+                  target={"_blank"}
+                >
+                  <img
+                    src={require("assets/img/support/paypal.png")}
+                    className="paypal-img"
+                    alt="Paypal img"
+                  />
+                </a>
               </div>
               <div>
-                <img
-                  src={require("assets/img/support/coffee.png")}
-                  className="paypal-img"
-                  alt="Paypal img"
-                />
+                <a href="https://www.buymeacoffee.com/myrizq3l" target={'_blank'}>
+                  <img
+                    src={require("assets/img/support/coffee.png")}
+                    className="paypal-img"
+                    alt="Paypal img"
+                  />
+                </a>
               </div>
             </div>
             <div className="col-12 news-box text-center">

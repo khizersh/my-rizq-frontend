@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { BASE_URL } from "utility";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 const Blog = () => {
   const [email, setEmail] = useState("");
   const onClick = () => {
-
-    let body =  [{email}]
+    let body = [{ email }];
 
     fetch(BASE_URL + "/newsletter/", {
       method: "POST",
@@ -17,14 +16,14 @@ const Blog = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if(data && data.status == "0000"){
+        if (data && data.status == "0000") {
           swal("Success!", "We will notify you!", "success");
-        }else{
+        } else {
           swal("Error!", data.message, "error");
         }
         // setLoaded(true)
         // if(data && data.response.financialData && data.response.summaryDetail){
-    
+
         // }
       });
   };
@@ -71,18 +70,28 @@ const Blog = () => {
             </div>
             <div className="col-12 d-flex justify-content-between mt-5">
               <div>
-                <img
-                  src={require("assets/img/support/paypal.png")}
-                  className="paypal-img"
-                  alt="Paypal img"
-                />
+                <a
+                  href="https://www.paypal.com/donate/?hosted_button_id=SAX64BC8ZTHMS"
+                  target={"_blank"}
+                >
+                  <img
+                    src={require("assets/img/support/paypal.png")}
+                    className="paypal-img"
+                    alt="Paypal img"
+                  />
+                </a>
               </div>
               <div>
-                <img
-                  src={require("assets/img/support/coffee.png")}
-                  className="paypal-img"
-                  alt="Paypal img"
-                />
+                <a
+                  href="https://www.buymeacoffee.com/myrizq3l"
+                  target={"_blank"}
+                >
+                  <img
+                    src={require("assets/img/support/coffee.png")}
+                    className="paypal-img"
+                    alt="Paypal img"
+                  />
+                </a>
               </div>
             </div>
             <div className="col-12 news-box text-center">

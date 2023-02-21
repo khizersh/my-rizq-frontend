@@ -22,7 +22,7 @@ export const Layout = (props) => {
         key: "halal-stock-search",
         url: "/dashboard/halal-stock-search",
         name: "Halal Stock Search",
-        icon: "fa fa-line-chart",
+        icon: "fa fa-search",
         active: true,
         hr: false,
       },
@@ -34,6 +34,14 @@ export const Layout = (props) => {
       //   active: false,
       //   hr: false,
       // },
+      {
+        key: "halal-etf",
+        url: "/dashboard/halal-etf",
+        name: "Halal ETFS",
+        icon: "fa fa-pie-chart",
+        active: false,
+        hr: false,
+      },
       {
         key: "budgeting-tool",
         url: "/dashboard/budgeting-tool",
@@ -56,7 +64,7 @@ export const Layout = (props) => {
         name: "Feedback",
         icon: "fa fa-commenting",
         active: false,
-        hr: false,
+        hr: true,
       },
       // {
       //   key: "settings",
@@ -96,6 +104,7 @@ export const Layout = (props) => {
 
   function getPageNameByKey(key) {
     let name = getList().find((m) => m.key == key);
+    console.log("name : ",name);
     if (name) {
       return name.name;
     } else {
@@ -165,7 +174,7 @@ export const Layout = (props) => {
             <div className="col-12 col-lg-12 h-50px pt-2">
               <div className="row">
                 <div className="col-5 col-lg-4">
-                  <p className="weight-700 mbl-font-13 text-black m-left-05">
+                  <p className="weight-700 mbl-font-13 text-black m-left-05 d-ml">
                     <span>
                       <i
                         class="fa fa-bars pr-2 d-lg-none"

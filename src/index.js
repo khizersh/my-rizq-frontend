@@ -45,6 +45,8 @@ import Shariah from "views/examples/Shariah";
 import Support from "views/examples/Support";
 import Blog from "views/examples/Blog";
 import Contact from "views/examples/Contact";
+import Etf from "views/dashboard/Etf";
+import Subscription from "views/dashboard/Subscription";
 
 
 
@@ -124,6 +126,16 @@ root.render(
         path="/dashboard/stock-finder"
         exact
         render={(props) =>  <Layout {...props} ><StockFinder /></Layout>}
+      />
+      <Route
+        path="/dashboard/subscription"
+        exact
+        render={(props) =>  <Layout {...props} ><Subscription /></Layout>}
+      />
+      <Route
+        path="/dashboard/halal-etf"
+        exact
+        render={(props) =>  <Layout {...props} ><Etf /></Layout>}
       />
       <Route
         path="/dashboard/budgeting-tool"

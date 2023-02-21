@@ -90,9 +90,16 @@ body {
   display: none;
 }
 
+.d-ml{
+  margin-left: 53%;
+}
 @media only screen and (max-width: 600px) {
   .d-sm-none {
     display: none;
+  }
+
+  .d-ml{
+    margin-left: 3%;
   }
   
   .d-none-sm{

@@ -42,6 +42,14 @@ ul {
   z-index: -999;
 }
 
+.pricing-button {
+  background-color: #dee1e7 !important;
+}
+
+.border-radius {
+  border-radius: 30px !important;
+}
+
 @media only screen and (max-width: 600px) {
   .m-mb-5 {
     margin-bottom: 3rem;
@@ -57,6 +65,10 @@ ul {
     bottom: 28px;
     z-index: -999;
   }
+
+  .container {
+    max-height: 706px;
+  }
 }
 @media only screen and (min-width: 1400px) {
   .bg-pricing {
@@ -68,7 +80,7 @@ ul {
 @media only screen and (min-width: 1300px) {
   .bg-pricing {
     position: absolute;
-    bottom: -158px;
+    bottom: -195px;
     z-index: -999;
   }
 }
