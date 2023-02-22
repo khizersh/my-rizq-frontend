@@ -36,6 +36,7 @@ const Register = () => {
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
+  
   const onClickLogin = () => {
     fetch(BASE_URL + "/user/signin", {
       method: "POST",

@@ -37,6 +37,7 @@ export default function Index() {
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
+    
     // this.refs.main.scrollTop = 0;
 
     if(window.location.href.includes('dashboard')){

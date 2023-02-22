@@ -4,7 +4,7 @@ import swal from "sweetalert";
 import { useHistory } from "react-router-dom";
 import { BASE_URL } from "utility";
 
-export const CheckoutForm = ({ onClick }) => {
+export const CheckoutForm = ({ onClick, upgrade }) => {
   const stripe = useStripe();
   const elements = useElements();
   const router = useHistory();
@@ -13,24 +13,57 @@ export const CheckoutForm = ({ onClick }) => {
     event.preventDefault();
 
     const user = await onClick();
+
+    console.log("user data : ", user);
     if (user) {
-      if (user.email && user.password) {
-        const response = await fetch(BASE_URL +  "/user/signup", {
-          method: "POST",
-          body: JSON.stringify([user]),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        });
-
-        const data = await response.json();
-
-        if (data && data.status == "0000") {
+      if (upgrade) {
+        if (user.email && user.password) {
           const stripeSuccess = await stripeCall(user);
-        } else if (data && data.status == "9999") {
-          swal("Error!", data.message, "error");
-        } else {
-          swal("Error!", "Something went wrong!", "error");
+          if (stripeSuccess === true) {
+            const response = await fetch(BASE_URL + "/user/update-plan", {
+              method: "POST",
+              body: JSON.stringify(user),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            });
+
+            const data = await response.json();
+
+            if (data && data.status == "0000") {
+              localStorage.removeItem('user')
+              localStorage.setItem("user", JSON.stringify(data.data));
+              swal("Success!", "Package upgrade successfully!", "success").then(
+                (r) => {
+                  window.location.reload();
+                }
+              );
+            } else if (data && data.status == "9999") {
+              swal("Error!", data.message, "error");
+            } else {
+              swal("Error!", "Something went wrong!", "error");
+            }
+          }
+        }
+      } else {
+        if (user.email && user.password) {
+          const response = await fetch(BASE_URL + "/user/signup", {
+            method: "POST",
+            body: JSON.stringify([user]),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          });
+
+          const data = await response.json();
+
+          if (data && data.status == "0000") {
+            const stripeSuccess = await stripeCall(user);
+          } else if (data && data.status == "9999") {
+            swal("Error!", data.message, "error");
+          } else {
+            swal("Error!", "Something went wrong!", "error");
+          }
         }
       }
     }
@@ -48,7 +81,7 @@ export const CheckoutForm = ({ onClick }) => {
 
         const response = await fetch(BASE_URL + "/stripe/charge", {
           method: "POST",
-          body: JSON.stringify( {
+          body: JSON.stringify({
             amount: 999,
             id: id,
           }),
@@ -57,45 +90,49 @@ export const CheckoutForm = ({ onClick }) => {
           },
         });
 
-      
+        const data = await response.json();
 
-        if (response.data.success) {
-          swal("Success!", "User register successfully!", "success").then(
-            (m) => {
-              router.push("/signin");
-            }
-          );
+        console.log("stripe response : ", data);
+        if (data.success) {
+          if (upgrade) {
+            return true;
+          } else {
+            swal("Success!", "User register successfully!", "success").then(
+              (m) => {
+                router.push("/signin");
+              }
+            );
+          }
         } else {
-            deleteUser(user);
-          swal("Error!", response.data.message, "error");
+          deleteUser(user);
+          swal("Error!", data.message, "error");
         }
       } catch (error) {
         deleteUser(user);
         swal("Error!", error.message, "error");
       }
     } else {
-        console.log("error : ",error);
+      console.log("error : ", error);
       deleteUser(user);
       swal("Error!", error.message, "error");
     }
   };
 
- async function deleteUser(user) {
-
+  async function deleteUser(user) {
     const response = await fetch(BASE_URL + "  /user/delete", {
-          method: "POST",
-          body: JSON.stringify([user]),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        });
+      method: "POST",
+      body: JSON.stringify([user]),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
   }
 
   return (
     <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
       <CardElement />
       <button type="submit" class="btn bg-green text-white w-100 mb-2 mt-4">
-        Create Account
+        {upgrade ? "Upgrade Package" : "Create Account"}
       </button>
     </form>
   );

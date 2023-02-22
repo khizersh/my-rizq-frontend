@@ -8,10 +8,10 @@ const PUBLIC_KEY = "pk_test_51Kmn42HxzdoZduY7JlRpkTwjSnblL2OZxuiEtneKoXdoS9zsATL
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
-const Stripe = ({onClick}) => {
+const Stripe = ({onClick , upgrade}) => {
   return (
     <Elements stripe={stripeTestPromise}>
-      <CheckoutForm onClick={onClick}/>
+      <CheckoutForm onClick={onClick} upgrade={upgrade}/>
     </Elements>
   );
 };

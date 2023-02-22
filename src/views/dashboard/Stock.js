@@ -6,8 +6,10 @@ import swal from "sweetalert";
 import { BASE_URL } from "utility";
 import StockFinder from "./StockFinder";
 import { numberWithCommas } from "utility";
+import { useHistory } from "react-router-dom";
 
 export const Stock = () => {
+  const router = useHistory();
   const [loaded, setLoaded] = useState(false);
   const [freeUser, setFreeUser] = useState(true);
   const [deptRatio, setDepthRatio] = useState(0);
@@ -160,34 +162,40 @@ export const Stock = () => {
 
   const onClickFollow = () => {
     let user = JSON.parse(localStorage.getItem("user"));
-    let obj = [
-      {
-        email: user.email,
-        symbol: params.symbol,
-      },
-    ];
+    if (user.freeUser) {
+      router.push("/signup?premium=true");
+    } else {
+      let obj = [
+        {
+          email: user.email,
+          symbol: params.symbol,
+        },
+      ];
 
-    fetch(BASE_URL + "/follow/save", {
-      method: "POST",
-      body: JSON.stringify(obj),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.status == "0000") {
-          swal("Success!", "Followed successfully!", "success").then((m) => {});
-        } else if (data && data.status == "9999") {
-          swal("Error!", data.message, "error");
-        } else {
-          swal("Error!", "Something went wrong!", "error");
-        }
-      });
+      fetch(BASE_URL + "/follow/save", {
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.status == "0000") {
+            swal("Success!", "Followed successfully!", "success").then(
+              (m) => {}
+            );
+          } else if (data && data.status == "9999") {
+            swal("Error!", data.message, "error");
+          } else {
+            swal("Error!", "Something went wrong!", "error");
+          }
+        });
+    }
   };
 
   useEffect(() => {
-    setLoaded(false)
+    setLoaded(false);
     fetchData(params.symbol);
     let user = localStorage.getItem("user");
     if (user) {
@@ -262,21 +270,17 @@ export const Stock = () => {
                   <h5 className="font-mon weight-600 d-inline text-black m-font-14">
                     Quantitative Screeing
                   </h5>{" "}
-                  {freeUser ? (
-                    ""
-                  ) : (
-                    <text
-                      className="cursor-pointer border-radius-10 pills ml-3 px-2 m-font-10"
-                      onClick={onClickFollow}
-                    >
-                      <img
-                        style={{ marginTop: "-1px" }}
-                        className="width-accept"
-                        src={require("assets/img/dashboard/plus.png")}
-                      />{" "}
-                      Follow
-                    </text>
-                  )}{" "}
+                  <text
+                    className="cursor-pointer border-radius-10 pills ml-3 px-2 m-font-10"
+                    onClick={onClickFollow}
+                  >
+                    <img
+                      style={{ marginTop: "-1px" }}
+                      className="width-accept"
+                      src={require("assets/img/dashboard/plus.png")}
+                    />{" "}
+                    Follow
+                  </text>
                   {isShariah ? (
                     <text className="border-radius-10  bg-green font-10 float-right m-mt-2 text-white px-3">
                       Pass
@@ -382,9 +386,9 @@ export const Stock = () => {
                           })}
                         />
                         <img
-                         src={require(`assets/img/dashboard/${
-                          liquidityRatio < 30 ? "accept.png" : "reject.png"
-                        }`)}
+                          src={require(`assets/img/dashboard/${
+                            liquidityRatio < 30 ? "accept.png" : "reject.png"
+                          }`)}
                           width="10px"
                         />
                         <text> Liquidity Ratio</text>
@@ -454,21 +458,17 @@ export const Stock = () => {
                   <h5 className="font-mon weight-600 d-inline text-black m-font-14">
                     Qualitative Screeing
                   </h5>{" "}
-                  {freeUser ? (
-                    ""
-                  ) : (
-                    <text
-                      className="cursor-pointer border-radius-10 pills ml-3 px-2 m-font-10"
-                      onClick={onClickFollow}
-                    >
-                      <img
-                        style={{ marginTop: "-1px" }}
-                        className="width-accept"
-                        src={require("assets/img/dashboard/plus.png")}
-                      />{" "}
-                      Follow
-                    </text>
-                  )}{" "}
+                  <text
+                    className="cursor-pointer border-radius-10 pills ml-3 px-2 m-font-10"
+                    onClick={onClickFollow}
+                  >
+                    <img
+                      style={{ marginTop: "-1px" }}
+                      className="width-accept"
+                      src={require("assets/img/dashboard/plus.png")}
+                    />{" "}
+                    Follow
+                  </text>
                   {isShariah ? (
                     <text className="border-radius-10  bg-green font-10 float-right m-mt-2 text-white px-3">
                       Pass

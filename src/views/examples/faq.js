@@ -2,14 +2,15 @@ import React from "react";
 import "../../assets/css/about/about.css";
 
 const Faq = () => {
-  
   return (
     <main>
       <section class="mt-100 font-poppins weight-700 m-mt-5">
         <div className="container">
           <div className="row">
             <div className="col-12 text-center mb-3">
-              <h2 className="about-us-head text-green weight-700">FAQ (Frequently Asked Questions)</h2>
+              <h2 className="about-us-head text-green weight-700">
+                FAQ (Frequently Asked Questions)
+              </h2>
             </div>
             <div className="col-12 text-left mt-2">
               <h3 className="font-poppins weight-700 font-20 heading-about mb-2">
@@ -28,9 +29,11 @@ const Faq = () => {
                 What features does MyRIzq offer?
               </h3>
               <text className="font-15 weight-400">
-                <ul>
+                <text >
                   MyRizq is aims to be an all-in-one Muslim personal finance
                   app. We plan to offer the following features:
+                </text>
+                <ul>
                   <li>
                     A budgeting tool to help users manage their expenses and
                     plan for their financial goals
@@ -102,10 +105,12 @@ const Faq = () => {
             </div>
             <div className="col-12 text-left mt-2">
               <h3 className="font-poppins weight-700 font-20 heading-about mb-2">
-              What's the refund policy on the paid plan?
+                What's the refund policy on the paid plan?
               </h3>
               <text className="font-15 weight-400">
-              Plans come with a 7 day money back guarantee, no questions asked. Just email us at myrizq3@gmail.com within 7 days and we'll refund you in full.
+                Plans come with a 7 day money back guarantee, no questions
+                asked. Just email us at myrizq3@gmail.com within 7 days and
+                we'll refund you in full.
               </text>
             </div>
           </div>

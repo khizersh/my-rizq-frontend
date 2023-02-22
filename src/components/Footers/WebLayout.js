@@ -1,5 +1,5 @@
 import DemoNavbar from "components/Navbars/DemoNavbar";
-import React from "react";
+import React,{useEffect} from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
 import {
@@ -17,6 +17,22 @@ import {
 } from "reactstrap";
 
 const WebLayout = (props) => {
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
+
+    try {
+      window.history.scrollRestoration = 'manual'
+    } catch (error) {
+      
+    }
+  },[])
+
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  }
+
   return (
     <>
       <DemoNavbar />
@@ -64,13 +80,13 @@ const WebLayout = (props) => {
             <div className="col-12 col-lg-4">
               <p className=" mb-0 weight-700 text-black">Resources</p>
               <br />
-              <Link to={'/about-us'}><p className="text-black mb-0 weight-500 py-2 hover-green">About Us</p></Link>
-              <Link to={'/blog'}><p className="text-black mb-0 weight-500 py-2 hover-green">Blog</p></Link>
-              <Link to={'/faq'}><p className="text-black mb-0 weight-500 py-2 hover-green">FAQ</p></Link>
-              <Link to={'/shariah-screen-methodology'}><p className="text-black mb-0 weight-500 py-2 hover-green">Shariah Screening</p></Link>
-              <Link to={'/pricing'}><p className="text-black mb-0 weight-500 py-2 hover-green">Pricing</p></Link>
-              <Link to={'/support'}><p className="text-black mb-0 weight-500 py-2 hover-green">Support</p></Link>
-              <Link to={'/contact-us'}><p className="text-black mb-0 weight-500 py-2 hover-green">Contact</p></Link>
+              <a href={'/about-us'}><p className="text-black mb-0 weight-500 py-2 hover-green">About Us</p></a>
+              <a href={'/blog'}><p className="text-black mb-0 weight-500 py-2 hover-green">Blog</p></a>
+              <a href={'/faq'}><p className="text-black mb-0 weight-500 py-2 hover-green">FAQ</p></a>
+              <a href={'/shariah-screen-methodology'}><p className="text-black mb-0 weight-500 py-2 hover-green">Shariah Screening</p></a>
+              <a href={'/pricing'}><p className="text-black mb-0 weight-500 py-2 hover-green">Pricing</p></a>
+              <a href={'/support'}><p className="text-black mb-0 weight-500 py-2 hover-green">Support</p></a>
+              <a href={'/contact-us'}><p className="text-black mb-0 weight-500 py-2 hover-green">Contact</p></a>
             </div>
             <div className="col-12 col-lg-5">
               <h6 className="weight-700 newsletter text-grey">
@@ -85,8 +101,8 @@ const WebLayout = (props) => {
                 Will send you weekly updates for your better finance management.
               </li>
               <div className="d-flex text-black mt-5">
-              <Link to={'/contact-us'}><p className="pr-5 text-black">Contact</p></Link>
-              <Link to={''}><p className="text-black">Privacy Policy</p></Link>
+              <a href={'/contact-us'}><p className="pr-5 text-black">Contact</p></a>
+              <a href={''}><p className="text-black">Privacy Policy</p></a>
                 
               </div>
             </div>

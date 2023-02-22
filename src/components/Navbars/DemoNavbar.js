@@ -128,6 +128,14 @@ class DemoNavbar extends React.Component {
                   </UncontrolledDropdown>
                   <UncontrolledDropdown nav>
                     <DropdownToggle nav>
+                      <Link to="/blog" className="text-black">
+                        <i className="ni ni-collection d-lg-none mr-1" />
+                        <span className="nav-link-inner--text">Blog</span>
+                      </Link>
+                    </DropdownToggle>
+                  </UncontrolledDropdown>
+                  {/* <UncontrolledDropdown nav>
+                    <DropdownToggle nav>
                       <i className="ni ni-collection d-lg-none mr-1" />
                       <span className="nav-link-inner--text">
                         Blog{" "}
@@ -141,11 +149,11 @@ class DemoNavbar extends React.Component {
                       <DropdownItem to="/blog" tag={Link}>
                         Blog
                       </DropdownItem>
-                      {/* <DropdownItem to="/signup" tag={Link}>
+                      <DropdownItem to="/signup" tag={Link}>
                         Register
-                      </DropdownItem> */}
+                      </DropdownItem>
                     </DropdownMenu>
-                  </UncontrolledDropdown>
+                  </UncontrolledDropdown> */}
                   <UncontrolledDropdown nav>
                     <DropdownToggle nav>
                       <Link to="/support" className="text-black">

@@ -134,11 +134,11 @@ export default function Hero() {
                     >
                       Your Rizq in one place! Muslim led fin-tech startup,
                       <br />
-                      aiming to transform the financial lives of Muslims
+                      aiming to transform the financial lives of the Ummah
                     </text>
                   </p>
                   <div className="padding-newsletter text-center mt-5">
-                    <text className="text-black weight-700 font-16 font-mon ">
+                  <text className="text-black weight-700 font-16 font-mon ">
                       Search Stocks & Determine Shariah Compliance{" "}
                     </text>
                     <div className=" input-group  text-center  shadow-sm mt-2">

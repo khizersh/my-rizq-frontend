@@ -1,49 +1,51 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "assets/css/dashboard/subscription.css";
 import swal from "sweetalert";
 import { BASE_URL } from "utility";
 import { Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
+import Modal from "react-modal";
+import Stripe from "components/Stripe/StripeContainer";
+
+// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+Modal.setAppElement("#root");
+
+// reactstrap components
 
 const Subscription = () => {
-  const [email, setEmail] = useState("");
-  const router = useHistory();
-
-  const [btnSelected, setButtonSelected] = useState(0);
-
-  const onClick = () => {
-    let body = [{ email }];
-
-    fetch(BASE_URL + "/newsletter/", {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.status == "0000") {
-          swal("Success!", "We will notify you!", "success");
-        } else {
-          swal("Error!", data.message, "error");
-        }
-        // setLoaded(true)
-        // if(data && data.response.financialData && data.response.summaryDetail){
-
-        // }
-      });
+  var customStyles = {
+    content: {
+      padding: "30px",
+      top: "48%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      width: "373px",
+      marginRight: "-50%",
+      borderRadius: "10px",
+      transform: "translate(-50%, -50%)",
+    },
   };
 
-
-
-
-  const [price, setPrice] = useState({
-    monthly: { free: "$0", standard: "$2.99", premium: "$4.99" },
-    annually: { free: "$0", standard: "$30", premium: "$40" },
+  const [email, setEmail] = useState("");
+  const router = useHistory();
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [btnSelected, setButtonSelected] = useState(0);
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    country: "",
+    freeUser: "",
   });
 
-  useEffect(() => {}, [btnSelected]);
+  const onClickUpgrade = () => {
+    if (user.freeUser) {
+      setIsOpen(true);
+    } else {
+      swal("Information!", "You are already a Premium User!", "info");
+    }
+  };
 
   const onClickPackage = (pkg) => {
     if (pkg == 0) {
@@ -53,6 +55,69 @@ const Subscription = () => {
     }
     console.log(pkg);
   };
+
+  const onClickCancel = async () => {
+    if (!user.freeUser) {
+      const response = await fetch(BASE_URL + "/user/cancel-plan", {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+
+      const data = await response.json();
+
+      if (data && data.status == "0000") {
+        localStorage.removeItem("user");
+        console.log("user cancel : ", data.data);
+        localStorage.setItem("user", JSON.stringify(data.data));
+        swal("Success!", "Package cancelled successfully!", "success").then(
+          (r) => {
+            window.location.reload();
+          }
+        );
+      } else if (data && data.status == "9999") {
+        swal("Error!", data.message, "error");
+      } else {
+        swal("Error!", "Something went wrong!", "error");
+      }
+    } else {
+      swal("Information!", "You are already a Free User!", "info");
+    }
+  };
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const onClickRegister = () => {
+    let userData = JSON.parse(localStorage.getItem("user"));
+    console.log("local storage : ", userData);
+    let data = { ...userData };
+    setUser(data);
+    return data;
+  };
+
+  const setUserData = () => {
+    let userData = JSON.parse(localStorage.getItem("user"));
+    return userData;
+  };
+
+  const [price, setPrice] = useState({
+    monthly: { free: "$0", standard: "$2.99", premium: "$4.99" },
+    annually: { free: "$0", standard: "$30", premium: "$40" },
+  });
+
+  useEffect(() => {
+    setUser(setUserData());
+  }, [btnSelected]);
+
+  useEffect(() => {}, [user]);
 
   return (
     <div className="container-fluid m-p-0 mb-5">
@@ -78,18 +143,30 @@ const Subscription = () => {
             <div className="col-12">
               <div className="row">
                 <div className="col-12 d-p0 mt-3">
-                  <h4 className="text-black  font-lato weight-700">Free</h4>
+                  <h4 className="text-black  font-lato weight-700">
+                    {console.log("userrrr : ", user)}
+                    {user
+                      ? user.freeUser === true
+                        ? "Free"
+                        : "Premium"
+                      : "Free"}
+                  </h4>
                 </div>
 
                 <div className="col-12 col-lg-4 d-p0">
                   <div className=" d-flex justify-content-start">
                     <Button
                       className=" float-left text-white d-inline  bg-green btn btn-success d-px-5"
-                      onClick={() => router.push("/signup")}
+                      onClick={onClickUpgrade}
                     >
                       Upgrade Plan
                     </Button>
-                    <Button className="btn-outline-success d-px-5 bg-white">Cancel Plan</Button>
+                    <Button
+                      className="btn-outline-success d-px-5 bg-white"
+                      onClick={onClickCancel}
+                    >
+                      Cancel Plan
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -112,14 +189,14 @@ const Subscription = () => {
           <div className="row">
             <div className="col-12 text-center mt-5 mb-5">
               <div
-                class="btn-group text-center"
+                class="btn-group text-center pricing-button border-radius"
                 role="group"
                 aria-label="Basic example"
               >
                 <button
                   type="button"
-                  class={`border-radius-40 btn ${
-                    btnSelected == 0 ? " bg-green " : "btn-secondary"
+                  class={`border-radius-40 btn border-radius ${
+                    btnSelected == 0 ? " bg-green " : ""
                   }`}
                   onClick={() => onClickPackage(0)}
                 >
@@ -131,8 +208,8 @@ const Subscription = () => {
                 </button>
                 <button
                   type="button"
-                  class={`btn border-radius-40 ${
-                    btnSelected == 1 ? " bg-green " : "btn-secondary"
+                  class={`btn border-radius-40 border-radius ${
+                    btnSelected == 1 ? " bg-green " : ""
                   }`}
                   onClick={() => onClickPackage(1)}
                 >
@@ -163,8 +240,8 @@ const Subscription = () => {
                   </div>
                   <div className="text-center ">
                     <button
-                      className="btn text-muted w-50 mb-3"
-                      onClick={() => router.push("/signup?premium=false")}
+                      className="btn bg-green text-white w-50 mb-3"
+                      onClick={onClickCancel}
                     >
                       <text style={{ fontSize: "10px" }}>Create account</text>{" "}
                     </button>
@@ -195,7 +272,7 @@ const Subscription = () => {
                   <div className="text-center ">
                     <button
                       className="btn bg-green text-white w-50 mb-3"
-                      onClick={() => router.push("/signup?premium=true")}
+                      onClick={onClickUpgrade}
                     >
                       <text style={{ fontSize: "10px" }}>Create account</text>{" "}
                     </button>
@@ -226,8 +303,8 @@ const Subscription = () => {
                   </div>
                   <div className="text-center ">
                     <button
-                      className="btn text-muted w-50 mb-3"
-                      onClick={() => router.push("/signup?premium=true")}
+                      className="btn bg-green text-white w-50 mb-3"
+                      onClick={onClickUpgrade}
                     >
                       <text style={{ fontSize: "10px" }}>Create account</text>{" "}
                     </button>
@@ -238,6 +315,22 @@ const Subscription = () => {
           </div>
         </div>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <h5 className="modal-heading text-center text-green weight-500 mb-5">
+          Upgrade Package
+        </h5>
+        <div>
+          <div className="form-group mt-3">
+            <Stripe onClick={onClickRegister} upgrade={true} />
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

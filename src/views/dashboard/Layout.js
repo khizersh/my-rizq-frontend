@@ -5,8 +5,24 @@ import { FormGroup, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
+import Modal from "react-modal";
+import { BASE_URL } from "utility";
 
 export const Layout = (props) => {
+  var customStyles = {
+    content: {
+      padding: "30px",
+      top: "48%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      width: "373px",
+      marginRight: "-50%",
+      borderRadius: "10px",
+      transform: "translate(-50%, -50%)",
+      zIndex: "99999",
+    },
+  };
   const router = useHistory();
 
   const [selected, setSelected] = useState("halal-stock-search");
@@ -15,6 +31,69 @@ export const Layout = (props) => {
   const [sidebar, setSidebar] = useState([]);
   const [isClose, setIsClose] = useState(true);
   const [search, setSearch] = useState("");
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    country: "",
+    freeUser: "",
+  });
+
+  const [changeUser, setChangeUser] = useState({
+    email: "",
+    password: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const onClickChangePassword = () => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData.password === changeUser.password) {
+      if (changeUser.newPassword == changeUser.confirmPassword) {
+
+        let request = {email : userData.email , password : changeUser.newPassword}
+        fetch(BASE_URL + "/user/reset", {
+          method: "POST",
+          body: JSON.stringify(request),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data && data.status == "0000") {
+              localStorage.setItem("user", JSON.stringify(data.data));
+              swal("Success!", "Password reset successfully!", "success").then(
+                (m) => {
+                  router.push("/dashboard/stock-finder");
+                }
+              );
+            } else if (data && data.status == "9999") {
+              swal("Error!", data.message, "error");
+            } else {
+              swal("Error!", "Something went wrong!", "error");
+            }
+          });
+      } else {
+        swal("Oops!", "Password not matched.", "warning");
+      }
+    } else {
+      swal("Error!", "Enter valid current password!.", "error");
+    }
+  };
 
   function getList() {
     return [
@@ -104,7 +183,7 @@ export const Layout = (props) => {
 
   function getPageNameByKey(key) {
     let name = getList().find((m) => m.key == key);
-    console.log("name : ",name);
+    console.log("name : ", name);
     if (name) {
       return name.name;
     } else {
@@ -128,11 +207,13 @@ export const Layout = (props) => {
       let userData = JSON.parse(user);
       if (userData.email) {
         setUserName(userData.name);
-        if (userData.freeUser) {
-          setSidebar(getList().filter((side) => side.key != "watchlist"));
-        } else {
-          setSidebar(getList());
-        }
+        // ============== Watch List Condition
+        // if (userData.freeUser) {
+        //   setSidebar(getList().filter((side) => side.key != "watchlist"));
+        // } else {
+        //   setSidebar(getList());
+        // }
+        setSidebar(getList());
       } else {
         router.push("/signin");
       }
@@ -154,6 +235,10 @@ export const Layout = (props) => {
     if (search) {
       router.push("/dashboard/halal-stock-search?symbol=" + search);
     }
+  };
+
+  const onChange = (e) => {
+    setChangeUser({ ...changeUser, [e.target.name]: e.target.value });
   };
 
   useEffect(() => {
@@ -193,18 +278,39 @@ export const Layout = (props) => {
                       className="bg-transparent d-inline w-30"
                       style={{ maxHeight: "30px" }}
                     />
-                    <i className="fa fa-search px-3" onClick={onClickSearch}></i>
+                    <i
+                      className="fa fa-search px-3"
+                      onClick={onClickSearch}
+                    ></i>
                     <i className="fa fa-bell" aria-hidden="true"></i>
                   </span>
                   <span className="border-left pl-4">
-                    <text className="font-poppins weight-600 d-none-sm">
+                    {/* <text className="font-poppins weight-600 d-none-sm">
                       {userName}
                     </text>
                     <text className="font-poppins weight-600 d-lg-none">
                       {userName.length > 4
                         ? userName.slice(0, 2) + ".."
                         : userName}
-                    </text>
+                    </text> */}
+
+                    <div class="dropdown">
+                      <button class="dropbtn">
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                      </button>
+                      <div class="dropdown-content border-radius-10 text-left p-2 text-black">
+                        <p className="text-black border-bottom">
+                          Username :{" "}
+                          <text className="weight-600">{userName}</text>
+                        </p>
+                        <p
+                          className="cursor-pointer text-black onHoverGreen"
+                          onClick={() => setIsOpen(true)}
+                        >
+                          Change Password
+                        </p>
+                      </div>
+                    </div>
                   </span>
                 </div>
               </div>
@@ -222,7 +328,10 @@ export const Layout = (props) => {
             <div className="list-group list-group-flush  mt-2">
               <div className="d-flex justify-content-between">
                 <span>
-                  <Link to="/dashboard/halal-stock-search" className="text-black">
+                  <Link
+                    to="/dashboard/halal-stock-search"
+                    className="text-black"
+                  >
                     <img
                       className="pl-3 mb-4"
                       src={require("assets/img/brand/logo.png")}
@@ -269,6 +378,90 @@ export const Layout = (props) => {
           <div className="col-12 col-lg-10 w-100">{props.children}</div>
         </div>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <h5 className="modal-heading text-center text-green weight-500 mb-5">
+          Change Password
+        </h5>
+        <div>
+          <div className="form-group mt-3">
+            <div class="form-group m-0">
+              <p for="your_name">Current Password</p>
+              <input
+                type={`${showPassword ? "text" : "password"}`}
+                name="password"
+                className="p-0 "
+                onChange={(e) => onChange(e)}
+                id="your_pass"
+                placeholder="enter new password"
+              />
+              <img
+                onClick={() => setShowPassword(!showPassword)}
+                className="eye-icon cursor-pointer"
+                src={require(`assets/img/login/${
+                  showPassword ? "hide" : "eye"
+                }.png`)}
+                width="16px"
+                alt="sing up image"
+              />
+            </div>
+            <div class="form-group m-0">
+              <p for="your_name">New Password</p>
+              <input
+                type={`${showNewPassword ? "text" : "password"}`}
+                name="newPassword"
+                className="p-0 "
+                onChange={(e) => onChange(e)}
+                id="your_pass"
+                placeholder="enter new password"
+              />
+              <img
+                onClick={() => setShowNewPassword(!showNewPassword)}
+                className="eye-icon cursor-pointer"
+                src={require(`assets/img/login/${
+                  showNewPassword ? "hide" : "eye"
+                }.png`)}
+                width="16px"
+                alt="sing up image"
+              />
+            </div>
+            <div class="form-group m-0">
+              <p for="your_name">Confirm Password</p>
+              <input
+                type={`${showConfirmPassword ? "text" : "password"}`}
+                name="confirmPassword"
+                className="p-0 "
+                onChange={(e) => onChange(e)}
+                id="your_pass"
+                placeholder="enter new password"
+              />
+              <img
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="eye-icon cursor-pointer"
+                src={require(`assets/img/login/${
+                  showConfirmPassword ? "hide" : "eye"
+                }.png`)}
+                width="16px"
+                alt="sing up image"
+              />
+            </div>
+            <div className="form-group mt-3">
+              <button
+                type="button"
+                class="btn bg-green text-white w-100 mb-2"
+                onClick={onClickChangePassword}
+              >
+                Change
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };

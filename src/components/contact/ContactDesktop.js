@@ -59,7 +59,7 @@ const ContactDesktop = () => {
       </section>
       <div className="triangle"></div>
       <section class="mt-contact ">
-        <div class="container  p-5 ">
+        <div class="container  container-contact p-5 ">
           <div className="row " style={{ zIndex: "9999" }}>
             <div className="col-12">
               <div className="row">

@@ -49,6 +49,9 @@
   margin-top: 300px;
 }
 
+.container-contact{
+  max-height: 781px !important;
+}
 
 @media screen and (max-width: 768px) {
   .mt-contact {
