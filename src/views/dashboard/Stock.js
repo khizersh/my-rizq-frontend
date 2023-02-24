@@ -480,7 +480,7 @@ export const Stock = () => {
                   )}{" "}
                 </div>
                 <div className="card-body">
-                  <div
+                  {/* <div
                     className={`${
                       isShariah ? "bg-green-opacity" : "bg-danger-op-2"
                     } border-radius-5 d-inline p-2`}
@@ -495,8 +495,8 @@ export const Stock = () => {
                       />
                       Revenue
                     </text>
-                  </div>
-                  <div className="progress mt-3">
+                  </div> */}
+                  {/* <div className="progress mt-3">
                     <div
                       className={`progress-bar ${
                         isShariah ? "bg-success" : "bg-danger"
@@ -506,9 +506,51 @@ export const Stock = () => {
                       aria-valuemin="0"
                       aria-valuemax="100"
                     ></div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="col-12">
+                  <div className="row">
+                    <div className="col-lg-4 col-12">
+                      <div className=" text-center my-4">
+                        <img
+                          src={require("assets/img/dashboard/construction.png")}
+                          className=""
+                          alt="Salam img"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-8 col-12 text-center">
+                      <p
+                        className="text-center font-poppins font-17 px-5 text-black"
+                        style={{ lineHeight: "30px" }}
+                      >
+                        The  <b className="weight-600">Qualitative Screening</b> feature is still under
+                        construction we want to ensure this feature is ready
+                        before we push to production! Please bare with us Jazāk
+                        Allāhu Khayran{" "}
+                      </p>
+                      <div className=" text-center my-4">
+                        <img
+                          src={require("assets/img/blog/leaf.png")}
+                          className=""
+                          width={"50px"}
+                          alt="Salam img"
+                        />
+                      </div>
+                      <div className="d-flex justify-content-center w-100 text-center">
+                        <input
+                          type={"text"}
+                          className="form-control border-15 w-50 btn-stock "
+                          placeholder="Type Your Email Account To Get Notified"
+                        />
+                        <button className="btn btn-stock ml-3 text-black">
+                          Send
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* <div className="col-12">
                   <div className="row mb-4">
                     <div className="col-12 col-lg-4 text-center m-mb-2">
                       <div className="comp-1st-card padding-circle  border-radius-5">
@@ -592,7 +634,7 @@ export const Stock = () => {
                       </button>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           ) : (

@@ -64,33 +64,11 @@ const Etf = () => {
                   </u>
                 </a>
 
-                <div className="padding-newsletter text-center">
-                  <text className="text-black weight-600 font-17 font-mon ">
-                    Join Our Newsletter
-                  </text>
-                  <div className=" input-group  text-center bg-white shadow-sm">
-                    <input
-                      type="text"
-                      className="form-control"
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Your email Address"
-                      aria-label="Recipient's username"
-                      aria-describedby="basic-addon2"
-                    />
-                    <div className="input-group-append ">
-                      <button
-                        className="btn bg-green text-white"
-                        type="button"
-                        onClick={onClick}
-                      >
-                        <text className="font-mon font-10">Join</text>
-                      </button>
-                    </div>
-                  </div>
-                  <text className="text-muted font-12">
-                    * Will send you weekly updates for your better finance
-                    management
-                  </text>
+                <div className="mt-2">
+                  <img
+                    src={require("assets/img/dashboard/etf-summary.png")}
+                    alt="Salam img"
+                  />
                 </div>
               </div>
             </div>
