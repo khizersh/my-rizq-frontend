@@ -9,10 +9,25 @@ const StockFinder = () => {
   let router = useHistory();
 
   const [text, setText] = useState("");
-  const onClick = () => {
+  const onClick = (data) => {
     if (text) {
       router.push("/dashboard/halal-stock-search?symbol=" + text);
+    } else {
+      const elem = document.getElementsByClassName("css-1g6zq87");
+      const div = elem[0];
+      const input = div.firstChild;
+      if (input.value) {
+        router.push("/dashboard/halal-stock-search?symbol=" + input.value);
+      }
     }
+  };
+
+  const onClickSuggest = (data) => {
+    const elem = document.getElementsByClassName("css-1g6zq87");
+    const div = elem[0];
+    const input = div.firstChild;
+    input.value = data;
+    setText(data);
   };
 
   return (
@@ -34,8 +49,9 @@ const StockFinder = () => {
                   Halal Stock Finder
                 </h4>
                 <div className=" input-group mb-3 text-center bg-white shadow">
-                  <input type="text" className="form-control px-0 px-1 font-10" placeholder="Serach Stocks & Determine Shariah Compliance" onChange={(e) => setText(e.target.value)} aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                  {/* <InputSuggestions
+                  {/* <input type="text" className="form-control px-0 px-1 font-10" placeholder="Serach Stocks & Determine Shariah Compliance" onChange={(e) => setText(e.target.value)} aria-label="Recipient's username" aria-describedby="basic-addon2" /> */}
+                  <InputSuggestions
+                    className="form-control font-15"
                     autoFocus
                     suggestions={[
                       "polite",
@@ -48,18 +64,18 @@ const StockFinder = () => {
                       <div
                         key={word}
                         onKeyDown={(e) => {
+                          onClick(e.target.value);
                           if (e.key === "Enter") {
-                            onClick();
                           }
                         }}
-                        onClick={() => {
-                          onClick();
+                        onClick={(e) => {
+                          onClickSuggest(word);
                         }}
                       >
                         {word}
                       </div>
                     ))}
-                  /> */}
+                  />
                   <div className="input-group-append ">
                     <button
                       className="btn bg-green text-white font-10"
