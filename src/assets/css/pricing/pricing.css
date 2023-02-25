@@ -31,6 +31,10 @@ ul {
   border-radius: 40px;
 }
 
+.curves {
+  background-image: url("assets/img/pricing/waves.png");
+}
+
 /* .waves {
   position: absolute;
   bottom: -179px;
@@ -59,28 +63,32 @@ ul {
   }
 }
 
-@media only screen and (min-width: 1500px) {
+@media only screen and (min-width: 1440px) {
   .bg-pricing {
     position: absolute;
     bottom: 28px;
     z-index: -999;
   }
+}
 
-  /* .container {
-    max-height: 706px;
-  } */
+@media only screen and (min-width: 1500px) {
+  .bg-pricing {
+    position: absolute;
+    top: 85%;
+    z-index: -999;
+  }
 }
 @media only screen and (min-width: 1400px) {
   .bg-pricing {
     position: absolute;
-    bottom: -31px;
+    top: 80%;
     z-index: -999;
   }
 }
 @media only screen and (min-width: 1300px) {
   .bg-pricing {
     position: absolute;
-    bottom: -195px;
+    top: 70%;
     z-index: -999;
   }
 }
