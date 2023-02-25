@@ -2,10 +2,12 @@ import React from "react";
 import "../../assets/css/home/home.css";
 import { FormGroup, Input } from "reactstrap";
 import Slider from "react-slick";
+import { InputSuggestions } from "react-input-suggestions";
 import { useHistory } from "react-router-dom";
 
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
+import { getSymbols } from "utility";
 
 export default function Hero() {
   const router = useHistory();
@@ -46,6 +48,14 @@ export default function Hero() {
       name: "Nauman",
     },
   ];
+
+  const onClickSuggest = (data) => {
+    const elem = document.getElementsByClassName("css-1g6zq87");
+    const div = elem[0];
+    const input = div.firstChild;
+    input.value = data;
+    // setText(data);
+  };
 
   const setEmail = (data) => {};
   const onClick = (data) => {
@@ -138,17 +148,37 @@ export default function Hero() {
                     </text>
                   </p>
                   <div className="padding-newsletter text-center mt-5">
-                  <text className="text-black weight-700 font-16 font-mon ">
+                    <text className="text-black weight-700 font-16 font-mon ">
                       Search Stocks & Determine Shariah Compliance{" "}
                     </text>
                     <div className=" input-group  text-center  shadow-sm mt-2">
-                      <input
+                      {/* <input
                         type="text"
                         className="form-control"
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Search for ticket or company (TSLA, APPLE, NFLX)"
                         aria-label="Recipient's username"
                         aria-describedby="basic-addon2"
+                      /> */}
+                      <InputSuggestions
+                        className="form-control font-15"
+                        placeholder="Search for ticket or company (TSLA, APPLE, NFLX)"
+                        autoFocus
+                        suggestions={getSymbols().map((word) => (
+                          <div
+                            key={word}
+                            onKeyDown={(e) => {
+                              onClick(e.target.value);
+                              if (e.key === "Enter") {
+                              }
+                            }}
+                            onClick={(e) => {
+                              onClickSuggest(word);
+                            }}
+                          >
+                            {word}
+                          </div>
+                        ))}
                       />
                       <div className="">
                         <button

@@ -73,6 +73,12 @@ body {
   border-left: 3px solid black !important;
 }
 
+.header-search input{
+  width: 40% !important;
+  padding-right: 0px;
+  display: inline !important;
+}
+
 .sidebar-sticky {
   position: relative;
   top: 0;
@@ -92,6 +98,14 @@ body {
 
 .d-ml{
   margin-left: 53%;
+}
+
+.disp-inline{
+  display: inline !important;
+}
+
+.max-width-30{
+  max-width: 30px;
 }
 @media only screen and (max-width: 600px) {
   .d-sm-none {

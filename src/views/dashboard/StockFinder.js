@@ -4,6 +4,7 @@ import "assets/css/dashboard/feedback.css";
 import "assets/css/home/home.css";
 import { useHistory } from "react-router-dom";
 import { InputSuggestions } from "react-input-suggestions";
+import { getSymbols } from "utility";
 
 const StockFinder = () => {
   let router = useHistory();
@@ -23,7 +24,8 @@ const StockFinder = () => {
   };
 
   const onClickSuggest = (data) => {
-    const elem = document.getElementsByClassName("css-1g6zq87");
+    var divs = document.querySelectorAll('.css-1g6zq87')
+    const elem = document.getElementsByClassName("stock-search");
     const div = elem[0];
     const input = div.firstChild;
     input.value = data;
@@ -49,18 +51,12 @@ const StockFinder = () => {
                   Halal Stock Finder
                 </h4>
                 <div className=" input-group mb-3 text-center bg-white shadow">
-                  {/* <input type="text" className="form-control px-0 px-1 font-10" placeholder="Serach Stocks & Determine Shariah Compliance" onChange={(e) => setText(e.target.value)} aria-label="Recipient's username" aria-describedby="basic-addon2" /> */}
+                  {/* <input type="text" className="form-control px-0 px-1 font-10" placeholder="Search Stocks & Determine Shariah Compliance" onChange={(e) => setText(e.target.value)} aria-label="Recipient's username" aria-describedby="basic-addon2" /> */}
                   <InputSuggestions
-                    className="form-control font-15"
+                    className="form-control font-15 stock-search"
                     autoFocus
-                    suggestions={[
-                      "polite",
-                      "fastidious",
-                      "dull",
-                      "pudding",
-                      "mole",
-                      "angle",
-                    ].map((word) => (
+                    placeholder="Search Stocks & Determine Shariah Compliance"
+                    suggestions={getSymbols().map((word) => (
                       <div
                         key={word}
                         onKeyDown={(e) => {

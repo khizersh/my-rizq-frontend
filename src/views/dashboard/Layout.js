@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
 import Modal from "react-modal";
+import { InputSuggestions } from "react-input-suggestions";
 import { BASE_URL } from "utility";
+import { getSymbols } from "utility";
 
 export const Layout = (props) => {
   var customStyles = {
@@ -63,8 +65,10 @@ export const Layout = (props) => {
     const userData = JSON.parse(localStorage.getItem("user"));
     if (userData.password === changeUser.password) {
       if (changeUser.newPassword == changeUser.confirmPassword) {
-
-        let request = {email : userData.email , password : changeUser.newPassword}
+        let request = {
+          email: userData.email,
+          password: changeUser.newPassword,
+        };
         fetch(BASE_URL + "/user/reset", {
           method: "POST",
           body: JSON.stringify(request),
@@ -173,6 +177,14 @@ export const Layout = (props) => {
     ];
   }
 
+  const onClickSuggest = (data) => {
+    const elem = document.getElementsByClassName("css-1g6zq87");
+    const div = elem[0];
+    const input = div.firstChild;
+    input.value = data;
+    // setText(data);
+  };
+
   function onClick(sidebar) {
     setSelected(sidebar.key);
     if (sidebar.onClick) {
@@ -271,12 +283,33 @@ export const Layout = (props) => {
                 </div>
                 <div className="col-7 col-lg-8 text-right m-padding-name">
                   <span className="pr-4">
-                    <Input
+                    {/* <Input
                       placeholder="Search"
                       onChange={(e) => onChangeSearch(e)}
                       type="text"
                       className="bg-transparent d-inline w-30"
                       style={{ maxHeight: "30px" }}
+                    /> */}
+
+                    <InputSuggestions
+                      className="bg-transparent d-inline header-search input"
+                      placeholder="Search Stocks & Determine Shariah Compliance"
+                      autoFocus
+                      suggestions={getSymbols().map((word) => (
+                        <div
+                          key={word}
+                          onKeyDown={(e) => {
+                            onClick(e.target.value);
+                            if (e.key === "Enter") {
+                            }
+                          }}
+                          onClick={(e) => {
+                            onClickSuggest(word);
+                          }}
+                        >
+                          {word}
+                        </div>
+                      ))}
                     />
                     <i
                       className="fa fa-search px-3"
