@@ -7,6 +7,7 @@ import { BASE_URL } from "utility";
 import StockFinder from "./StockFinder";
 import { numberWithCommas } from "utility";
 import { useHistory } from "react-router-dom";
+import  constructionImage  from "assets/img/dashboard/construction.png";
 
 export const Stock = () => {
   const router = useHistory();
@@ -513,7 +514,8 @@ export const Stock = () => {
                     <div className="col-lg-4 col-12">
                       <div className=" text-center my-4">
                         <img
-                          src={require("assets/img/blog/construction.png")}
+                          // src={require("assets/img/dashboard/construction.png")}
+                          src={constructionImage}
                           className=""
                           alt="Construction image"
                         />

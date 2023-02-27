@@ -5,6 +5,7 @@ import "assets/css/dashboard/budgeting-tool.css";
 import "assets/css/home/home.css";
 import swal from "sweetalert";
 import { BASE_URL } from "utility";
+import etfImage from "assets/img/dashboard/etf-summary.png"
 
 const Etf = () => {
   const [email, setEmail] = useState("");
@@ -66,7 +67,8 @@ const Etf = () => {
 
                 <div className="mt-2">
                   <img
-                    src={require("assets/img/blog/etf-summary.png")}
+                    // src={require("assets/img/dashboard/etf-summary.png")}
+                    src={etfImage}
                     alt="Salam img"
                   />
                 </div>
