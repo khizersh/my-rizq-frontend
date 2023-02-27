@@ -177,14 +177,6 @@ export const Layout = (props) => {
     ];
   }
 
-  const onClickSuggest = (data) => {
-    const elem = document.getElementsByClassName("css-1g6zq87");
-    const div = elem[0];
-    const input = div.firstChild;
-    input.value = data;
-    // setText(data);
-  };
-
   function onClick(sidebar) {
     setSelected(sidebar.key);
     if (sidebar.onClick) {
@@ -212,6 +204,19 @@ export const Layout = (props) => {
       });
     }
   }
+
+  const [text, setText] = useState("");
+  const [symbol, setSymbol] = useState("");
+
+  const onClickSuggest = (data) => {
+    setText(data);
+    setSymbol("");
+  };
+
+  const onChangeText = (data) => {
+    setText(data);
+    setSymbol(data);
+  };
 
   useEffect(() => {
     let user = localStorage.getItem("user");
@@ -270,7 +275,7 @@ export const Layout = (props) => {
             <div className="col-2 d-sm-none"></div>
             <div className="col-12 col-lg-12 h-50px pt-2">
               <div className="row">
-                <div className="col-5 col-lg-4">
+                <div className="col-4 col-lg-4">
                   <p className="weight-700 mbl-font-13 text-black m-left-05 d-ml">
                     <span>
                       <i
@@ -281,36 +286,33 @@ export const Layout = (props) => {
                     {page.length > 10 ? page.slice(0, 11) + ".." : page}
                   </p>
                 </div>
-                <div className="col-7 col-lg-8 text-right m-padding-name">
+                <div className="col-8 col-lg-8 text-right m-padding-name">
                   <span className="pr-4">
-                    {/* <Input
-                      placeholder="Search"
-                      onChange={(e) => onChangeSearch(e)}
+                    <input
                       type="text"
-                      className="bg-transparent d-inline w-30"
-                      style={{ maxHeight: "30px" }}
-                    /> */}
-
-                    <InputSuggestions
-                      className="bg-transparent d-inline header-search input"
-                      placeholder="Search Stocks & Determine Shariah Compliance"
-                      autoFocus
-                      suggestions={getSymbols().map((word) => (
-                        <div
-                          key={word}
-                          onKeyDown={(e) => {
-                            onClick(e.target.value);
-                            if (e.key === "Enter") {
-                            }
-                          }}
-                          onClick={(e) => {
-                            onClickSuggest(word);
-                          }}
-                        >
-                          {word}
-                        </div>
-                      ))}
+                      value={text}
+                      className=" border-none d-inline header-input"
+                      onChange={(e) => onChangeText(e.target.value)}
+                      placeholder="Search.."
+                      aria-label="Recipient's username"
+                      aria-describedby="basic-addon2"
                     />
+
+                    {symbol ? (
+                      <div className="bg-white text-left shadow mb-4 sugg">
+                        {getSymbols(symbol).map((d) => (
+                          <p
+                            className="suggestions"
+                            onClick={() => onClickSuggest(d)}
+                          >
+                            {d}
+                          </p>
+                        ))}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+
                     <i
                       className="fa fa-search px-3"
                       onClick={onClickSearch}

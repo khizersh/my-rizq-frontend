@@ -66,7 +66,7 @@ const Etf = () => {
 
                 <div className="mt-2">
                   <img
-                    src={require("assets/img/dashboard/etf-summary.png")}
+                    src={require("assets/img/blog/etf-summary.png")}
                     alt="Salam img"
                   />
                 </div>

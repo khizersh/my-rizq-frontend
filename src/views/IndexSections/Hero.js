@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../assets/css/home/home.css";
 import { FormGroup, Input } from "reactstrap";
 import Slider from "react-slick";
@@ -11,6 +11,10 @@ import { getSymbols } from "utility";
 
 export default function Hero() {
   const router = useHistory();
+
+  const [text, setText] = useState("");
+  const [symbol, setSymbol] = useState("");
+  const [textCount, setCount] = useState(0);
 
   var settings = {
     dots: false,
@@ -50,14 +54,14 @@ export default function Hero() {
   ];
 
   const onClickSuggest = (data) => {
-    const elem = document.getElementsByClassName("css-1g6zq87");
-    const div = elem[0];
-    const input = div.firstChild;
-    input.value = data;
-    // setText(data);
+    setText(data);
+    setSymbol("");
   };
 
-  const setEmail = (data) => {};
+  const onChangeText = (data) => {
+    setText(data);
+    setSymbol(data);
+  };
   const onClick = (data) => {
     router.push("signup");
   };
@@ -152,33 +156,14 @@ export default function Hero() {
                       Search Stocks & Determine Shariah Compliance{" "}
                     </text>
                     <div className=" input-group  text-center  shadow-sm mt-2">
-                      {/* <input
+                      <input
                         type="text"
+                        value={text}
                         className="form-control"
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => onChangeText(e.target.value)}
                         placeholder="Search for ticket or company (TSLA, APPLE, NFLX)"
                         aria-label="Recipient's username"
                         aria-describedby="basic-addon2"
-                      /> */}
-                      <InputSuggestions
-                        className="form-control font-15"
-                        placeholder="Search for ticket or company (TSLA, APPLE, NFLX)"
-                        autoFocus
-                        suggestions={getSymbols().map((word) => (
-                          <div
-                            key={word}
-                            onKeyDown={(e) => {
-                              onClick(e.target.value);
-                              if (e.key === "Enter") {
-                              }
-                            }}
-                            onClick={(e) => {
-                              onClickSuggest(word);
-                            }}
-                          >
-                            {word}
-                          </div>
-                        ))}
                       />
                       <div className="">
                         <button
@@ -189,6 +174,18 @@ export default function Hero() {
                           <text className="font-mon font-10">Search</text>
                         </button>
                       </div>
+                    </div>
+                    <div className="bg-white text-left shadow">
+                      {getSymbols(symbol).map((d) => (
+                        <p
+                          className="suggestions"
+                          onClick={() => onClickSuggest(d)}
+                        >
+                          {d}
+                        </p>
+                      ))}
+
+                     
                     </div>
                   </div>
                 </div>

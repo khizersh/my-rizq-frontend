@@ -73,10 +73,21 @@ body {
   border-left: 3px solid black !important;
 }
 
-.header-search input{
+.header-search input {
   width: 40% !important;
   padding-right: 0px;
   display: inline !important;
+}
+
+.sugg {
+  width: 20%;
+  position: absolute;
+  left: 68%;
+}
+
+.header-input{
+  width: 20% !important;
+
 }
 
 .sidebar-sticky {
@@ -92,19 +103,19 @@ body {
   margin-left: 0.6rem;
 }
 
-.cross{
+.cross {
   display: none;
 }
 
-.d-ml{
+.d-ml {
   margin-left: 53%;
 }
 
-.disp-inline{
+.disp-inline {
   display: inline !important;
 }
 
-.max-width-30{
+.max-width-30 {
   max-width: 30px;
 }
 @media only screen and (max-width: 600px) {
@@ -112,12 +123,23 @@ body {
     display: none;
   }
 
-  .d-ml{
-    margin-left: 3%;
+  .header-input{
+    width: 40% !important;
+  
+  }
+
+  .sugg {
+    width: 40%;
+    position: absolute;
+    left: 10%;
   }
   
-  .d-none-sm{
-    
+
+  .d-ml {
+    margin-left: 3%;
+  }
+
+  .d-none-sm {
     display: none;
   }
 
@@ -126,13 +148,13 @@ body {
     padding-top: 5px;
   }
 
-  .cross{
+  .cross {
     display: block;
     font-size: 25px;
     padding: 6px 15px;
   }
 
-  .m-padding-name{
+  .m-padding-name {
     padding: 0px;
     padding-right: 3px;
   }
