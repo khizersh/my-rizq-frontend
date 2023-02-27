@@ -515,7 +515,7 @@ export const Stock = () => {
                         <img
                           src={require("assets/img/dashboard/construction.png")}
                           className=""
-                          alt="Salam img"
+                          alt="Construction image"
                         />
                       </div>
                     </div>
