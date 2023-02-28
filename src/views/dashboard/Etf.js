@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import "assets/css/dashboard/stock.css";
 import "assets/css/dashboard/feedback.css";
 import "assets/css/dashboard/budgeting-tool.css";
@@ -6,6 +6,7 @@ import "assets/css/home/home.css";
 import swal from "sweetalert";
 import { BASE_URL } from "utility";
 import etfImage from "assets/img/dashboard/etf.png"
+import salamImage from "assets/img/dashboard/salam.png"
 
 const Etf = () => {
   const [email, setEmail] = useState("");
@@ -34,6 +35,12 @@ const Etf = () => {
       });
   };
 
+
+  useEffect(() => {
+    console.log("etfImage : ",etfImage);
+    console.log("salamImage : ",salamImage);
+  },[])
+
   return (
     <div className="container-fluid m-p-0">
       <div className="row">
@@ -41,7 +48,8 @@ const Etf = () => {
           <div className="card mb-3 shadow">
             <div className="card-header bg-white shadow text-center">
               <img
-                src={require("assets/img/dashboard/salam.png")}
+                // src={require("assets/img/dashboard/salam.png")}
+                src={require("assets/img/dashboard/etf.png")}
                 className="salam-img"
                 alt="Salam img"
               />
