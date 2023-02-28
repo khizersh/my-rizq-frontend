@@ -514,8 +514,8 @@ export const Stock = () => {
                     <div className="col-lg-4 col-12">
                       <div className=" text-center my-4">
                         <img
-                          // src={require("assets/img/dashboard/construction.png")}
-                          src={constructionImage}
+                          src={require("assets/img/dashboard/const.png")}
+                          // src={constructionImage}
                           className=""
                           alt="Construction image"
                         />
