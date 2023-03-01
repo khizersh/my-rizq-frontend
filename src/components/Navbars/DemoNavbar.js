@@ -134,26 +134,6 @@ class DemoNavbar extends React.Component {
                       </Link>
                     </DropdownToggle>
                   </UncontrolledDropdown>
-                  {/* <UncontrolledDropdown nav>
-                    <DropdownToggle nav>
-                      <i className="ni ni-collection d-lg-none mr-1" />
-                      <span className="nav-link-inner--text">
-                        Blog{" "}
-                        <i
-                          className="fa fa-chevron-down"
-                          style={{ fontSize: "10px" }}
-                        ></i>
-                      </span>
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem to="/blog" tag={Link}>
-                        Blog
-                      </DropdownItem>
-                      <DropdownItem to="/signup" tag={Link}>
-                        Register
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </UncontrolledDropdown> */}
                   <UncontrolledDropdown nav>
                     <DropdownToggle nav>
                       <Link to="/support" className="text-black">
@@ -170,23 +150,7 @@ class DemoNavbar extends React.Component {
                       </Link>
                     </DropdownToggle>
                   </UncontrolledDropdown>
-                  {/* <UncontrolledDropdown nav>
-                    <DropdownToggle nav>
-                      <Link to="/signin" className="text-black">
-                        <i className="ni ni-collection d-lg-none mr-1" />
-                        <span className="nav-link-inner--text">Sign In</span>
-                      </Link>
-                    </DropdownToggle>
-                  </UncontrolledDropdown>
-
-                  <UncontrolledDropdown nav>
-                    <DropdownToggle nav>
-                      <Link to="/signup" className="text-black">
-                        <i className="ni ni-collection d-lg-none mr-1" />
-                        <span className="nav-link-inner--text">Sign Up</span>
-                      </Link>
-                    </DropdownToggle>
-                  </UncontrolledDropdown> */}
+               
                 </Nav>
                 {/* right navbar element */}
                 <Nav className="" navbar>
