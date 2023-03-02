@@ -97,7 +97,6 @@ const Subscription = () => {
 
   const onClickRegister = () => {
     let userData = JSON.parse(localStorage.getItem("user"));
-    console.log("local storage : ", userData);
     let data = { ...userData };
     setUser(data);
     return data;
@@ -144,7 +143,6 @@ const Subscription = () => {
               <div className="row">
                 <div className="col-12 d-p0 mt-3">
                   <h4 className="text-black  font-lato weight-700">
-                    {console.log("userrrr : ", user)}
                     {user
                       ? user.freeUser === true
                         ? "Free"

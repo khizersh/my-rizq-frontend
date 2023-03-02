@@ -3,6 +3,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import swal from "sweetalert";
 import { useHistory } from "react-router-dom";
 import { BASE_URL } from "utility";
+import { MONTHLY_PREMIUM } from "utility";
 
 export const CheckoutForm = ({ onClick, upgrade }) => {
   const stripe = useStripe();
@@ -14,11 +15,10 @@ export const CheckoutForm = ({ onClick, upgrade }) => {
 
     const user = await onClick();
 
-    console.log("user data : ", user);
     if (user) {
       if (upgrade) {
         if (user.email && user.password) {
-          const stripeSuccess = await stripeCall(user);
+          const stripeSuccess = await stripeCall(user , MONTHLY_PREMIUM);
           if (stripeSuccess === true) {
             const response = await fetch(BASE_URL + "/user/update-plan", {
               method: "POST",
@@ -58,7 +58,7 @@ export const CheckoutForm = ({ onClick, upgrade }) => {
           const data = await response.json();
 
           if (data && data.status == "0000") {
-            const stripeSuccess = await stripeCall(user);
+            const stripeSuccess = await stripeCall(user , MONTHLY_PREMIUM);
           } else if (data && data.status == "9999") {
             swal("Error!", data.message, "error");
           } else {
@@ -69,7 +69,7 @@ export const CheckoutForm = ({ onClick, upgrade }) => {
     }
   };
 
-  const stripeCall = async (user) => {
+  const stripeCall = async (user , amount) => {
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
@@ -82,7 +82,7 @@ export const CheckoutForm = ({ onClick, upgrade }) => {
         const response = await fetch(BASE_URL + "/stripe/charge", {
           method: "POST",
           body: JSON.stringify({
-            amount: 999,
+            amount: amount,
             id: id,
           }),
           headers: {

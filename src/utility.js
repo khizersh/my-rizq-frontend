@@ -6,6 +6,8 @@ export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+
+
 export function getSymbols(symbol) {
   const data = [
     "Ticker",
@@ -106354,3 +106356,10 @@ export function getSymbols(symbol) {
     return [];
   }
 }
+
+//  ======================= PRODUCT ==============
+
+export const MONTHLY_STANDARD = 299;
+export const MONTHLY_PREMIUM = 499;
+export const YEARLY_STANDARD = 3000;
+export const YEARLY_PREMIUM = 4000;
