@@ -92,7 +92,8 @@ const Register = () => {
                       <figure>
                         <img
                         className="m-width-img"
-                          src={require("assets/img/signup/signup.png")}
+                          // src={require("assets/img/signup/signup.png")}
+                          src={require("assets/img/brand/logo.png")}
                           alt="sing up image"
                           width="90%"
                         />
