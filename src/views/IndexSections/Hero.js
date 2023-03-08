@@ -179,9 +179,9 @@ export default function Hero() {
                       {getSymbols(symbol).map((d) => (
                         <p
                           className="suggestions"
-                          onClick={() => onClickSuggest(d.symbol)}
+                          onClick={() => onClickSuggest(d)}
                         >
-                          {d.title} - {d.symbol}
+                          {d}
                         </p>
                       ))}
 
