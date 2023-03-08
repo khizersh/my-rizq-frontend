@@ -26,6 +26,14 @@ const StockFinder = () => {
       router.push("/dashboard/halal-stock-search?symbol=" + text);
     }
   };
+  const onClickAdvance = () => {
+
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if(userData.freeUser){
+        router.push("/signup?premium=true");
+      }
+    
+  };
 
   // const onClickSuggest = (data) => {
   //   var divs = document.querySelectorAll('.css-1g6zq87')
@@ -45,7 +53,7 @@ const StockFinder = () => {
               <button className="btn bg-green text-white w-50 btn-mbl">
                 Search Companies
               </button>
-              <button className="btn btn-secondary w-50 btn-mbl">
+              <button className="btn btn-secondary w-50 btn-mbl" onClick={onClickAdvance}>
                 Advance Search
               </button>
             </div>

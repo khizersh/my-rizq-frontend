@@ -137,6 +137,15 @@ const Watchlist = () => {
     setArray(sorted);
   }
 
+  const onClickAdvance = () => {
+
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if(userData.freeUser){
+      router.push("/signup?premium=true");
+    }
+  
+};
+
   const combineData = async () => {
     let final = [];
     const listData = await getSymbols();
@@ -176,7 +185,8 @@ const Watchlist = () => {
               <h5 className="font-poppins text-black weight-600 ml-3 d-inline">
                 My Watchlist
               </h5>{" "}
-              <button className="btn btn-sm text-green bg-green-opacity mr-3">
+              
+              <button className="btn btn-sm text-green bg-green-opacity mr-3" onClick={onClickAdvance}>
                 <text className="font-15 pt-1">+</text> Add symbols
               </button>
             </div>
