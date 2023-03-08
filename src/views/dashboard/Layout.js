@@ -108,6 +108,9 @@ export const Layout = (props) => {
         icon: "fa fa-search",
         active: true,
         hr: false,
+        width: "35px",
+        image: "search.png",
+        isImage: false,
       },
       // {
       //   key: "stock-finder",
@@ -124,6 +127,9 @@ export const Layout = (props) => {
         icon: "fa fa-pie-chart",
         active: false,
         hr: false,
+        isImage: true,
+        width: "20px",
+        image: "halal-etf.png",
       },
       {
         key: "budgeting-tool",
@@ -132,6 +138,8 @@ export const Layout = (props) => {
         icon: "fa fa-calculator",
         active: false,
         hr: false,
+        isImage: false,
+        image: "",
       },
       {
         key: "watchlist",
@@ -140,6 +148,8 @@ export const Layout = (props) => {
         icon: "fa fa-money",
         active: false,
         hr: false,
+        isImage: false,
+        image: "",
       },
       {
         key: "feedback",
@@ -148,6 +158,9 @@ export const Layout = (props) => {
         icon: "fa fa-commenting",
         active: false,
         hr: true,
+        isImage: true,
+        width: "20px",
+        image: "feedback.png",
       },
       // {
       //   key: "settings",
@@ -164,6 +177,9 @@ export const Layout = (props) => {
         icon: "fa fa-users",
         active: false,
         hr: false,
+        isImage: true,
+        width: "20px",
+        image: "subscription.png",
       },
       {
         key: "logout",
@@ -172,6 +188,10 @@ export const Layout = (props) => {
         icon: "fa fa-sign-out",
         active: false,
         hr: false,
+        isImage: false,
+        isImage: true,
+        width: "20px",
+        image: "logout.png",
         onClick: logout,
       },
     ];
@@ -389,10 +409,23 @@ export const Layout = (props) => {
                             side.key == selected ? "active" : ""
                           } ${side.hr ? "border-bottom mt-3" : "border-none"} `}
                         >
-                          <i
-                            className={`${side.icon} pr-2`}
-                            aria-hidden="true"
-                          ></i>
+                          {side.isImage === true ? (
+                            // <img
+                            //   className="pl-3 mb-4"
+                            //   src={require(`${side.image}`)}
+                            // />
+                            <img
+                              width={side.width}
+                              className="pr-2"
+                              src={require(`assets/img/dashboard/${side.image}`)}
+                            ></img>
+                          ) : (
+                            <i
+                              className={`${side.icon} pr-2`}
+                              aria-hidden="true"
+                            ></i>
+                          )}
+
                           <span>{side.name}</span>
                         </div>
                       </Link>

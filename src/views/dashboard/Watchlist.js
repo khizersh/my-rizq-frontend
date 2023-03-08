@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import "assets/css/comon.css";
 import "assets/css/dashboard/watchlist.css";
 import { BASE_URL } from "utility";
+import { useHistory } from "react-router-dom";
 
 const Watchlist = () => {
+  const router = useHistory()
   const [array, setArray] = useState([]);
   const [sort, setSort] = useState({ key: "symbol", order: "asc" });
 
@@ -145,6 +147,14 @@ const Watchlist = () => {
   useEffect(() => {
     combineData();
     console.log("finalData  ");
+
+    let user = localStorage.getItem("user");
+    if (user) {
+      let userData = JSON.parse(user);
+      if(userData.freeUser){
+        router.push('/signup?premium=true')
+      }
+    }
     // setArray(finalData)
 
     // setArray(getList());

@@ -251,7 +251,7 @@ const Subscription = () => {
               <div className="height-415">
                 <div className="card pricing-card shadow-lg pt-3 h-100">
                   <div className=" text-center">
-                    <h5>Standard</h5>
+                    <h5>Professional</h5>
                     <h3 className="weight-700 text-black font-poppins">
                       {btnSelected == 0
                         ? price.monthly.standard
