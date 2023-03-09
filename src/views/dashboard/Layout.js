@@ -9,6 +9,7 @@ import Modal from "react-modal";
 import { InputSuggestions } from "react-input-suggestions";
 import { BASE_URL } from "utility";
 import { getSymbols } from "utility";
+import { getJsonFile } from "utility";
 
 export const Layout = (props) => {
   var customStyles = {
@@ -34,6 +35,7 @@ export const Layout = (props) => {
   const [isClose, setIsClose] = useState(true);
   const [search, setSearch] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [suggestions , setSuggestions] = useState([])
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -145,7 +147,7 @@ export const Layout = (props) => {
         key: "watchlist",
         url: "/dashboard/watchlist",
         name: "Watchlist",
-        icon: "fa fa-money",
+        icon: "fa fa-pie-chart",
         active: false,
         hr: false,
         isImage: false,
@@ -233,9 +235,14 @@ export const Layout = (props) => {
     setSymbol("");
   };
 
-  const onChangeText = (data) => {
+  const onChangeText = async (data) => {
     setText(data);
     setSymbol(data);
+    console.log("data : ",data);
+    const list = await getJsonFile(data , "../data.json");
+    console.log("list :",list);
+    setSuggestions(list)
+    
   };
 
   useEffect(() => {
@@ -258,7 +265,7 @@ export const Layout = (props) => {
       router.push("/signin");
     }
     setPage(getPageNameByKey(selected));
-  }, [selected]);
+  }, [selected , suggestions]);
 
   const onClickClose = () => {
     setIsClose(!isClose);
@@ -320,12 +327,12 @@ export const Layout = (props) => {
 
                     {symbol ? (
                       <div className="bg-white text-left shadow mb-4 sugg">
-                        {getSymbols(symbol).map((d) => (
+                        {suggestions.map((d) => (
                           <p
                             className="suggestions"
-                            onClick={() => onClickSuggest(d)}
+                            onClick={() => onClickSuggest(d.symbol)}
                           >
-                            {d}
+                            {d.symbol}
                           </p>
                         ))}
                       </div>

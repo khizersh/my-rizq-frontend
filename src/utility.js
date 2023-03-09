@@ -1,12 +1,39 @@
 export var BASE_URL = "https://myrizq-backend.onrender.com";
 // export var BASE_URL = "http://localhost:3001";
 // export var BASE_URL = "http://192.168.168.56:3001";
+// import "./assets"
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+export const getJsonFile = async (symbol , url) => {
+  const response = await fetch( url, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
 
+  const data = await  response.json();
+
+  let i = 0;
+  if (symbol) {
+    return data
+      .filter((symb) => symb.symbol.toLowerCase().includes(symbol.toLowerCase()) || symb.title.toLowerCase().includes(symbol.toLowerCase()))
+      .filter(() => {
+        i++;
+        if (i <= 6) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+  } else {
+    return [];
+  }
+
+};
 
 export function getSymbols(symbol) {
   const data = [
@@ -106346,9 +106373,9 @@ export function getSymbols(symbol) {
       .filter((symb) => symb.toLowerCase().includes(symbol.toLowerCase()))
       .filter(() => {
         i++;
-        if(i <= 6){
-          return true
-        }else{
+        if (i <= 6) {
+          return true;
+        } else {
           return false;
         }
       });

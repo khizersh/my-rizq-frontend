@@ -1,39 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "assets/css/dashboard/stock.css";
 import "assets/css/dashboard/feedback.css";
 import "assets/css/home/home.css";
 import { useHistory } from "react-router-dom";
 import { InputSuggestions } from "react-input-suggestions";
 import { getSymbols } from "utility";
+import { getJsonFile } from "utility";
 
 const StockFinder = () => {
   let router = useHistory();
 
   const [text, setText] = useState("");
   const [symbol, setSymbol] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
   const onClickSuggest = (data) => {
     setText(data);
     setSymbol("");
   };
 
-  const onChangeText = (data) => {
+  const onChangeText = async (data) => {
     setText(data);
     setSymbol(data);
+    const list = await getJsonFile(data , "../data.json");
+    setSuggestions(list);
   };
+
   const onClick = () => {
     if (text) {
       router.push("/dashboard/halal-stock-search?symbol=" + text);
     }
   };
   const onClickAdvance = () => {
-
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if(userData.freeUser){
-        router.push("/signup?premium=true");
-      }
-    
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData.freeUser) {
+      router.push("/signup?premium=true");
+    }
   };
+
+  useEffect(() => {}, [suggestions]);
 
   // const onClickSuggest = (data) => {
   //   var divs = document.querySelectorAll('.css-1g6zq87')
@@ -53,7 +58,10 @@ const StockFinder = () => {
               <button className="btn bg-green text-white w-50 btn-mbl">
                 Search Companies
               </button>
-              <button className="btn btn-secondary w-50 btn-mbl" onClick={onClickAdvance}>
+              <button
+                className="btn btn-secondary w-50 btn-mbl"
+                onClick={onClickAdvance}
+              >
                 Advance Search
               </button>
             </div>
@@ -84,12 +92,12 @@ const StockFinder = () => {
                   </div>
                 </div>
                 <div className="bg-white text-left shadow mb-4">
-                  {getSymbols(symbol).map((d) => (
+                  {suggestions.map((d) => (
                     <p
                       className="suggestions"
-                      onClick={() => onClickSuggest(d)}
+                      onClick={() => onClickSuggest(d.symbol)}
                     >
-                      {d}
+                      {d.symbol}
                     </p>
                   ))}
                 </div>

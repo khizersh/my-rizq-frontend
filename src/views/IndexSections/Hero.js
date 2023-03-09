@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import "../../assets/css/home/home.css";
 import { FormGroup, Input } from "reactstrap";
 import Slider from "react-slick";
@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 import { getSymbols } from "utility";
+import { getJsonFile } from "utility";
 
 export default function Hero() {
   const router = useHistory();
@@ -15,6 +16,7 @@ export default function Hero() {
   const [text, setText] = useState("");
   const [symbol, setSymbol] = useState("");
   const [textCount, setCount] = useState(0);
+  const [suggestions , setSuggestions] = useState([])
 
   var settings = {
     dots: false,
@@ -58,13 +60,21 @@ export default function Hero() {
     setSymbol("");
   };
 
-  const onChangeText = (data) => {
+  const onChangeText = async (data) => {
     setText(data);
     setSymbol(data);
+    const list = await getJsonFile(data , "data.json");
+    setSuggestions(list )
+    
   };
-  const onClick = (data) => {
+  const onClick = async (data) => {
     router.push("signup");
   };
+
+useEffect(() => {
+
+}, [suggestions])
+
   return (
     <>
       <span className="green-img">
@@ -176,14 +186,22 @@ export default function Hero() {
                       </div>
                     </div>
                     <div className="bg-white text-left shadow">
-                      {getSymbols(symbol).map((d) => (
+                      {suggestions.map((d) => (
+                        <p
+                          className="suggestions"
+                          onClick={() => onClickSuggest(d.symbol)}
+                        >
+                          {d.symbol}
+                        </p>
+                      ))}
+                      {/* {getSymbols(symbol).map((d) => (
                         <p
                           className="suggestions"
                           onClick={() => onClickSuggest(d)}
                         >
                           {d}
                         </p>
-                      ))}
+                      ))} */}
 
                      
                     </div>
