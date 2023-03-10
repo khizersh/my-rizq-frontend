@@ -232,6 +232,46 @@
   padding-right: 50px;
 }
 
+@media only screen and (min-width: 2500px) {
+  .green-img {
+    position: absolute;
+    left: 75%;
+  }
+}
+@media only screen and (max-width: 2400px) {
+  .green-img {
+    position: absolute;
+    left: 68%;
+  }
+}
+@media only screen and (max-width: 2000px) {
+  .green-img {
+    position: absolute;
+    left: 62%;
+  }
+}
+@media only screen and (max-width: 1800px) {
+  .green-img {
+    position: absolute;
+    left: 57%;
+  }
+}
+@media only screen and (max-width: 1700px) {
+  .green-img {
+    position: absolute;
+    left: 55%;
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .green-img {
+    position: absolute;
+    left: 53%;
+  }
+
+}
+
+
 @media only screen and (max-width: 600px) {
   .all-in-one {
     margin-top: 50px;

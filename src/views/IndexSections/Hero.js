@@ -191,7 +191,7 @@ useEffect(() => {
                           className="suggestions"
                           onClick={() => onClickSuggest(d.symbol)}
                         >
-                          {d.symbol}
+                          {d.symbol} - {d.title} 
                         </p>
                       ))}
                       {/* {getSymbols(symbol).map((d) => (

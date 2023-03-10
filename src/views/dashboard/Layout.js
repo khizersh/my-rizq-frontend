@@ -332,7 +332,7 @@ export const Layout = (props) => {
                             className="suggestions"
                             onClick={() => onClickSuggest(d.symbol)}
                           >
-                            {d.symbol}
+                            {d.symbol} - {d.title} 
                           </p>
                         ))}
                       </div>

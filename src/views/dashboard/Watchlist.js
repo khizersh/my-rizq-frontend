@@ -161,7 +161,7 @@ const Watchlist = () => {
     if (user) {
       let userData = JSON.parse(user);
       if(userData.freeUser){
-        router.push('/signup?premium=true')
+        router.push('/dashboard/subscription')
       }
     }
     // setArray(finalData)

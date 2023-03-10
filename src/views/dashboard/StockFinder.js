@@ -34,7 +34,7 @@ const StockFinder = () => {
   const onClickAdvance = () => {
     const userData = JSON.parse(localStorage.getItem("user"));
     if (userData.freeUser) {
-      router.push("/signup?premium=true");
+      router.push("/dashboard/subscription");
     }
   };
 
@@ -97,7 +97,7 @@ const StockFinder = () => {
                       className="suggestions"
                       onClick={() => onClickSuggest(d.symbol)}
                     >
-                      {d.symbol}
+                      {d.symbol} - {d.title} 
                     </p>
                   ))}
                 </div>
