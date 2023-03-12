@@ -170,7 +170,7 @@ export const Stock = () => {
   const onClickFollow = () => {
     let user = JSON.parse(localStorage.getItem("user"));
     if (user.freeUser) {
-      router.push("/signup?premium=true");
+      router.push("/dashboard/subscription");
     } else {
       let obj = [
         {

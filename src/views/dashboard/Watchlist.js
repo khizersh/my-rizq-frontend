@@ -141,7 +141,7 @@ const Watchlist = () => {
 
     const userData = JSON.parse(localStorage.getItem("user"));
     if(userData.freeUser){
-      router.push("/signup?premium=true");
+      router.push("/dashboard/subscription");
     }
   
 };
