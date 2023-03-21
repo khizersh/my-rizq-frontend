@@ -35,7 +35,7 @@ export const Layout = (props) => {
   const [isClose, setIsClose] = useState(true);
   const [search, setSearch] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [suggestions , setSuggestions] = useState([])
+  const [suggestions, setSuggestions] = useState([]);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -238,34 +238,35 @@ export const Layout = (props) => {
   const onChangeText = async (data) => {
     setText(data);
     setSymbol(data);
-    console.log("data : ",data);
-    const list = await getJsonFile(data , "../data.json");
-    console.log("list :",list);
-    setSuggestions(list)
-    
+    console.log("data : ", data);
+    const list = await getJsonFile(data, "../data.json");
+    console.log("list :", list);
+    setSuggestions(list);
   };
 
   useEffect(() => {
-    let user = localStorage.getItem("user");
-    if (user) {
-      let userData = JSON.parse(user);
-      if (userData.email) {
-        setUserName(userData.name);
-        // ============== Watch List Condition
-        // if (userData.freeUser) {
-        //   setSidebar(getList().filter((side) => side.key != "watchlist"));
-        // } else {
-        //   setSidebar(getList());
-        // }
-        setSidebar(getList());
+    try {
+      let user = localStorage.getItem("user");
+      if (user) {
+        let userData = JSON.parse(user);
+        if (userData.email) {
+          setUserName(userData.name);
+          // ============== Watch List Condition
+          // if (userData.freeUser) {
+          //   setSidebar(getList().filter((side) => side.key != "watchlist"));
+          // } else {
+          //   setSidebar(getList());
+          // }
+          setSidebar(getList());
+        } else {
+          router.push("/signin");
+        }
       } else {
         router.push("/signin");
       }
-    } else {
-      router.push("/signin");
-    }
-    setPage(getPageNameByKey(selected));
-  }, [selected , suggestions]);
+      setPage(getPageNameByKey(selected));
+    } catch (error) {}
+  }, [selected, suggestions]);
 
   const onClickClose = () => {
     setIsClose(!isClose);
@@ -332,7 +333,7 @@ export const Layout = (props) => {
                             className="suggestions"
                             onClick={() => onClickSuggest(d.symbol)}
                           >
-                            {d.symbol} - {d.title} 
+                            {d.symbol} - {d.title}
                           </p>
                         ))}
                       </div>

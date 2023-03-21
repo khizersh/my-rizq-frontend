@@ -42,7 +42,6 @@ const Feedback = () => {
         }else{
 
         }
-        console.log(" data response : ",data);
        
       });
    
