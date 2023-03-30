@@ -461,7 +461,7 @@ export const Layout = (props) => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h5 className="modal-heading text-center text-green weight-500 mb-5">
+        <h5 className="modal-heading text-center text-purple weight-500 mb-5">
           Change Password
         </h5>
         <div>
