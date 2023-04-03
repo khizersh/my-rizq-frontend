@@ -83,6 +83,7 @@ export const CheckoutForm = ({ onClick, upgrade }) => {
           method: "POST",
           body: JSON.stringify({
             amount: amount,
+            // amount: 50,
             id: id,
           }),
           headers: {
@@ -105,6 +106,7 @@ export const CheckoutForm = ({ onClick, upgrade }) => {
           }
         } else {
           deleteUser(user);
+          console.log("error : ", data);
           swal("Error!", data.message, "error");
         }
       } catch (error) {
@@ -119,7 +121,7 @@ export const CheckoutForm = ({ onClick, upgrade }) => {
   };
 
   async function deleteUser(user) {
-    const response = await fetch(BASE_URL + "  /user/delete", {
+    const response = await fetch(BASE_URL + "/user/delete", {
       method: "POST",
       body: JSON.stringify([user]),
       headers: {
