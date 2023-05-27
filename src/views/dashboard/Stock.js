@@ -53,6 +53,9 @@ export const Stock = () => {
             setShortName(data.response.price.shortName);
           }
           if (data && data.response.financialData && data.response.price) {
+            let totalAssetsValue = data.response.balanceSheetHistoryQuarterly.balanceSheetStatements[0].totalAssets ? 0 : 1
+            let netReceivablesValue = data.response.balanceSheetHistoryQuarterly.balanceSheetStatements[0].netReceivables ? 0 : 1
+            
             let dep = (
               (Number(data.response.financialData.totalDebt) /
                 Number(data.response.price.marketCap)) *
@@ -68,25 +71,27 @@ export const Stock = () => {
               ((Number(data.response.financialData.totalCash) +
                 Number(
                   data.response.balanceSheetHistoryQuarterly
-                    .balanceSheetStatements[0].netReceivables
+                    .balanceSheetStatements[netReceivablesValue].netReceivables
                 )) /
                 Number(
                   data.response.balanceSheetHistoryQuarterly
-                    .balanceSheetStatements[0].totalAssets
+                    .balanceSheetStatements[totalAssetsValue].totalAssets
                 )) *
               100
             ).toFixed(0);
 
+            
+            console.log("STOCKS 2",data.response.balanceSheetHistoryQuarterly.balanceSheetStatements[0].totalAssets)
             setTotalAssets(
               numberWithCommas(
                 data.response.balanceSheetHistoryQuarterly
-                  .balanceSheetStatements[0].totalAssets
+                  .balanceSheetStatements[totalAssetsValue].totalAssets
               )
             );
             setNetReceivables(
               numberWithCommas(
                 data.response.balanceSheetHistoryQuarterly
-                  .balanceSheetStatements[0].netReceivables
+                  .balanceSheetStatements[netReceivablesValue].netReceivables
               )
             );
             setTotalDepth(
@@ -107,6 +112,8 @@ export const Stock = () => {
               setIsShariah(false);
             }
           }
+          console.log("STOCKS 3")
+
         });
     }
   };
