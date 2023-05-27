@@ -366,7 +366,7 @@ export const Stock = () => {
                         <CircularProgressbar
                           value={securityRatio}
                           text={securityRatio + "%"}
-                          strokeWidth={5}
+                          strokeWidth={5} 
                           styles={buildStyles({
                             rotation: 0.5,
                             textSize: "16px",
