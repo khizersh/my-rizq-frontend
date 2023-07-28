@@ -2,8 +2,9 @@
 // export var BASE_URL = "http://178.128.236.228:3001";
 
 
-export var BASE_URL = "https://api.myrizq.com";
-// export var BASE_URL = "http://15.222.121.82";
+// export var BASE_URL = "https://api.myrizq.com";
+
+export var BASE_URL = "http://15.222.121.82";
 // export var BASE_URL = "http://localhost:3001";
 
 // export var BASE_URL = "http://192.168.168.56:3001";

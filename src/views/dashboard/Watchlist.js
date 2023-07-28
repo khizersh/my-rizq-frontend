@@ -149,7 +149,9 @@ const Watchlist = () => {
   const combineData = async () => {
     let final = [];
     const listData = await getSymbols();
+    console.log("NAUMAN 1", listData)
     const finalData = await fetchDataByList(listData);
+    console.log("NAUMAN 2", finalData)
     setArray(finalData);
   };
 

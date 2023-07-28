@@ -55,20 +55,23 @@ export const Stock = () => {
           if (data && data.response.financialData && data.response.price) {
             let totalAssetsValue = data.response.balanceSheetHistoryQuarterly.balanceSheetStatements[0].totalAssets ? 0 : 1
             let netReceivablesValue = data.response.balanceSheetHistoryQuarterly.balanceSheetStatements[0].netReceivables ? 0 : 1
-            
+
             let dep = (
-              (Number(data.response.financialData.totalDebt) /
+              (Number(data.response.balanceSheetHistoryQuarterly
+                .balanceSheetStatements[netReceivablesValue].longTermDebt) /
                 Number(data.response.price.marketCap)) *
               100
             ).toFixed(0);
 
             let sec = (
-              (Number(data.response.financialData.totalCash) /
+              (Number(data.response.balanceSheetHistoryQuarterly
+                .balanceSheetStatements[netReceivablesValue].cash) /
                 Number(data.response.price.marketCap)) *
               100
             ).toFixed(0);
             let liq = (
-              ((Number(data.response.financialData.totalCash) +
+              ((Number(data.response.balanceSheetHistoryQuarterly
+                .balanceSheetStatements[netReceivablesValue].cash) +
                 Number(
                   data.response.balanceSheetHistoryQuarterly
                     .balanceSheetStatements[netReceivablesValue].netReceivables
@@ -81,7 +84,6 @@ export const Stock = () => {
             ).toFixed(0);
 
             
-            console.log("STOCKS 2",data.response.balanceSheetHistoryQuarterly.balanceSheetStatements[0].totalAssets)
             setTotalAssets(
               numberWithCommas(
                 data.response.balanceSheetHistoryQuarterly
@@ -95,13 +97,15 @@ export const Stock = () => {
               )
             );
             setTotalDepth(
-              numberWithCommas(data.response.financialData.totalDebt)
+              numberWithCommas(data.response.balanceSheetHistoryQuarterly
+                .balanceSheetStatements[netReceivablesValue].longTermDebt)
             );
             setMarketCap(numberWithCommas(data.response.price.marketCap));
-            setCash(numberWithCommas(data.response.financialData.totalCash));
             setLongBusinessSummary(
               data.response.assetProfile.longBusinessSummary
             );
+            setCash(numberWithCommas(data.response.balanceSheetHistoryQuarterly
+                .balanceSheetStatements[netReceivablesValue].cash));
 
             setDepthRatio(dep);
             setSecurityRatio(sec);
